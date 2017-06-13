@@ -1,6 +1,7 @@
-libs/*
-bin-debug/*
-.wing/*
+egretProperties.json
 tsconfig.json
 wingProperties.json
-egretProperties.json
+.idea/
+temp/
+libs/
+bin-debug/
