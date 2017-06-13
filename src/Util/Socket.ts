@@ -29,20 +29,60 @@ class Socket {
 
     private workTypeHall() {
         this.socket.on('socketId', socketId => {
-            this.main.user.setSocketId(socketId);
+            this.main.me.setSocketId(socketId);
+            console.log(socketId);
         });
 
         this.socket.on('roomNumber', message => {
             let msg = JSON.parse(message);
+            console.log(msg);
+        })
+
+        this.socket.on('create', () => {
+
+        })
+
+        this.socket.on('error', () => {
+
         })
     }
 
-    private workTypeRoom() {
 
+    private workTypeRoom() {
+        this.socket.on('enter', message => {
+            let msg = JSON.parse(message);
+        })
+
+        this.socket.on('join', message => {
+            let msg = JSON.parse(message);
+        })
+
+        this.socket.on('ready', socketId => {
+
+        })
+
+        this.socket.on('noReady', socketId => {
+
+        })
+
+        this.socket.on('disconnect', socketId => {
+
+        })
+
+        this.socket.on('error', () => {
+            
+        })
     }
 
-    private workTypePlay() {
 
+    private workTypePlay() {
+        this.socket.on('state', message => {
+
+        })
+
+        this.socket.on('error', () => {
+            
+        })
     }
 
     /**
@@ -52,5 +92,4 @@ class Socket {
         let msg:string = this.socket.readUTF();
         let obj = JSON.parse(msg);
     }
-
 }
