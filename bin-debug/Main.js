@@ -78,7 +78,9 @@ var Main = (function (_super) {
     };
     Main.prototype.createGameScene = function () {
         this.me = new User();
-        var websocket = new Socket(this, 'Hall', null, null);
+        // let websocket = new Socket(this, 'Hall', null, null);
+        var data = { name: "price" };
+        var http = new Http('/test/index', data);
     };
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。

@@ -87,7 +87,9 @@ class Main extends egret.DisplayObjectContainer {
 
     private createGameScene() {
         this.me = new User();
-        let websocket = new Socket(this, 'Hall', null, null);
+        // let websocket = new Socket(this, 'Hall', null, null);
+        var data = {name: "price"};
+        let http = new Http('/test/index', data);
     }
 
 

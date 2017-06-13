@@ -1,3 +1,6 @@
-egretProperties.json
+libs/*
+bin-debug/*
+.wing/*
 tsconfig.json
 wingProperties.json
+egretProperties.json
