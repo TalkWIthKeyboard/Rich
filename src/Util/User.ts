@@ -11,6 +11,6 @@ class User {
     }
 
     public getSocketId() {
-        return this.socketId
+        return this.socketId;
     }
 }

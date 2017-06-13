@@ -77,6 +77,7 @@ var Main = (function (_super) {
         }
     };
     Main.prototype.createGameScene = function () {
+        this.me = new User();
         var websocket = new Socket(this, 'Hall', null, null);
     };
     /**
