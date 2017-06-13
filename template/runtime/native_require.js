@@ -10,11 +10,19 @@ var game_file_list = [
 	"libs/modules/socket/socket.js",
 	"libs/modules/socket.io/socket.io.js",
 	"polyfill/promise.js",
+	"bin-debug/Scene/RegisterScene.js",
+	"bin-debug/Assembly/MyBitmap.js",
 	"bin-debug/Main.js",
+	"bin-debug/Model/roomModel.js",
+	"bin-debug/Scene/HallScene.js",
+	"bin-debug/Scene/LoginScene.js",
+	"bin-debug/Assembly/TextInput.js",
+	"bin-debug/Scene/RoomScene.js",
 	"bin-debug/Util/Coder.js",
 	"bin-debug/Util/LoadingUI.js",
 	"bin-debug/Util/Socket.js",
 	"bin-debug/Util/User.js",
+	"bin-debug/Util/Util.js",
 	//----auto game_file_list end----
 ];
 
