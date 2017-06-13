@@ -1,3 +1,6 @@
 egretProperties.json
 tsconfig.json
 wingProperties.json
+.idea/
+temp/
+libs/
