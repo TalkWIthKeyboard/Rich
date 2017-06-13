@@ -88,8 +88,17 @@ class Main extends egret.DisplayObjectContainer {
     private createGameScene() {
         this.me = new User();
         // let websocket = new Socket(this, 'Hall', null, null);
-        var data = {name: "price"};
-        let http = new Http('/test/index', data);
+        let loginParams = {account: "1452834", password: "1234"};
+        let http = new Http(Coder.API_LOGIN, loginParams, 
+            (token) => {
+                console.log("Success Login");
+                token = JSON.parse(token).data.token;
+                console.log(token);
+            },
+            (res) => {
+                console.log('Err: ' + res);
+        });   
+        http.send(); 
     }
 
 

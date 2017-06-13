@@ -21,7 +21,17 @@ class LoginScene extends egret.DisplayObjectContainer {
             let password = passwordText.text;
 
             if (account !== '' && password !== '') {
-                // 进行HTTP请求            
+                let loginParams = {account: account, password: password};
+                let http = new Http(Coder.API_LOGIN, loginParams, 
+                    (token) => {
+                        console.log("Success Login");
+                        token = JSON.parse(token).data.token;
+                        controller.me.setToken(token);
+                    },
+                    (res) => {
+                        console.log('Err: ' + res);
+                    });   
+                http.send();      
             } else {
                 // 报错
             }
