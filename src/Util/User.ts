@@ -3,7 +3,7 @@ class User {
     private socketId;
 
     public constructor() {
-
+        
     }
 
     public setSocketId(socketId) {

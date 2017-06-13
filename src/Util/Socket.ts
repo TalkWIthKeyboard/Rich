@@ -1,11 +1,11 @@
 class Socket {
 
     private socket;
-    private main;
+    private scene;
 
-    public constructor(main, type, roomId, socketId) {
+    public constructor(scene, type, roomId, socketId) {
         
-        this.main = main;
+        this.scene = scene;
         let url = `ws://localhost:5000?type=${type}`;
         url += 
             type === 'Room' || type === 'Play' 
@@ -29,13 +29,13 @@ class Socket {
 
     private workTypeHall() {
         this.socket.on('socketId', socketId => {
-            this.main.me.setSocketId(socketId);
+            this.scene.me.setSocketId(socketId);
             console.log(socketId);
         });
 
         this.socket.on('roomNumber', message => {
             let msg = JSON.parse(message);
-            console.log(msg);
+            this.scene.roomList = msg.room;
         })
 
         this.socket.on('create', () => {
@@ -85,11 +85,7 @@ class Socket {
         })
     }
 
-    /**
-     * 接收消息
-     */
-    private onReceiveMessage(e: egret.Event) {
-        let msg:string = this.socket.readUTF();
-        let obj = JSON.parse(msg);
+    public sendMessage(evt, msg) {
+        this.socket.emit(evt, msg);
     }
 }
