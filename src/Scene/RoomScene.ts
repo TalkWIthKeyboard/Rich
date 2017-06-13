@@ -1,11 +1,15 @@
 class RoomScene extends egret.DisplayObjectContainer {
 
-    public constructor() {
+    private controller;
+
+    public constructor(controller) {
         super();
-        this.init();
+        this.init(controller);
     }
 
-    private init() {
+    private init(controller) {
+        this.controller = controller;
+
         
     }
 }

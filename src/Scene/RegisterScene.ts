@@ -1,11 +1,16 @@
 class RegisterScene extends egret.DisplayObjectContainer {
 
-    public constructor() {
+    private controller;
+
+    public constructor(controller) {
         super();
-        this.init();
+        this.init(controller);
     }
 
-    private init() {
+    private init(controller) {
+        this.controller = controller;
+        
+        let util = new Util();
         let usernameText = new TextInput('INPUT', null, 30, 240, 10, 10);
         let accountText = new TextInput('INPUT', null, 30, 240, 10, 10);
         let passwordText = new TextInput('INPUT', null, 30, 240, 10, 40);
@@ -35,5 +40,14 @@ class RegisterScene extends egret.DisplayObjectContainer {
         exitButton.addTouchEvent((evt) => {
             // 切换场景
         }, this);
+
+        util.workManyChild(this, [
+            usernameText, 
+            accountText, 
+            passwordText, 
+            rePasswordText, 
+            sureButton, 
+            exitButton
+            ], null);
     }
 }
