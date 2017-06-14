@@ -1,11 +1,11 @@
 class LoginScene extends egret.DisplayObjectContainer {
 
     private controller;
+    private type;
 
     public constructor(controller) {
         super();
 
-        console.log('1');
         let resManage = new ResManage(controller, 'preload', () => {
             this.init(controller);
             this.controller.addChild(this);
@@ -14,6 +14,7 @@ class LoginScene extends egret.DisplayObjectContainer {
 
     private init(controller) {
         this.controller = controller;
+        this.type = Coder.SCENE_TYPE.LOGIN;
 
         let accountText = new TextInput('INPUT', null, 30, 240, 10, 10);
         let passwordText = new TextInput('INPUT', null, 30, 240, 10, 40);
@@ -42,7 +43,7 @@ class LoginScene extends egret.DisplayObjectContainer {
         }, this);
 
         registerButton.addTouchEvent((evt) => {
-            this.controller.dispatchEventWith('event');
+            this.controller.dispatchEvent(new ChangeSceneEvent(Coder.SCENE_TYPE.LOGIN, Coder.SCENE_TYPE.REGISTER));
         }, this);
 
         Util.workManyChild(this, [

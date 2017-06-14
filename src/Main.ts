@@ -26,13 +26,29 @@ class Main extends egret.DisplayObjectContainer {
         RES.loadConfig("resource/default.res.json", "resource/");
 
         this.loginScene = new LoginScene(this);
-        this.addEventListener('event', this.changeScene, this);
+        this.addEventListener(ChangeSceneEvent.CHANGE_SCENE_EVENT, this.changeScene, this);
     }
 
-    private changeScene(evt: egret.Event) {
-        this.loginScene.removeEventListener('event', this.changeScene, this);        
-        this.removeChild(this.loginScene);
-        this.registerScene = new RegisterScene(this);
+    private changeScene(e: ChangeSceneEvent) {
+        switch (e.thisScene) {
+            case Coder.SCENE_TYPE.LOGIN:
+                this.removeChild(this.loginScene);
+            break;
+            case Coder.SCENE_TYPE.REGISTER:
+                this.removeChild(this.registerScene);
+            break;
+        }
+
+        switch (e.nextScene) {
+            case Coder.SCENE_TYPE.LOGIN:
+                this.loginScene = new LoginScene(this);
+                this.addChild(this.loginScene);
+            break;
+            case Coder.SCENE_TYPE.REGISTER:
+                this.registerScene = new RegisterScene(this);
+                this.addChild(this.registerScene);
+            break;
+        }
     }
 }
 
