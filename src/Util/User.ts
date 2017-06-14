@@ -4,6 +4,7 @@ class User {
     private socketId: string;
     // 全局资源是否加载完成
     private loadConfigFlag:Boolean;
+    private token;
 
     public constructor() {
         this.loadConfigFlag = false;
@@ -23,5 +24,13 @@ class User {
 
     public getSocketId() {
         return this.socketId;
+    }
+
+    public setToken(token) {
+        this.token = token;
+    }
+
+    public getToken() {
+        return this.token;
     }
 }
