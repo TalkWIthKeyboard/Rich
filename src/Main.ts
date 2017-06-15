@@ -9,7 +9,6 @@ class Main extends egret.DisplayObjectContainer {
     private me: User;
     private loginScene: LoginScene;
     private registerScene: RegisterScene;
-    private nowScene: string;
 
     public constructor() {
         super();
