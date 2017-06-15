@@ -16,12 +16,13 @@ class LoginScene extends egret.DisplayObjectContainer {
         this.controller = controller;
         this.type = Coder.SCENE_TYPE.LOGIN;
 
+        let util = new Util();
+
         let accountText = new TextInput('INPUT', null, 30, 240, 10, 10);
         let passwordText = new TextInput('INPUT', null, 30, 240, 10, 40);
-        let loginButton = new MyBitmap('egret_icon_png', 'BUTTON', 40, 40, 1, 1);
-        let registerButton = new MyBitmap('egret_icon_png', 'BUTTON', 40, 400, 1, 1);
 
-        loginButton.addTouchEvent((evt) => {
+        let loginButton = new MyButton('Login', 100, 50, 200, 750, () => {
+
             let account = accountText.text;
             let password = passwordText.text;
 
@@ -40,17 +41,25 @@ class LoginScene extends egret.DisplayObjectContainer {
             } else {
                 // 报错
             }
-        }, this);
+        })
 
-        registerButton.addTouchEvent((evt) => {
+        let registerButton = new MyButton('Register', 100, 50, 400, 750, () => {
             this.controller.dispatchEvent(new ChangeSceneEvent(Coder.SCENE_TYPE.LOGIN, Coder.SCENE_TYPE.REGISTER));
-        }, this);
+        })
+        
+        let loginModal = new Modal("", "");
+        loginModal.x = 10;
+        loginModal.y = 10;
+        loginModal.setPositiveButton("登录", () => {console.log("Positive")});
+        loginModal.setNegativeButton("注册", () => {console.log("Negative")});
+
 
         Util.workManyChild(this, [
             accountText, 
             passwordText, 
             loginButton, 
-            registerButton
+            registerButton,
+            // loginModal
             ], null);
     }
 }
