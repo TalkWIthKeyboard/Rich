@@ -9,7 +9,7 @@ class RoomScene extends egret.DisplayObjectContainer {
 
     private init(controller) {
         this.controller = controller;
-
+        
         
     }
 }

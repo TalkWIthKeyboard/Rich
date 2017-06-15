@@ -2,6 +2,7 @@ class HallScene extends egret.DisplayObjectContainer {
 
     private roomList;
     private controller;
+    private type;
 
     public constructor(controller) {
         super();
@@ -9,8 +10,9 @@ class HallScene extends egret.DisplayObjectContainer {
     }
 
     private init(controller) {
+        this.type = Coder.SCENE_TYPE.HALL;
         this.controller = controller;
-        let socket = new Socket(this, 'Hall', null, null);
+        let socket = new Socket(this, this.type, null, null);
     }
 
     private createScene() {

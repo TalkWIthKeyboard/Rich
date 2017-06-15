@@ -1,18 +1,28 @@
 class LoginScene extends egret.DisplayObjectContainer {
 
     private controller;
+    private type;
 
     public constructor(controller) {
         super();
-        this.init(controller);
+
+        let resManage = new ResManage(controller, 'preload', () => {
+            this.init(controller);
+            this.controller.addChild(this);
+        }, null);
     }
 
     private init(controller) {
         this.controller = controller;
+        this.type = Coder.SCENE_TYPE.LOGIN;
+
         let util = new Util();
+
         let accountText = new TextInput('INPUT', null, 30, 240, 10, 10);
         let passwordText = new TextInput('INPUT', null, 30, 240, 10, 40);
+
         let loginButton = new MyButton('Login', 100, 50, 200, 750, () => {
+
             let account = accountText.text;
             let password = passwordText.text;
 
@@ -32,8 +42,9 @@ class LoginScene extends egret.DisplayObjectContainer {
                 // 报错
             }
         })
+
         let registerButton = new MyButton('Register', 100, 50, 400, 750, () => {
-            // 切换场景
+            this.controller.dispatchEvent(new ChangeSceneEvent(Coder.SCENE_TYPE.LOGIN, Coder.SCENE_TYPE.REGISTER));
         })
         
         let loginModal = new Modal("", "");
@@ -42,7 +53,8 @@ class LoginScene extends egret.DisplayObjectContainer {
         loginModal.setPositiveButton("登录", () => {console.log("Positive")});
         loginModal.setNegativeButton("注册", () => {console.log("Negative")});
 
-        util.workManyChild(this, [
+
+        Util.workManyChild(this, [
             accountText, 
             passwordText, 
             loginButton, 

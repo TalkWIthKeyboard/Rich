@@ -51,6 +51,7 @@ class Socket {
     private workTypeRoom() {
         this.socket.on('enter', message => {
             let msg = JSON.parse(message);
+            
         })
 
         this.socket.on('join', message => {
@@ -62,7 +63,7 @@ class Socket {
         })
 
         this.socket.on('noReady', socketId => {
-
+        
         })
 
         this.socket.on('disconnect', socketId => {
