@@ -15,44 +15,72 @@ class RegisterScene extends egret.DisplayObjectContainer {
     private init(controller) {
         this.controller = controller;
         this.type = Coder.SCENE_TYPE.REGISTER;
+
+        let bg = new eui.Image();
+        bg.source = 'resource/assets/background.png';
+        let logo = new eui.Image();
+        logo.source = 'resource/assets/logo.png'
+        logo.x = 420;
+        logo.y = 252;
         
-        let usernameText = new TextInput('INPUT', null, 30, 240, 10, 10);
-        let accountText = new TextInput('INPUT', null, 30, 240, 10, 10);
-        let passwordText = new TextInput('INPUT', null, 30, 240, 10, 40);
-        let rePasswordText = new TextInput('INPUT', null, 30, 240, 10, 40);
+        let accountText = new MyTextInput('输入账号', 510, 70, 465, 540, 0.8);
+        let usernameText = new MyTextInput('输入昵称', 510, 70, 465, 640, 0.8);
+        let passwordText = new MyTextInput('输入密码', 510, 70, 465, 740, 0.8);
+        let rePasswordText = new MyTextInput('输入密码', 510, 70, 465, 840, 0.8);
+        passwordText.displayAsPassword = true;
+        rePasswordText.displayAsPassword = true;
+        
+        let submitButton = new MyButton("注册", 240, 70, 465, 940, () => {
 
-        let sureButton = new MyBitmap('egret_icon_png', 'BUTTON', 40, 40, 1, 1);
-        let exitButton = new MyBitmap('egret_icon_png', 'BUTTON', 40, 200, 1, 1);
-
-        sureButton.addTouchEvent((evt) => {
             let account = accountText.text;
-            let password = passwordText.text;
             let username = usernameText.text;
+            let password = passwordText.text;
             let rePassword = rePasswordText.text;
 
-            if (password !== rePassword) {
-                // 报错
-                return;
+            if (!account) {
+                this.addChild(new Modal("系统提示", "请输入账号！"));
             }
-
-            if (account !== '' && password !== '' && username !== '' && rePassword !== '') {
-                // 进行HTTP请求            
-            } else {
-                // 报错
+            else if(!username) {
+                this.addChild(new Modal("系统提示", "请输入用户名！"));
             }
-        }, this);
+            else if(!password) {
+                this.addChild(new Modal("系统提示", "请输入密码！"));
+            }
+            else if(!rePassword) {
+                this.addChild(new Modal("系统提示", "请再次输入密码！"));
+            }
+            else if (!(password === rePassword)) {
+                this.addChild(new Modal("系统提示", "两次密码输入不一致！"));
+            }
+            else {
+                let registerParams = {account: account, username: username, password: password};
+                console.log('url: '+ Coder.API_REGISTER + '\nregisterParams: ' + registerParams);
+                let http = new Http(Coder.API_REGISTER, registerParams, 
+                    (token) => {
+                        console.log("Success Register");
+                        this.controller.dispatchEvent(new ChangeSceneEvent(Coder.SCENE_TYPE.REGISTER, Coder.SCENE_TYPE.LOGIN));
+                    },
+                    (res) => {
+                        console.log('Err: ' + res);
+                        this.addChild(new Modal("系统提示", "注册失败！"));
+                    });   
+                http.send();      
+            }
+        });
 
-        exitButton.addTouchEvent((evt) => {
+        let loginButton = new MyButton("登录", 240, 70, 735, 940, () => {
             this.controller.dispatchEvent(new ChangeSceneEvent(Coder.SCENE_TYPE.REGISTER, Coder.SCENE_TYPE.LOGIN));
-        }, this);
+        });
 
         Util.workManyChild(this, [
+            bg,
+            logo,
             usernameText, 
             accountText, 
             passwordText, 
             rePasswordText, 
-            sureButton, 
-            exitButton
+            loginButton,
+            submitButton
             ], null);
     }
 }

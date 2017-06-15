@@ -1,45 +1,23 @@
-class Modal extends egret.Sprite {
+class Modal extends eui.Panel {
 
-	private title;
-	private content;
-	private positiveButton;
-	private negativeButton;
-	private myGroup;
-
-	public constructor(title: string, content: string) {
+	public constructor(title: string, content: string, px: number = 405, py: number = 311) {
 		super();
+		this.width = 630;
+		this.height = 402;
+		this.x = px;
+		this.y = py;
+        this.skinName = 'resource/eui_skins/PanelSkin.exml';
 		this.title = title;
-		this.content = content;
-		this.myGroup = new eui.Group();
-		this.addChild(this.myGroup);
-		this.myGroup.width = 400;
-		this.myGroup.height = 300;
-		this.myGroup.layout = new eui.BasicLayout();
-		var outline:egret.Shape = new egret.Shape;
-		outline.graphics.lineStyle(3,0x00ff00);
-		outline.graphics.beginFill(0x000000,0);
-		outline.graphics.drawRect(0,0,400,300);
-		outline.graphics.endFill();
-		this.myGroup.addChild(outline);
-	}
-
-	public setPositiveButton(label: string, positive: Function) {
-		this.initButton(this.positiveButton, 10, 10, label, positive);
-	}
-
-	public setNegativeButton(label: string, negative: Function) {
-		this.initButton(this.negativeButton, 100, 100, label, negative);
-	}
-
-	private initButton(button, label, px, py, callback) {
-		button = new eui.Button();
-		button.width = 100;
-		button.height = 50;
-		button.x = px;
-		button.y = py;
-		button.skinName="resource/eui_skins/ButtonSkin.exml";
-		button.label = label;
-		button.addEventListener(egret.TouchEvent.TOUCH_TAP, callback, this);
-		this.myGroup.addChild(button);
+		let button = new MyButton('确定', 158, 71, 236, 282, () => {
+			this.parent.removeChild(this);
+		});
+		this.addChild(button);
+		let label = new eui.Label(content);
+		label.size = 36;
+		label.textColor = 0x543503;
+		label.y = 196;
+		label.horizontalCenter="0";
+		label.verticalCenter="0";
+		this.addChild(label);
 	}
 }
