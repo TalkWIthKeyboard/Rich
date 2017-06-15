@@ -7,6 +7,8 @@ class TextInput extends egret.TextField {
         this.height = height;
         this.x = x;
         this.y = y;
+        this.border = true;
+        this.borderColor = 0xFFFFFF;
 
         if (type === 'INPUT') {
             this.type = egret.TextFieldType.INPUT;        
