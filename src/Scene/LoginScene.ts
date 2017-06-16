@@ -43,18 +43,21 @@ class LoginScene extends egret.DisplayObjectContainer {
                     },
                     (res) => {
                         console.log('Err: ' + res);
-                        this.addChild(new Modal("系统提示", "登录失败！"));
+                        let errModal = new Modal();
+                        this.addChild(errModal);
+                        errModal.init(this, "系统提示", "登录失败！");
                     });   
                 http.send();      
             } else {
-                this.addChild(new Modal("系统提示", "请输入用户名/密码！"));
+                let errModal = new Modal();
+                this.addChild(errModal);
+                errModal.init(this, "系统提示", "请输入用户名/密码！");
             }
         })
 
         let registerButton = new MyButton('注册', 240, 70, 735, 740, () => {
             this.controller.dispatchEvent(new ChangeSceneEvent(Coder.SCENE_TYPE.LOGIN, Coder.SCENE_TYPE.REGISTER));
         })
-
         Util.workManyChild(this, [
             bg,
             logo,

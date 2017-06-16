@@ -38,19 +38,29 @@ class RegisterScene extends egret.DisplayObjectContainer {
             let rePassword = rePasswordText.text;
 
             if (!account) {
-                this.addChild(new Modal("系统提示", "请输入账号！"));
+                let errModal = new Modal();
+                this.addChildAt(errModal, 30);
+                errModal.init(this, "系统提示", "请输入账号！");
             }
             else if(!username) {
-                this.addChild(new Modal("系统提示", "请输入用户名！"));
+                let errModal = new Modal();
+                this.addChildAt(errModal, 30);
+                errModal.init(this, "系统提示", "请输入用户名！");
             }
             else if(!password) {
-                this.addChild(new Modal("系统提示", "请输入密码！"));
+                let errModal = new Modal();
+                this.addChildAt(errModal, 30);
+                errModal.init(this, "系统提示", "请输入密码！");
             }
             else if(!rePassword) {
-                this.addChild(new Modal("系统提示", "请再次输入密码！"));
+                let errModal = new Modal();
+                this.addChildAt(errModal, 30);
+                errModal.init(this, "系统提示", "请再次输入密码！");
             }
             else if (!(password === rePassword)) {
-                this.addChild(new Modal("系统提示", "两次密码输入不一致！"));
+                let errModal = new Modal();
+                this.addChildAt(errModal, 30);
+                errModal.init(this, "系统提示", "两次密码输入不一致！");
             }
             else {
                 let registerParams = {account: account, username: username, password: password};
@@ -62,7 +72,9 @@ class RegisterScene extends egret.DisplayObjectContainer {
                     },
                     (res) => {
                         console.log('Err: ' + res);
-                        this.addChild(new Modal("系统提示", "注册失败！"));
+                        let errModal = new Modal();
+                        this.addChildAt(errModal, 30);
+                        errModal.init(this, "系统提示", "注册失败！");
                     });   
                 http.send();      
             }
