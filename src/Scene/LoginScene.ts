@@ -15,13 +15,20 @@ class LoginScene extends egret.DisplayObjectContainer {
     private init(controller) {
         this.controller = controller;
         this.type = Coder.SCENE_TYPE.LOGIN;
-
         let util = new Util();
 
-        let accountText = new TextInput('INPUT', null, 30, 240, 10, 10);
-        let passwordText = new TextInput('INPUT', null, 30, 240, 10, 40);
+        let bg = new eui.Image();
+        bg.source = 'resource/assets/background.png';
+        let logo = new eui.Image();
+        logo.source = 'resource/assets/logo.png'
+        logo.x = 420;
+        logo.y = 252;
 
-        let loginButton = new MyButton('Login', 100, 50, 200, 750, () => {
+        let accountText = new MyTextInput('输入账号', 510, 70, 465, 540, 0.8);
+        let passwordText = new MyTextInput('输入密码', 510, 70, 465, 640, 0.8);
+        passwordText.displayAsPassword = true;
+
+        let loginButton = new MyButton('登录', 240, 70, 465, 740, () => {
 
             let account = accountText.text;
             let password = passwordText.text;
@@ -36,30 +43,28 @@ class LoginScene extends egret.DisplayObjectContainer {
                     },
                     (res) => {
                         console.log('Err: ' + res);
+                        let errModal = new Modal();
+                        this.addChild(errModal);
+                        errModal.init(this, "系统提示", "登录失败！");
                     });   
                 http.send();      
             } else {
-                // 报错
+                let errModal = new Modal();
+                this.addChild(errModal);
+                errModal.init(this, "系统提示", "请输入用户名/密码！");
             }
         })
 
-        let registerButton = new MyButton('Register', 100, 50, 400, 750, () => {
+        let registerButton = new MyButton('注册', 240, 70, 735, 740, () => {
             this.controller.dispatchEvent(new ChangeSceneEvent(Coder.SCENE_TYPE.LOGIN, Coder.SCENE_TYPE.REGISTER));
         })
-        
-        let loginModal = new Modal("", "");
-        loginModal.x = 10;
-        loginModal.y = 10;
-        loginModal.setPositiveButton("登录", () => {console.log("Positive")});
-        loginModal.setNegativeButton("注册", () => {console.log("Negative")});
-
-
         Util.workManyChild(this, [
+            bg,
+            logo,
             accountText, 
             passwordText, 
             loginButton, 
-            registerButton,
-            // loginModal
-            ], null);
+            registerButton
+        ], null);
     }
 }

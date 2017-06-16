@@ -38,6 +38,5 @@ class Http {
 
 	private onPostProgress(event:egret.ProgressEvent):void {
 		console.log("onPostProgress");
-		this.failure(event);
 	}
 }
