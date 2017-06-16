@@ -6,7 +6,7 @@ class Main extends egret.DisplayObjectContainer {
      */
     private loadingView: LoadingUI;
     // 玩家自己的实例
-    private me: User;
+    public me: User;
     private loginScene: LoginScene;
     private registerScene: RegisterScene;
 
@@ -55,10 +55,9 @@ class Main extends egret.DisplayObjectContainer {
     private createGameScene() {
         this.me = new User();
         // let websocket = new Socket(this, 'Hall', null, null);
-        let loginScene = new LoginScene(this);
-        this.addChild(loginScene);
+        let hallScene = new HallScene(this);
+        this.addChild(hallScene);
     }
-
 
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。

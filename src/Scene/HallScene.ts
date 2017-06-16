@@ -1,8 +1,8 @@
 class HallScene extends egret.DisplayObjectContainer {
 
     private roomList;
-    private controller;
     private type;
+    public controller;    
 
     public constructor(controller) {
         super();
@@ -25,4 +25,7 @@ class HallScene extends egret.DisplayObjectContainer {
         }
     }
 
+    public setRoomList(roomList) {
+        this.roomList = roomList;
+    }
 }
