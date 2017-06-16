@@ -1,11 +1,12 @@
 class PlayUser {
 
+    private name: string;
     private role: Role;
     private cards: Card[];
     private regions: Region[];
     private gold: number;
 
-    public constructor() {
+    public constructor(name) {
         this.gold = 0;
         this.regions = [];
         this.cards = [];
@@ -45,9 +46,8 @@ class PlayUser {
     }
 
     // 抽卡
-    public drawCards(cards: Card[]) {
-        for (let i = 0; i < cards.length; i++)
-            this.cards.push(cards[i]);
+    public drawCards(card: Card) {
+        this.cards.push(card);
     }
 
     // 出牌

@@ -29,16 +29,19 @@ class Socket {
 
     private workTypeHall() {
         this.socket.on('socketId', socketId => {
-            this.scene.me.setSocketId(socketId);
-            console.log(socketId);
+            this.scene.controller.me.setSocketId(socketId);
         });
 
         this.socket.on('roomNumber', message => {
             let msg = JSON.parse(message);
-            this.scene.roomList = msg.room;
+            this.scene.setRoomList(msg.room);
         })
 
         this.socket.on('create', () => {
+
+        })
+
+        this.socket.on('join', () => {
 
         })
 
