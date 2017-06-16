@@ -9,6 +9,8 @@ class Main extends egret.DisplayObjectContainer {
     private me: User;
     private loginScene: LoginScene;
     private registerScene: RegisterScene;
+    private hallScene: HallScene;
+    private roomScene: RoomScene;
 
     public constructor() {
         super();
@@ -24,7 +26,9 @@ class Main extends egret.DisplayObjectContainer {
         // 初始化Resource资源加载库
         RES.loadConfig("resource/default.res.json", "resource/");
 
-        this.loginScene = new LoginScene(this);
+        // this.loginScene = new LoginScene(this);
+        // this.addEventListener(ChangeSceneEvent.CHANGE_SCENE_EVENT, this.changeScene, this);
+        this.hallScene = new HallScene(this);
         this.addEventListener(ChangeSceneEvent.CHANGE_SCENE_EVENT, this.changeScene, this);
     }
 
@@ -35,6 +39,12 @@ class Main extends egret.DisplayObjectContainer {
             break;
             case Coder.SCENE_TYPE.REGISTER:
                 this.removeChild(this.registerScene);
+            break;
+            case Coder.SCENE_TYPE.HALL:
+                this.removeChild(this.hallScene);
+            break;
+            case Coder.SCENE_TYPE.ROOM:
+                this.removeChild(this.roomScene);
             break;
         }
 
@@ -47,6 +57,14 @@ class Main extends egret.DisplayObjectContainer {
                 this.registerScene = new RegisterScene(this);
                 this.addChild(this.registerScene);
             break;
+            case Coder.SCENE_TYPE.HALL:
+                this.hallScene = new HallScene(this);
+                this.addChild(this.hallScene);
+            break;
+            case Coder.SCENE_TYPE.ROOM:
+                this.roomScene = new RoomScene(this);
+                this.addChild(this.roomScene);
+            break;
         }
     }
 
@@ -54,9 +72,7 @@ class Main extends egret.DisplayObjectContainer {
 
     private createGameScene() {
         this.me = new User();
-        // let websocket = new Socket(this, 'Hall', null, null);
-        let loginScene = new LoginScene(this);
-        this.addChild(loginScene);
+        let websocket = new Socket(this, 'Hall', null, null);
     }
 
 

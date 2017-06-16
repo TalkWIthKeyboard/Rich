@@ -15,6 +15,7 @@ var game_file_list = [
 	"bin-debug/Assembly/MyBitmap.js",
 	"bin-debug/Assembly/MyButton.js",
 	"bin-debug/Assembly/MyTextInput.js",
+	"bin-debug/Assembly/RoomList.js",
 	"bin-debug/Assembly/TextInput.js",
 	"bin-debug/Game/PlayUserContoller.js",
 	"bin-debug/Main.js",
