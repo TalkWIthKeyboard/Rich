@@ -42,7 +42,7 @@ class Socket {
         })
 
         this.socket.on('join', () => {
-            
+
         })
 
         this.socket.on('error', () => {

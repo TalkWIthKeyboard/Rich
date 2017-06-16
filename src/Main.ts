@@ -9,6 +9,7 @@ class Main extends egret.DisplayObjectContainer {
     public me: User;
     private loginScene: LoginScene;
     private registerScene: RegisterScene;
+    private hallScene: HallScene;
 
     public constructor() {
         super();
@@ -24,7 +25,7 @@ class Main extends egret.DisplayObjectContainer {
         // 初始化Resource资源加载库
         RES.loadConfig("resource/default.res.json", "resource/");
 
-        this.loginScene = new LoginScene(this);
+        this.hallScene = new HallScene(this);
         this.addEventListener(ChangeSceneEvent.CHANGE_SCENE_EVENT, this.changeScene, this);
     }
 
@@ -51,13 +52,6 @@ class Main extends egret.DisplayObjectContainer {
     }
 
     private textfield: egret.TextField;
-
-    private createGameScene() {
-        this.me = new User();
-        // let websocket = new Socket(this, 'Hall', null, null);
-        let hallScene = new HallScene(this);
-        this.addChild(hallScene);
-    }
 
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
