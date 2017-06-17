@@ -14,6 +14,7 @@ var game_file_list = [
 	"bin-debug/Model/Role.js",
 	"bin-debug/Assembly/Modal.js",
 	"bin-debug/Assembly/MyButton.js",
+	"bin-debug/Assembly/MyCreateRoom.js",
 	"bin-debug/Assembly/MyRoomItem.js",
 	"bin-debug/Assembly/MyRoomList.js",
 	"bin-debug/Assembly/MyTextInput.js",
