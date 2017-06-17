@@ -37,15 +37,14 @@ class Socket {
         this.socket.on('roomNumber', message => {
             let msg = JSON.parse(message);
             this.scene.setRoomList(msg.room);
-            console.log(msg.room);
         })
 
-        this.socket.on('create', () => {
-
+        this.socket.on('create', roomId => {
+            this.scene.jumpToRoom(roomId)
         })
 
-        this.socket.on('join', () => {
-
+        this.socket.on('join', roomId => {
+            this.scene.jumpToRoom(roomId)
         })
 
         this.socket.on('error', () => {
@@ -82,7 +81,6 @@ class Socket {
             
         })
     }
-
 
     private workTypePlay() {
         this.socket.on('state', message => {

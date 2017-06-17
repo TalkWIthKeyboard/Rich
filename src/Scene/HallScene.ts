@@ -20,7 +20,7 @@ class HallScene extends egret.DisplayObjectContainer {
         this.controller = controller;
         let socket = new Socket(this, this.type, null, null);
         if (!!this.controller.me.getRoomId()) {
-            this.socketIO.socket.emit('enter', JSON.stringify({roomId: this.controller.me.getRoomId()}));
+            this.socketIO.sendMessage('enter', JSON.stringify({roomId: this.controller.me.getRoomId()}));
             this.controller.me.setRoomId(null);
         }
         let util = new Util();
@@ -32,28 +32,9 @@ class HallScene extends egret.DisplayObjectContainer {
         this.myRoomList = new MyRoomList();
         this.myRoomList.init(this, 320, 200);
 
-        // let data = [];
-        // for(let i=0;i<20;i++) {
-        //     data.push({id: i, name: 'This is name', number: i, limit: 5});
-        // }
-        // this.myRoomList.update(data);
-        
-        let createRoomButton = new MyButton('创建房间', 200, 70, 50, 100, () => {
-            let creatRoom = new MyCreateRoom();
-            this.addChild(creatRoom);
-            creatRoom.init(this,'创建房间', '啦啦啦啦', 400, 400);
-        });
-        this.addChild(createRoomButton);
-
         Util.workManyChild(this, [
             this.myRoomList
         ], null);
-    }
-
-    public joinRoom(roomId) {
-        this.controller.me.setRoomId(roomId);
-        this.socketIO.socket.emit('disconnect');
-        this.controller.dispatchEvent(new ChangeSceneEvent(Coder.SCENE_TYPE.HALL, Coder.SCENE_TYPE.ROOM));
     }
 
     public setRoomList(roomList) {
@@ -63,5 +44,34 @@ class HallScene extends egret.DisplayObjectContainer {
 
     public getRoomList() {
         return this.roomList;
+    }
+
+    /**
+     * 发送创建房间信息
+     */
+    private sendCreateRoom(roomName) {
+        this.socketIO.sendMessage('create', JSON.stringify({
+            room: {name: roomName}, 
+            user: {name: this.controller.me.getUsername()}
+        }));
+    }
+
+    /**
+     * 发送加入房间信息
+     */
+    private sendJoinRoom(roomId, username) {
+        this.socketIO.sendMessage('join', JSON.stringify({
+            name: this.controller.me.getUsername(),
+            roomId: roomId
+        }))
+    }
+
+    /**
+     * 跳转到房间页面
+     */
+    public jumpToRoom(roomId) {
+        this.controller.me.setRoomId(roomId);
+        this.socketIO.socket.emit('disconnect');
+        this.controller.dispatchEvent(new ChangeSceneEvent(Coder.SCENE_TYPE.HALL, Coder.SCENE_TYPE.ROOM));
     }
 }
