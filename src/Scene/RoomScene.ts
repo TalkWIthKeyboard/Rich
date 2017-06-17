@@ -1,7 +1,9 @@
 class RoomScene extends egret.DisplayObjectContainer {
 
-    private controller;
     private type;
+    private socket;
+
+    public controller;    
 
     public constructor(controller) {
         super();
@@ -14,12 +16,9 @@ class RoomScene extends egret.DisplayObjectContainer {
     private init(controller) {
         this.controller = controller;
         this.type = Coder.SCENE_TYPE.ROOM;
-        let util = new Util();
-
-        // let bg = new eui.Image();
-        // bg.source = 'resource/assets/background.png';
-        // this.addChild(bg);
-
+        this.socket = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
+        
+        
 
         Util.workManyChild(this, [
         ], null);
