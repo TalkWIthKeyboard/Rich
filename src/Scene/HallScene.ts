@@ -66,7 +66,7 @@ class HallScene extends egret.DisplayObjectContainer {
     /**
      * 发送加入房间信息
      */
-    public sendJoinRoom(roomId, username) {
+    public sendJoinRoom(roomId) {
         this.socketIO.sendMessage('join', JSON.stringify({
             name: this.controller.me.getUsername(),
             roomId: roomId

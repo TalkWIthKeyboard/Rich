@@ -44,6 +44,7 @@ class Socket {
         })
 
         this.socket.on('join', roomId => {
+            console.log(roomId);
             this.scene.jumpToRoom(roomId)
         })
 
