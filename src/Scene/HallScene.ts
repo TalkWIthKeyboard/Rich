@@ -19,6 +19,10 @@ class HallScene extends egret.DisplayObjectContainer {
         this.type = Coder.SCENE_TYPE.HALL;
         this.controller = controller;
         let socket = new Socket(this, this.type, null, null);
+        if (!!this.controller.me.getRoomId()) {
+            this.socketIO.socket.emit('enter', JSON.stringify({roomId: this.controller.me.getRoomId()}));
+            this.controller.me.setRoomId(null);
+        }
         let util = new Util();
 
         let bg = new eui.Image();
