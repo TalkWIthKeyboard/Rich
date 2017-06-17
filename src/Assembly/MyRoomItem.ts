@@ -56,7 +56,6 @@ class MyRoomItem extends eui.Group {
 	}
 
 	private onEnter(evt:egret.TouchEvent) {
-		console.log(this.id);
 		(<HallScene>this.parent.parent.parent.parent).sendJoinRoom(this.id);
 	}
 }
