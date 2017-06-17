@@ -24,4 +24,5 @@ class RoomScene extends egret.DisplayObjectContainer {
         Util.workManyChild(this, [
         ], null);
     }
+
 }
