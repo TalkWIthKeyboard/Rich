@@ -44,26 +44,15 @@ class Socket {
         })
 
         this.socket.on('join', roomId => {
-            console.log(roomId);
             this.scene.jumpToRoom(roomId)
         })
-
-        this.socket.on('error', () => {
-
-        })
-
-        this.socket.emit('enter', JSON.stringify({'roomId': ''}));
     }
 
 
     private workTypeRoom() {
         this.socket.on('enter', message => {
             let msg = JSON.parse(message);
-            
-        })
-
-        this.socket.on('join', message => {
-            let msg = JSON.parse(message);
+            this.scene.update(msg);
         })
 
         this.socket.on('ready', socketId => {
@@ -74,12 +63,10 @@ class Socket {
         
         })
 
-        this.socket.on('disconnect', socketId => {
-
-        })
-
-        this.socket.on('error', () => {
-            
+        this.socket.on('exit', message => {
+            let msg = JSON.parse(message);
+            if (msg.exitUser === this.scene.controller.me.getSocketId()) this.scene.jumpToHall();
+            else this.scene.update(msg);
         })
     }
 

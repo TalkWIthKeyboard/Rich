@@ -61,4 +61,8 @@ class MyRoomItem extends eui.Group {
 			MyRoomItem.selectItem = this;
 		}
 	}
+
+	private onEnter(evt:egret.TouchEvent) {
+		(<HallScene>this.parent.parent.parent.parent).sendJoinRoom(this.id);
+	}
 }

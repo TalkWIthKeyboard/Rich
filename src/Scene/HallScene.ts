@@ -2,7 +2,7 @@ class HallScene extends egret.DisplayObjectContainer {
 
     private roomList;
     private type;
-    private socketIO;
+    private socketIO: Socket;
     public controller;    
 
     private myRoomList: MyRoomList;
@@ -103,7 +103,7 @@ class HallScene extends egret.DisplayObjectContainer {
      */
     public jumpToRoom(roomId) {
         this.controller.me.setRoomId(roomId);
-        this.socketIO.socket.emit('disconnect');
+        this.socketIO.sendMessage('disconnect', null);
         this.controller.dispatchEvent(new ChangeSceneEvent(Coder.SCENE_TYPE.HALL, Coder.SCENE_TYPE.ROOM));
     }
 }

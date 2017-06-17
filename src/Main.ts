@@ -11,6 +11,7 @@ class Main extends egret.DisplayObjectContainer {
     private registerScene: RegisterScene;
     private hallScene: HallScene;
     private roomScene: RoomScene;
+    private playScene: PlayScene;
 
     public constructor() {
         super();
@@ -29,7 +30,7 @@ class Main extends egret.DisplayObjectContainer {
         // this.loginScene = new LoginScene(this);
         // this.addEventListener(ChangeSceneEvent.CHANGE_SCENE_EVENT, this.changeScene, this);
 
-        this.roomScene = new RoomScene(this);
+        this.hallScene = new HallScene(this);
         this.addEventListener(ChangeSceneEvent.CHANGE_SCENE_EVENT, this.changeScene, this);
     }
 
@@ -46,6 +47,9 @@ class Main extends egret.DisplayObjectContainer {
             break;
             case Coder.SCENE_TYPE.ROOM:
                 this.removeChild(this.roomScene);
+            break;
+            case Coder.SCENE_TYPE.PLAY:
+                this.removeChild(this.playScene);
             break;
         }
 
@@ -66,25 +70,11 @@ class Main extends egret.DisplayObjectContainer {
                 this.roomScene = new RoomScene(this);
                 this.addChild(this.roomScene);
             break;
+            case Coder.SCENE_TYPE.PLAY:
+                this.roomScene = new RoomScene(this);
+                this.addChild(this.playScene);
+            break;
         }
-    }
-
-    private textfield: egret.TextField;
-
-    private createGameScene() {
-        this.me = new User();
-        let websocket = new Socket(this, 'Hall', null, null);
-    }
-
-    /**
-     * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
-     * Create a Bitmap object according to name keyword.As for the property of name please refer to the configuration file of resources/resource.json.
-     */
-    private createBitmapByName(name: string) {
-        let result = new egret.Bitmap();
-        let texture: egret.Texture = RES.getRes(name);
-        result.texture = texture;
-        return result;
     }
 }
 

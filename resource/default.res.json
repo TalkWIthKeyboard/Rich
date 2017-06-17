@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,background_png,logo_png,test_png,start_up_png,start_down_png,input_png,panel_png,shadow_png,input2_png,start_down2_png,start_up2_png,test2_png,panel2_png,shadow2_png,background2_png,logo2_png,bg_origin_png,bg_origin2_png,modal_png,bg_png,bg_origin1_png,bg_cover1_png,bg_select1_png,bg_select_png,submit2_png,cancel_png,cancel2_png,edit_png,submit_png,img_jpg,user_jpg,waituser_jpg,nouser_jpg,ready_png,cancel3_png,exit_up_png,exit_down_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,background_png,logo_png,test_png,start_up_png,start_down_png,input_png,panel_png,shadow_png,input2_png,start_down2_png,start_up2_png,test2_png,panel2_png,shadow2_png,background2_png,logo2_png,bg_origin_png,bg_origin2_png,modal_png,bg_png,bg_origin1_png,bg_cover1_png,bg_select1_png,bg_select_png,submit2_png,cancel_png,cancel2_png,edit_png,submit_png,img_jpg,user_jpg,waituser_jpg,nouser_jpg,ready_png,cancel3_png,exit_up_png,exit_down_png,bg2_png,cancel4_png,cancel22_png,edit2_png,modal2_png,submit3_png,submit22_png,cancel5_png,exit_down2_png,exit_up2_png,nouser2_jpg,ready2_png,user2_jpg,waituser2_jpg,1_png,bg_origin12_png,bg_select12_png,img2_jpg,bg_cover12_png",
 			"name": "preload"
 		}
 	],
@@ -310,6 +310,101 @@
 			"name": "exit_down_png",
 			"type": "image",
 			"url": "assets/Room/exit_down.png"
+		},
+		{
+			"name": "bg2_png",
+			"type": "image",
+			"url": "assets/Hall/bg.png"
+		},
+		{
+			"name": "cancel4_png",
+			"type": "image",
+			"url": "assets/Hall/cancel.png"
+		},
+		{
+			"name": "cancel22_png",
+			"type": "image",
+			"url": "assets/Hall/cancel2.png"
+		},
+		{
+			"name": "edit2_png",
+			"type": "image",
+			"url": "assets/Hall/edit.png"
+		},
+		{
+			"name": "modal2_png",
+			"type": "image",
+			"url": "assets/Hall/modal.png"
+		},
+		{
+			"name": "submit3_png",
+			"type": "image",
+			"url": "assets/Hall/submit.png"
+		},
+		{
+			"name": "submit22_png",
+			"type": "image",
+			"url": "assets/Hall/submit2.png"
+		},
+		{
+			"name": "cancel5_png",
+			"type": "image",
+			"url": "assets/Room/cancel.png"
+		},
+		{
+			"name": "exit_down2_png",
+			"type": "image",
+			"url": "assets/Room/exit_down.png"
+		},
+		{
+			"name": "exit_up2_png",
+			"type": "image",
+			"url": "assets/Room/exit_up.png"
+		},
+		{
+			"name": "nouser2_jpg",
+			"type": "image",
+			"url": "assets/Room/nouser.jpg"
+		},
+		{
+			"name": "ready2_png",
+			"type": "image",
+			"url": "assets/Room/ready.png"
+		},
+		{
+			"name": "user2_jpg",
+			"type": "image",
+			"url": "assets/Room/user.jpg"
+		},
+		{
+			"name": "waituser2_jpg",
+			"type": "image",
+			"url": "assets/Room/waituser.jpg"
+		},
+		{
+			"name": "1_png",
+			"type": "image",
+			"url": "assets/RoomItem/1.png"
+		},
+		{
+			"name": "bg_origin12_png",
+			"type": "image",
+			"url": "assets/RoomItem/bg_origin1.png"
+		},
+		{
+			"name": "bg_select12_png",
+			"type": "image",
+			"url": "assets/RoomItem/bg_select1.png"
+		},
+		{
+			"name": "img2_jpg",
+			"type": "image",
+			"url": "assets/img.jpg"
+		},
+		{
+			"name": "bg_cover12_png",
+			"type": "image",
+			"url": "assets/RoomItem/bg_cover1.png"
 		}
 	]
 }
