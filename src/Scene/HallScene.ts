@@ -32,11 +32,11 @@ class HallScene extends egret.DisplayObjectContainer {
         this.myRoomList = new MyRoomList();
         this.myRoomList.init(this, 320, 200);
 
-        let data = [];
-        for(let i=0;i<20;i++) {
-            data.push({id: i, name: 'This is name', number: i, limit: 5});
-        }
-        this.myRoomList.update(data);
+        // let data = [];
+        // for(let i=0;i<20;i++) {
+        //     data.push({id: i, name: 'This is name', number: i, limit: 5});
+        // }
+        // this.myRoomList.update(data);
 
         Util.workManyChild(this, [
             this.myRoomList

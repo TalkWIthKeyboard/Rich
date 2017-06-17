@@ -36,7 +36,7 @@ class Socket {
 
         this.socket.on('roomNumber', message => {
             let msg = JSON.parse(message);
-            // this.scene.setRoomList(msg.room);
+            this.scene.setRoomList(msg.room);
             console.log(msg.room);
         })
 
