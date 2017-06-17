@@ -42,7 +42,7 @@ class LoginScene extends egret.DisplayObjectContainer {
                         let _username = JSON.parse(data).data.username;
                         controller.me.setToken(_token);
                         controller.me.setUsername(_username);
-                        this.controller.dispatchEvent(new ChangeSceneEvent(Coder.SCENE_TYPE.LOGIN, Coder.SCENE_TYPE.ROOM));
+                        this.controller.dispatchEvent(new ChangeSceneEvent(Coder.SCENE_TYPE.LOGIN, Coder.SCENE_TYPE.HALL));
                     },
                     (res) => {
                         console.log('Err: ' + res);

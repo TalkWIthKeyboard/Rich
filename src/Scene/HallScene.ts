@@ -29,18 +29,43 @@ class HallScene extends egret.DisplayObjectContainer {
         bg.source = 'resource/assets/background.png';
         this.addChild(bg);
 
-        this.myRoomList = new MyRoomList();
-        this.myRoomList.init(this, 320, 200);
+        let title = new eui.Label('选择房间');
+        title.x = 48, title.y = 36;
+        title.size = 48;
+        title.textColor = 0x543503;
+        title.bold = true;
+        this.addChild(title);
 
-        let createRoomButton = new MyButton('创建房间', 200, 70, 50, 100, () => {
+        let createRoomButton = new MyButton('创建房间', 300, 71, 523, 28, () => {
             let creatRoom = new MyCreateRoom();
             this.addChild(creatRoom);
-            creatRoom.init(this,'创建房间', '啦啦啦啦', 400, 400, this.sendCreateRoom);
+            creatRoom.init(this, 405, 251, this.sendCreateRoom);
         });
         this.addChild(createRoomButton);
 
+        this.myRoomList = new MyRoomList();
+        this.myRoomList.init(this);
+
+        let img = new eui.Image("resource/assets/img.jpg");
+        img.x = 1031;
+        img.y = 276;
+
+        let usernameLabel = new eui.Label(this.controller.me.getUsername());
+        usernameLabel.size = 48;
+        usernameLabel.textColor = 0x543503;
+        usernameLabel.x = 1049;
+        usernameLabel.y = 513;
+
+        let editeButton = new eui.Button();
+        editeButton.skinName = "resource/eui_skins/EditButton.exml";
+        editeButton.x = 1031;
+        editeButton.y = 591;
+
         Util.workManyChild(this, [
-            this.myRoomList
+            this.myRoomList,
+            img,
+            usernameLabel,
+            editeButton
         ], null);
     }
 
