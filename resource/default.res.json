@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,background_png,logo_png,test_png,start_up_png,start_down_png,input_png,panel_png,shadow_png,input2_png,start_down2_png,start_up2_png,test2_png,panel2_png,shadow2_png,background2_png,logo2_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,background_png,logo_png,test_png,start_up_png,start_down_png,input_png,panel_png,shadow_png,input2_png,start_down2_png,start_up2_png,test2_png,panel2_png,shadow2_png,background2_png,logo2_png,alma2_jpg",
 			"name": "preload"
 		}
 	],
@@ -60,21 +60,6 @@
 			"url": "assets/RadioButton/radiobutton_unselect.png",
 			"type": "image",
 			"name": "radiobutton_unselect_png"
-		},
-		{
-			"url": "assets/ScrollBar/roundthumb.png",
-			"type": "image",
-			"name": "roundthumb_png"
-		},
-		{
-			"url": "assets/Slider/thumb.png",
-			"type": "image",
-			"name": "thumb_png"
-		},
-		{
-			"url": "assets/Slider/track.png",
-			"type": "image",
-			"name": "track_png"
 		},
 		{
 			"url": "assets/Slider/tracklight.png",
@@ -177,6 +162,11 @@
 			"url": "assets/Shadow/shadow.png"
 		},
 		{
+			"name": "alma_jpg",
+			"type": "image",
+			"url": "assets/alma.jpg"
+		},
+		{
 			"name": "input2_png",
 			"type": "image",
 			"url": "assets/Button/input.png"
@@ -215,6 +205,11 @@
 			"name": "logo2_png",
 			"type": "image",
 			"url": "assets/logo.png"
+		},
+		{
+			"name": "alma2_jpg",
+			"type": "image",
+			"url": "assets/alma.jpg"
 		}
 	]
 }

@@ -7,18 +7,32 @@ class HallScene extends egret.DisplayObjectContainer {
 
     public constructor(controller) {
         super();
-        this.init(controller);
+        let resManage = new ResManage(controller, 'preload', () => {
+            this.init(controller);
+            this.controller.addChild(this);
+        }, null);
     }
 
     private init(controller) {
         this.type = Coder.SCENE_TYPE.HALL;
         this.controller = controller;
-        this.socketIO = new Socket(this, this.type, null, null);
-
+        let socket = new Socket(this, this.type, null, null);
         if (!!this.controller.me.getRoomId()) {
             this.socketIO.socket.emit('enter', JSON.stringify({roomId: this.controller.me.getRoomId()}));
             this.controller.me.setRoomId(null);
         }
+        let util = new Util();
+
+        let bg = new eui.Image();
+        bg.source = 'resource/assets/background.png';
+        this.addChild(bg);
+
+        let roomList = new RoomList();
+        roomList.init(this, 320, 200);
+
+        Util.workManyChild(this, [
+            roomList
+        ], null);
     }
 
     public joinRoom(roomId) {
