@@ -7,7 +7,7 @@ class MyCreateRoom extends eui.Panel {
 		super();
 	}
 
-	public init(container: egret.DisplayObjectContainer, title: string, content: string, px: number = 405, py: number = 311) {
+	public init(container: egret.DisplayObjectContainer, title: string, content: string, px: number = 405, py: number = 311, callback: Function) {
 		let shadow = new eui.Image();
         shadow.source = 'resource/assets/Shadow/shadow.png';
 		container.addChild(shadow);
@@ -23,6 +23,7 @@ class MyCreateRoom extends eui.Panel {
 		let button = new MyButton('确定', 158, 71, 236, 282, () => {
 			this.parent.removeChild(shadow);
 			this.parent.removeChild(this);
+			callback();
 		});
 		this.addChild(button);
 		let label = new eui.Label(content);
@@ -43,6 +44,7 @@ class MyCreateRoom extends eui.Panel {
 		var radioGroup: eui.RadioButtonGroup = new eui.RadioButtonGroup();
 		radioGroup.addEventListener(eui.UIEvent.CHANGE, this.radioChangeHandler, this);
 		var rdb4: eui.RadioButton = new eui.RadioButton();
+        rdb4.skinName = "resource/eui_skins/RadioButtonSkin.exml"
 		rdb4.x = 30;
 		rdb4.y = 30;
 		rdb4.label = "4";
@@ -51,6 +53,7 @@ class MyCreateRoom extends eui.Panel {
 		rdb4.group = radioGroup;
 		this.addChild(rdb4);
 		var rdb5: eui.RadioButton = new eui.RadioButton();
+        rdb5.skinName = "resource/eui_skins/RadioButtonSkin.exml"
 		rdb5.x = 30;
 		rdb5.y = 60;
 		rdb5.label = "5";
@@ -58,6 +61,7 @@ class MyCreateRoom extends eui.Panel {
 		rdb5.group = radioGroup;
 		this.addChild(rdb5);
 		var rdb6: eui.RadioButton = new eui.RadioButton();
+        rdb6.skinName = "resource/eui_skins/RadioButtonSkin.exml"
 		rdb6.x = 30;
 		rdb6.y = 90;
 		rdb6.label = "6";
@@ -65,6 +69,7 @@ class MyCreateRoom extends eui.Panel {
 		rdb6.group = radioGroup;
 		this.addChild(rdb6);
 		var rdb7: eui.RadioButton = new eui.RadioButton();
+        rdb7.skinName = "resource/eui_skins/RadioButtonSkin.exml"
 		rdb7.x = 30;
 		rdb7.y = 120;
 		rdb7.label = "7";

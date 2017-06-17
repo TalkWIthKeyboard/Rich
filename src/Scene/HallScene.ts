@@ -32,6 +32,13 @@ class HallScene extends egret.DisplayObjectContainer {
         this.myRoomList = new MyRoomList();
         this.myRoomList.init(this, 320, 200);
 
+        let createRoomButton = new MyButton('创建房间', 200, 70, 50, 100, () => {
+            let creatRoom = new MyCreateRoom();
+            this.addChild(creatRoom);
+            creatRoom.init(this,'创建房间', '啦啦啦啦', 400, 400);
+        });
+        this.addChild(createRoomButton);
+
         Util.workManyChild(this, [
             this.myRoomList
         ], null);
