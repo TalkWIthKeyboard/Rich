@@ -15,27 +15,21 @@ class MyRoomUser extends eui.Group {
 		this.height = 292;
 	}
 
-	public init(joinable: boolean) {
-		if (joinable) {
-			this.img = new eui.Image("resource/assets/Room/waituser.jpg");
-			this.addChild(this.img);
-			this.usernameLabel.text = '';
-			this.usernameLabel.horizontalCenter = "0";
-			this.usernameLabel.size = 36;
-			this.usernameLabel.textColor = 0x543503;
-			this.usernameLabel.y = 185;
-			this.addChild(this.usernameLabel);
-			this.readyLabel.text = '';
-			this.readyLabel.size = 32;
-			this.readyLabel.textColor = 0x543503;
-			this.readyLabel.y = 247;
-			this.readyLabel.horizontalCenter = "0";
-			this.addChild(this.readyLabel);
-		}
-		else {
-			this.img = new eui.Image("resource/assets/Room/nouser.jpg");
-			this.addChild(this.img);
-		}
+	public init() {
+		this.img = new eui.Image("resource/assets/Room/waituser.jpg");
+		this.addChild(this.img);
+		this.usernameLabel.text = '';
+		this.usernameLabel.horizontalCenter = "0";
+		this.usernameLabel.size = 36;
+		this.usernameLabel.textColor = 0x543503;
+		this.usernameLabel.y = 185;
+		this.addChild(this.usernameLabel);
+		this.readyLabel.text = '';
+		this.readyLabel.size = 32;
+		this.readyLabel.textColor = 0x543503;
+		this.readyLabel.y = 247;
+		this.readyLabel.horizontalCenter = "0";
+		this.addChild(this.readyLabel);
 	}
 
 	public setUser(user) {
@@ -54,6 +48,18 @@ class MyRoomUser extends eui.Group {
 	}
 
 	public clear() {
-		// this.
+		this.removeChild(this.img);
+		this.img = new eui.Image("resource/assets/Room/waituser.jpg");
+		this.addChildAt(this.img, 0);
+		this.usernameLabel.text = '';
+		this.readyornot = null;
+	}
+
+	public unable() {
+		this.removeChild(this.img);
+		this.img = new eui.Image("resource/assets/Room/nouser.jpg");
+		this.addChildAt(this.img, 0);
+		this.usernameLabel.text = '';
+		this.readyornot = null;
 	}
 }

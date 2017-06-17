@@ -81,10 +81,10 @@ class RoomScene extends egret.DisplayObjectContainer {
         this.addChild(this.noReadyButton);
 
         this.userList = new Array<MyRoomUser>();
-        let limit = 5;
+        
         for(let i = 0; i < 6; i++) {
             let user = new MyRoomUser();
-            user.init(limit > i);
+            user.init();
             user.x = this.position[i].x;
             user.y = this.position[i].y;
             this.userList.push(user);
@@ -136,8 +136,12 @@ class RoomScene extends egret.DisplayObjectContainer {
             if(users[i].id == this.controller.me.getSocketId()) {
                 find = 1;
                 if(this.readyornot != users[i].type)
-                    if(users[i].type) this.ready();
-                    else this.noReady();
+                    if(users[i].type) {
+                        this.ready();
+                    }
+                    else {
+                        this.noReady();
+                    }
             }
             else this.userList[i - find].setUser(users[i]);
         }
@@ -146,6 +150,10 @@ class RoomScene extends egret.DisplayObjectContainer {
 
         for(let i = users.length; i < room.num; i++) {
             this.userList[i].clear();
+        }
+
+        for(let i = room.num; i < 6; i++) {
+            this.userList[i].unable();
         }
     }
 
