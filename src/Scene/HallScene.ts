@@ -21,7 +21,7 @@ class HallScene extends egret.DisplayObjectContainer {
         let socket = new Socket(this, this.type, null, null);
         if (!!this.controller.me.getRoomId()) {
             this.socketIO.sendMessage('enter', JSON.stringify({roomId: this.controller.me.getRoomId()}));
-            this.controller.me.setRoomId(null);
+            this.controller.me.setRoomId('');
         }
         let util = new Util();
 
@@ -56,9 +56,9 @@ class HallScene extends egret.DisplayObjectContainer {
     /**
      * 发送创建房间信息
      */
-    private sendCreateRoom(roomName) {
+    private sendCreateRoom(roomName, roomNumber) {
         this.socketIO.sendMessage('create', JSON.stringify({
-            room: {name: roomName}, 
+            room: {name: roomName, number: roomNumber}, 
             user: {name: this.controller.me.getUsername()}
         }));
     }
