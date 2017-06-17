@@ -5,6 +5,8 @@ class HallScene extends egret.DisplayObjectContainer {
     private socketIO;
     public controller;    
 
+    private myRoomList: MyRoomList;
+
     public constructor(controller) {
         super();
         let resManage = new ResManage(controller, 'preload', () => {
@@ -23,22 +25,18 @@ class HallScene extends egret.DisplayObjectContainer {
         bg.source = 'resource/assets/background.png';
         this.addChild(bg);
 
-        let roomList = new RoomList();
-        roomList.init(this, 320, 200);
+        this.myRoomList = new MyRoomList();
+        this.myRoomList.init(this, 320, 200);
+
+        let data = [];
+        for(let i=0;i<20;i++) {
+            data.push({id: i, name: 'This is name', number: i, limit: 5});
+        }
+        this.myRoomList.update(data);
 
         Util.workManyChild(this, [
-            roomList
+            this.myRoomList
         ], null);
-    }
-
-    private createScene() {
-        // 通过场景的图片来渲染界面
-        // for (let i = 0; i < this.roomList.length; i++) {
-        //     let room = new MyBitmap('', '', 10, 10, 10, 10);
-        //     room.addTouchEvent((ev) => {
-        //         // 进入房间的逻辑
-        //     }, this);
-        // }
     }
 
     public joinRoom(roomId) {
@@ -49,6 +47,7 @@ class HallScene extends egret.DisplayObjectContainer {
 
     public setRoomList(roomList) {
         this.roomList = roomList;
+        this.myRoomList.update(roomList);
     }
 
     public getRoomList() {

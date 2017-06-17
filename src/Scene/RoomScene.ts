@@ -20,11 +20,8 @@ class RoomScene extends egret.DisplayObjectContainer {
         // bg.source = 'resource/assets/background.png';
         // this.addChild(bg);
 
-        let roomList = new RoomList();
-        roomList.init(this, 320, 200);
 
         Util.workManyChild(this, [
-            roomList
         ], null);
     }
 }
