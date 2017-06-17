@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,background_png,logo_png,test_png,start_up_png,start_down_png,input_png,panel_png,shadow_png,input2_png,start_down2_png,start_up2_png,test2_png,panel2_png,shadow2_png,background2_png,logo2_png,bg_origin_png,bg_select_png,bg_cover_png,bg_cover2_png,bg_origin2_png,bg_select2_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,background_png,logo_png,test_png,start_up_png,start_down_png,input_png,panel_png,shadow_png,input2_png,start_down2_png,start_up2_png,test2_png,panel2_png,shadow2_png,background2_png,logo2_png,bg_origin_png,bg_origin2_png,modal_png,bg_png,bg_origin1_png,bg_cover1_png,bg_select1_png,bg_select_png,准备游戏_png,取消准备_png,退出房间_png,退出房间_按下_png,submit2_png,cancel_png,cancel2_png,edit_png,submit_png,img_jpg",
 			"name": "preload"
 		}
 	],
@@ -212,29 +212,89 @@
 			"url": "assets/RoomItem/bg_origin.png"
 		},
 		{
-			"name": "bg_select_png",
-			"type": "image",
-			"url": "assets/RoomItem/bg_select.png"
-		},
-		{
-			"name": "bg_cover_png",
-			"type": "image",
-			"url": "assets/RoomItem/bg_cover.png"
-		},
-		{
-			"name": "bg_cover2_png",
-			"type": "image",
-			"url": "assets/RoomItem/bg_cover.png"
-		},
-		{
 			"name": "bg_origin2_png",
 			"type": "image",
 			"url": "assets/RoomItem/bg_origin.png"
 		},
 		{
-			"name": "bg_select2_png",
+			"name": "modal_png",
+			"type": "image",
+			"url": "assets/Hall/modal.png"
+		},
+		{
+			"name": "bg_png",
+			"type": "image",
+			"url": "assets/Hall/bg.png"
+		},
+		{
+			"name": "bg_origin1_png",
+			"type": "image",
+			"url": "assets/RoomItem/bg_origin1.png"
+		},
+		{
+			"name": "bg_cover1_png",
+			"type": "image",
+			"url": "assets/RoomItem/bg_cover1.png"
+		},
+		{
+			"name": "bg_select1_png",
+			"type": "image",
+			"url": "assets/RoomItem/bg_select1.png"
+		},
+		{
+			"name": "bg_select_png",
 			"type": "image",
 			"url": "assets/RoomItem/bg_select.png"
+		},
+		{
+			"name": "准备游戏_png",
+			"type": "image",
+			"url": "assets/Room/准备游戏.png"
+		},
+		{
+			"name": "取消准备_png",
+			"type": "image",
+			"url": "assets/Room/取消准备.png"
+		},
+		{
+			"name": "退出房间_png",
+			"type": "image",
+			"url": "assets/Room/退出房间.png"
+		},
+		{
+			"name": "退出房间_按下_png",
+			"type": "image",
+			"url": "assets/Room/退出房间_按下.png"
+		},
+		{
+			"name": "submit2_png",
+			"type": "image",
+			"url": "assets/Hall/submit2.png"
+		},
+		{
+			"name": "cancel_png",
+			"type": "image",
+			"url": "assets/Hall/cancel.png"
+		},
+		{
+			"name": "cancel2_png",
+			"type": "image",
+			"url": "assets/Hall/cancel2.png"
+		},
+		{
+			"name": "edit_png",
+			"type": "image",
+			"url": "assets/Hall/edit.png"
+		},
+		{
+			"name": "submit_png",
+			"type": "image",
+			"url": "assets/Hall/submit.png"
+		},
+		{
+			"name": "img_jpg",
+			"type": "image",
+			"url": "assets/img.jpg"
 		}
 	]
 }

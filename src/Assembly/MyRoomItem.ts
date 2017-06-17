@@ -6,37 +6,44 @@ class MyRoomItem extends eui.Group {
 	private bgSelect: eui.Image;
 	private title: eui.Label;
 	private number: eui.Label;
-	private enterButton: eui.Button;
+	private limit: eui.Label;
 
 	private static selectItem: MyRoomItem;
 
 	public constructor() {
 		super();
-		this.height = 40;
-		this.width = 1060;
+		this.height = 196;
+		this.width = 789;
 		this.bgOrigin = new eui.Image("resource/assets/RoomItem/bg_origin.png");
-		this.bgOrigin.alpha = 0;
-		this.bgCover = new eui.Image("resource/assets/RoomItem/bg_cover.png");
+		this.bgCover = new eui.Image("resource/assets/RoomItem/bg_select.png");
 		this.bgSelect = new eui.Image("resource/assets/RoomItem/bg_select.png");
 		this.title = new eui.Label();
 		this.number = new eui.Label();
-		this.enterButton = new eui.Button();
+		this.limit = new eui.Label();
 	}
 
 	public init(roomItem) {
 		this.id = roomItem.roomId;
 		this.addChild(this.bgOrigin);
-		this.title.text = this.id + ' ' + roomItem.name;
-		this.title.x = 100;
+		this.title.text = roomItem.name;
+		this.title.x = 48;
+		this.title.y = 66;
+		this.title.size = 54;
+        this.title.bold = true;
+		this.title.textColor = 0x543503;
 		this.addChild(this.title);
-		this.number.text = `(${roomItem.number}/${roomItem.limit})`;
-		this.number.x = 600;
+		this.number.text = `${roomItem.number}`;
+		this.number.x = 625;
+		this.number.y = 52;
+		this.number.size = 64;
+		this.number.textColor = 0x543503;
 		this.addChild(this.number);
-		this.enterButton.x = 700;
-		this.enterButton.label = '进入';
-		this.enterButton.skinName = "resource/eui_skins/ButtonSkin.exml";
-		this.enterButton.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onEnter, this);
-		this.addChild(this.enterButton);
+		this.limit.text = `${roomItem.limit}`;
+		this.limit.x = 715;
+		this.limit.y = 80;
+		this.limit.size = 64;
+		this.limit.textColor = 0x543503;
+		this.addChild(this.limit);
 		this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouch, this);
 	}
 
@@ -53,10 +60,5 @@ class MyRoomItem extends eui.Group {
 			this.addChildAt(this.bgCover, 0);
 			MyRoomItem.selectItem = this;
 		}
-	}
-
-	private onEnter(evt:egret.TouchEvent) {
-		console.log(this.id);
-		(<HallScene>this.parent.parent.parent.parent).sendJoinRoom(this.id);
 	}
 }
