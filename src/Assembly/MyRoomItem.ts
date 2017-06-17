@@ -24,9 +24,9 @@ class MyRoomItem extends eui.Group {
 	}
 
 	public init(roomItem) {
-		this.id = roomItem.id;
+		this.id = roomItem.roomId;
 		this.addChild(this.bgOrigin);
-		this.title.text = roomItem.name;
+		this.title.text = this.id + ' ' + roomItem.name;
 		this.title.x = 100;
 		this.addChild(this.title);
 		this.number.text = `(${roomItem.number}/${roomItem.limit})`;
@@ -42,7 +42,7 @@ class MyRoomItem extends eui.Group {
 
 	private onTouch(evt:egret.TouchEvent) {
 		if (MyRoomItem.selectItem === this) {
-			(<HallScene>this.parent).sendJoinRoom(this.id);
+			(<HallScene>this.parent.parent.parent.parent).sendJoinRoom(this.id);
 		}
 		else {
 			if (MyRoomItem.selectItem) {
@@ -56,7 +56,7 @@ class MyRoomItem extends eui.Group {
 	}
 
 	private onEnter(evt:egret.TouchEvent) {
-		console.log('Enter the room ' + this.id);
-		(<HallScene>this.parent).sendJoinRoom(this.id);		
+		console.log(this.id);
+		(<HallScene>this.parent.parent.parent.parent).sendJoinRoom(this.id);
 	}
 }
