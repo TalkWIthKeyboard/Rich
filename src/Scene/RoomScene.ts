@@ -71,13 +71,13 @@ class RoomScene extends egret.DisplayObjectContainer {
         this.readyButton.skinName = "resource/eui_skins/ReadyButtonSkin.exml";
         this.readyButton.x = 1031;
         this.readyButton.y = 591;
-        this.readyButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.ready, this)
+        this.readyButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.sendReady, this)
 
         this.noReadyButton = new eui.Button();
         this.noReadyButton.skinName = "resource/eui_skins/NoReadyButtonSkin.exml";
         this.noReadyButton.x = 1031;
         this.noReadyButton.y = 591;
-        this.noReadyButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.noReady, this)
+        this.noReadyButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.sendNotReady, this)
         this.addChild(this.noReadyButton);
 
         this.userList = new Array<MyRoomUser>();
@@ -130,18 +130,23 @@ class RoomScene extends egret.DisplayObjectContainer {
      */
     public update(msg) {
         console.log(msg);
+        for (let i = 0; i < msg.room.num; i++) 
+            this.userList[i].clear();
         let users = msg.users;
         let find = 0;
         for(let i = 0; i < users.length; i++) {
             if(users[i].id == this.controller.me.getSocketId()) {
                 find = 1;
-                if(this.readyornot != users[i].type)
+                if(this.readyornot != users[i].type) {
                     if(users[i].type) {
-                        this.ready();
+                        this.removeChild(this.noReadyButton);
+                        this.addChild(this.readyButton);
+                    } else {
+                        this.removeChild(this.readyButton);
+                        this.addChild(this.noReadyButton);
                     }
-                    else {
-                        this.noReady();
-                    }
+                    this.readyornot = users[i].type;
+                }
             }
             else this.userList[i - find].setUser(users[i]);
         }
@@ -155,15 +160,5 @@ class RoomScene extends egret.DisplayObjectContainer {
         for(let i = room.num; i < 6; i++) {
             this.userList[i].unable();
         }
-    }
-
-    private noReady() {
-        this.removeChild(this.noReadyButton);
-        this.addChild(this.readyButton);
-    }
-
-    private ready() {
-        this.removeChild(this.readyButton);
-        this.addChild(this.noReadyButton);
     }
 }

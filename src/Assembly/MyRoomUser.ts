@@ -53,6 +53,7 @@ class MyRoomUser extends eui.Group {
 		this.addChildAt(this.img, 0);
 		this.usernameLabel.text = '';
 		this.readyornot = null;
+		this.readyLabel.text = '';
 	}
 
 	public unable() {
