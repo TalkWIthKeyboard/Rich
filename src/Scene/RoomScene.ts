@@ -29,8 +29,7 @@ class RoomScene extends egret.DisplayObjectContainer {
     private init(controller) {
         this.controller = controller;
         this.type = Coder.SCENE_TYPE.ROOM;
-        // this.socketIO = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
-        
+        this.socketIO = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
         this.readyornot = false;
 
         let bg = new eui.Image();
@@ -52,7 +51,7 @@ class RoomScene extends egret.DisplayObjectContainer {
         exitButton.x = 1181;
         exitButton.y = 28;
         exitButton.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
-            console.log('exit');
+            this.socketIO.sendMessage('exit', null);
         }, this);
         this.addChild(exitButton);
 
@@ -109,13 +108,6 @@ class RoomScene extends egret.DisplayObjectContainer {
     public sendNotReady() {
         this.socketIO.sendMessage('noReady', null);
     }
-
-    /**
-     * 发送断开连接信息
-     */
-    public sendDisconnect() {
-        this.socketIO.sendMessage('disconnect', null);
-    }
     
     /**
      * 跳转到游戏界面
@@ -126,26 +118,28 @@ class RoomScene extends egret.DisplayObjectContainer {
     }
 
     /**
+     * 跳转到大厅界面
+     */
+    public jumpToHall() {
+        this.socketIO.sendMessage('disconnect', null);
+        this.controller.dispatchEvent(new ChangeSceneEvent(Coder.SCENE_TYPE.ROOM, Coder.SCENE_TYPE.HALL));
+    }
+
+    /**
      * 更新界面
      */
     public update(msg) {
+        console.log(msg);
         let users = msg.users;
         let find = 0;
         for(let i = 0; i < users.length; i++) {
             if(users[i].id == this.controller.me.getSocketId()) {
                 find = 1;
-                if(this.readyornot != users[i].type) {
-                    if(users[i].type) {
-                        this.ready();
-                    }
-                    else {
-                        this.noReady();
-                    }
-                }
+                if(this.readyornot != users[i].type)
+                    if(users[i].type) this.ready();
+                    else this.noReady();
             }
-            else {
-                this.userList[i - find].setUser(users[i]);
-            }
+            else this.userList[i - find].setUser(users[i]);
         }
         let room = msg.room;
         this.title.text = room.name + '   (' + users.length + '/' + room.num + ')';
@@ -160,5 +154,4 @@ class RoomScene extends egret.DisplayObjectContainer {
         this.removeChild(this.readyButton);
         this.addChild(this.noReadyButton);
     }
-
 }
