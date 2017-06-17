@@ -52,4 +52,8 @@ class MyRoomUser extends eui.Group {
 			this.readyLabel.textColor = 0xF5F5F5;
 		}
 	}
+
+	public clear() {
+		// this.
+	}
 }

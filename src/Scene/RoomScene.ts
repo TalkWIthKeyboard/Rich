@@ -118,6 +118,10 @@ class RoomScene extends egret.DisplayObjectContainer {
         }
         let room = msg.room;
         this.title.text = room.name + '   (' + users.length + '/' + room.num + ')';
+
+        for(let i = users.length; i < room.num; i++) {
+            this.userList[i].clear();
+        }
     }
 
     private noReady() {
