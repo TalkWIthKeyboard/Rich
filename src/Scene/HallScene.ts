@@ -14,15 +14,10 @@ class HallScene extends egret.DisplayObjectContainer {
         this.type = Coder.SCENE_TYPE.HALL;
         this.controller = controller;
         this.socketIO = new Socket(this, this.type, null, null);
-    }
 
-    private createScene() {
-        // 通过场景的图片来渲染界面
-        for (let i = 0; i < this.roomList.length; i++) {
-            let room = new MyBitmap('', '', 10, 10, 10, 10);
-            room.addTouchEvent((ev) => {
-                // 进入房间的逻辑
-            }, this);
+        if (!!this.controller.me.getRoomId()) {
+            this.socketIO.socket.emit('enter', JSON.stringify({roomId: this.controller.me.getRoomId()}));
+            this.controller.me.setRoomId(null);
         }
     }
 

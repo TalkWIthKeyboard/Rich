@@ -4,14 +4,15 @@ class Socket {
     private scene;
 
     public constructor(scene, type, roomId, socketId) {
-        
+
         this.scene = scene;
         let url = `ws://localhost:5000?type=${type}`;
         url += 
             type === 'Room' || type === 'Play' 
                 ? `&roomId=${roomId}&socketId=${socketId}`
                 : '';
-        this.socket = io.connect(url);
+
+        this.socket = io.connect(url);                
 
         switch (type) {
             case 'Hall':
@@ -28,9 +29,10 @@ class Socket {
 
 
     private workTypeHall() {
+
         this.socket.on('socketId', socketId => {
             this.scene.controller.me.setSocketId(socketId);
-        });
+        })
 
         this.socket.on('roomNumber', message => {
             let msg = JSON.parse(message);
@@ -48,6 +50,8 @@ class Socket {
         this.socket.on('error', () => {
 
         })
+
+        this.socket.emit('enter', JSON.stringify({'roomId': ''}));
     }
 
 
