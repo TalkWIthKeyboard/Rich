@@ -8,9 +8,12 @@ class User {
     private token: string;
     // 现在处于的房间编号
     private roomId: number;
+    // 玩家名称
+    private username: string;
 
     public constructor() {
         this.loadConfigFlag = false;
+        this.username = '';
     }
 
     public setLoadConfigFlag(flag: boolean) {
@@ -43,5 +46,13 @@ class User {
 
     public getRoomId() {
         return this.roomId;
+    }
+
+    public setUsername(username: string) {
+        this.username = username;
+    }
+
+    public getUsername() {
+        return this.username;
     }
 }

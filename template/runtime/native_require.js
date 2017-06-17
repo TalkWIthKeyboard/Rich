@@ -12,7 +12,7 @@ var game_file_list = [
 	"libs/modules/socket.io/socket.io.js",
 	"polyfill/promise.js",
 	"bin-debug/Model/Role.js",
-	"bin-debug/Util/Util.js",
+	"bin-debug/Assembly/Modal.js",
 	"bin-debug/Assembly/MyButton.js",
 	"bin-debug/Assembly/MyRoomItem.js",
 	"bin-debug/Assembly/MyRoomList.js",
@@ -24,7 +24,7 @@ var game_file_list = [
 	"bin-debug/Model/Card.js",
 	"bin-debug/Model/PlayUser.js",
 	"bin-debug/Model/Region.js",
-	"bin-debug/Assembly/Modal.js",
+	"bin-debug/Assembly/MyBitmap.js",
 	"bin-debug/Model/roomModel.js",
 	"bin-debug/Scene/HallScene.js",
 	"bin-debug/Scene/LoginScene.js",
@@ -37,7 +37,7 @@ var game_file_list = [
 	"bin-debug/Util/LoadingUI.js",
 	"bin-debug/Util/Socket.js",
 	"bin-debug/Util/User.js",
-	"bin-debug/Assembly/MyBitmap.js",
+	"bin-debug/Util/Util.js",
 	//----auto game_file_list end----
 ];
 
