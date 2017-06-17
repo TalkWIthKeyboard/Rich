@@ -16,9 +16,9 @@ class RoomScene extends egret.DisplayObjectContainer {
     private init(controller) {
         this.controller = controller;
         this.type = Coder.SCENE_TYPE.ROOM;
-        this.socket = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
+        // this.socket = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
         
-        
+
 
         Util.workManyChild(this, [
         ], null);

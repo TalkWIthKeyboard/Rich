@@ -50,8 +50,6 @@ class Socket {
         this.socket.on('error', () => {
 
         })
-
-        this.socket.emit('enter', JSON.stringify({'roomId': ''}));
     }
 
 

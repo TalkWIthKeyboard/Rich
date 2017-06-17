@@ -42,7 +42,7 @@ class MyRoomItem extends eui.Group {
 
 	private onTouch(evt:egret.TouchEvent) {
 		if (MyRoomItem.selectItem === this) {
-			console.log('Enter the room ' + this.id);
+			(<HallScene>this.parent).sendJoinRoom(this.id);
 		}
 		else {
 			if (MyRoomItem.selectItem) {
@@ -57,5 +57,6 @@ class MyRoomItem extends eui.Group {
 
 	private onEnter(evt:egret.TouchEvent) {
 		console.log('Enter the room ' + this.id);
+		(<HallScene>this.parent).sendJoinRoom(this.id);		
 	}
 }
