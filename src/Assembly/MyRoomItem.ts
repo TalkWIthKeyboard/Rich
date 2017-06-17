@@ -24,9 +24,9 @@ class MyRoomItem extends eui.Group {
 	}
 
 	public init(roomItem) {
-		this.id = roomItem.id;
+		this.id = roomItem.roomId;
 		this.addChild(this.bgOrigin);
-		this.title.text = roomItem.name;
+		this.title.text = this.id + ' ' + roomItem.name;
 		this.title.x = 100;
 		this.addChild(this.title);
 		this.number.text = `(${roomItem.number}/${roomItem.limit})`;
