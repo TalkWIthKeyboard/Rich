@@ -18,7 +18,7 @@ class HallScene extends egret.DisplayObjectContainer {
     private init(controller) {
         this.type = Coder.SCENE_TYPE.HALL;
         this.controller = controller;
-        let socket = new Socket(this, this.type, null, null);
+        this.socketIO = new Socket(this, this.type, null, null);
         if (!!this.controller.me.getRoomId()) {
             this.socketIO.sendMessage('enter', JSON.stringify({roomId: this.controller.me.getRoomId()}));
             this.controller.me.setRoomId('');
@@ -35,7 +35,7 @@ class HallScene extends egret.DisplayObjectContainer {
         let createRoomButton = new MyButton('创建房间', 200, 70, 50, 100, () => {
             let creatRoom = new MyCreateRoom();
             this.addChild(creatRoom);
-            creatRoom.init(this,'创建房间', '啦啦啦啦', 400, 400);
+            creatRoom.init(this,'创建房间', '啦啦啦啦', 400, 400, this.sendCreateRoom);
         });
         this.addChild(createRoomButton);
 
@@ -56,7 +56,7 @@ class HallScene extends egret.DisplayObjectContainer {
     /**
      * 发送创建房间信息
      */
-    private sendCreateRoom(roomName, roomNumber) {
+    public sendCreateRoom(roomName, roomNumber) {
         this.socketIO.sendMessage('create', JSON.stringify({
             room: {name: roomName, number: roomNumber}, 
             user: {name: this.controller.me.getUsername()}
@@ -66,7 +66,7 @@ class HallScene extends egret.DisplayObjectContainer {
     /**
      * 发送加入房间信息
      */
-    private sendJoinRoom(roomId, username) {
+    public sendJoinRoom(roomId, username) {
         this.socketIO.sendMessage('join', JSON.stringify({
             name: this.controller.me.getUsername(),
             roomId: roomId

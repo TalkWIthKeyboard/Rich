@@ -1,13 +1,13 @@
 class MyCreateRoom extends eui.Panel {
 
 	private roomNameLabel: MyTextInput;
-	private roomLimit: number;
+	private roomLimit: number = 4;
 
 	public constructor() {
 		super();
 	}
 
-	public init(container: egret.DisplayObjectContainer, title: string, content: string, px: number = 405, py: number = 311, callback: Function) {
+	public init(container: HallScene, title: string, content: string, px: number = 405, py: number = 311, callback: Function) {
 		let shadow = new eui.Image();
         shadow.source = 'resource/assets/Shadow/shadow.png';
 		container.addChild(shadow);
@@ -21,9 +21,9 @@ class MyCreateRoom extends eui.Panel {
         this.skinName = 'resource/eui_skins/CreateRoomPanelSkin.exml';
 		this.title = title;
 		let button = new MyButton('确定', 158, 71, 236, 282, () => {
-			this.parent.removeChild(shadow);
-			this.parent.removeChild(this);
-			callback();
+			container.removeChild(shadow);
+			container.removeChild(this);
+			container.sendCreateRoom(this.roomNameLabel.text, this.roomLimit);
 		});
 		this.addChild(button);
 		let label = new eui.Label(content);
@@ -36,7 +36,9 @@ class MyCreateRoom extends eui.Panel {
 
 		this.addRadioButton();
 
-		let name
+		this.roomNameLabel = new MyTextInput('请输入房间名', 200, 70, 200, 200, 0.8);
+		this.addChild(this.roomNameLabel);
+
 		container.addChild(this);
 	}
 
