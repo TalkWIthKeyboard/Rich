@@ -71,7 +71,7 @@ class Main extends egret.DisplayObjectContainer {
                 this.addChild(this.roomScene);
             break;
             case Coder.SCENE_TYPE.PLAY:
-                this.roomScene = new RoomScene(this);
+                this.playScene = new PlayScene(this);
                 this.addChild(this.playScene);
             break;
         }
