@@ -12,6 +12,7 @@ class Main extends egret.DisplayObjectContainer {
     private hallScene: HallScene;
     private roomScene: RoomScene;
     private playScene: PlayScene;
+    private gameScene: GameScene;
 
     public constructor() {
         super();
@@ -30,7 +31,9 @@ class Main extends egret.DisplayObjectContainer {
         // this.loginScene = new LoginScene(this);
         // this.addEventListener(ChangeSceneEvent.CHANGE_SCENE_EVENT, this.changeScene, this);
 
-        this.hallScene = new HallScene(this);
+        // this.hallScene = new HallScene(this);
+        // this.addEventListener(ChangeSceneEvent.CHANGE_SCENE_EVENT, this.changeScene, this);
+        this.gameScene = new GameScene(this);
         this.addEventListener(ChangeSceneEvent.CHANGE_SCENE_EVENT, this.changeScene, this);
     }
 

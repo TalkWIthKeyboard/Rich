@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,background_png,logo_png,test_png,start_up_png,start_down_png,input_png,panel_png,shadow_png,input2_png,start_down2_png,start_up2_png,test2_png,panel2_png,shadow2_png,background2_png,logo2_png,bg_origin_png,bg_origin2_png,modal_png,bg_png,bg_origin1_png,bg_cover1_png,bg_select1_png,bg_select_png,submit2_png,cancel_png,cancel2_png,edit_png,submit_png,img_jpg,user_jpg,waituser_jpg,nouser_jpg,ready_png,cancel3_png,exit_up_png,exit_down_png,bg2_png,cancel4_png,cancel22_png,edit2_png,modal2_png,submit3_png,submit22_png,cancel5_png,exit_down2_png,exit_up2_png,nouser2_jpg,ready2_png,user2_jpg,waituser2_jpg,1_png,bg_origin12_png,bg_select12_png,img2_jpg,bg_cover12_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,background_png,logo_png,test_png,start_up_png,start_down_png,input_png,panel_png,shadow_png,input2_png,start_down2_png,start_up2_png,test2_png,panel2_png,shadow2_png,background2_png,logo2_png,bg_origin_png,bg_origin2_png,modal_png,bg_png,bg_origin1_png,bg_cover1_png,bg_select1_png,bg_select_png,submit2_png,cancel_png,cancel2_png,edit_png,submit_png,img_jpg,user_jpg,waituser_jpg,nouser_jpg,ready_png,cancel3_png,exit_up_png,exit_down_png,bg2_png,cancel4_png,cancel22_png,edit2_png,modal2_png,submit3_png,submit22_png,cancel5_png,exit_down2_png,exit_up2_png,nouser2_jpg,ready2_png,user2_jpg,waituser2_jpg,1_png,bg_origin12_png,bg_select12_png,img2_jpg,bg_cover12_png,selectModal_png,magic_png,bg3_png,none_png,bg1_png",
 			"name": "preload"
 		}
 	],
@@ -405,6 +405,31 @@
 			"name": "bg_cover12_png",
 			"type": "image",
 			"url": "assets/RoomItem/bg_cover1.png"
+		},
+		{
+			"name": "selectModal_png",
+			"type": "image",
+			"url": "assets/Game/selectModal.png"
+		},
+		{
+			"name": "magic_png",
+			"type": "image",
+			"url": "assets/Game/magic.png"
+		},
+		{
+			"name": "bg3_png",
+			"type": "image",
+			"url": "assets/Game/bg.png"
+		},
+		{
+			"name": "none_png",
+			"type": "image",
+			"url": "assets/Game/none.png"
+		},
+		{
+			"name": "bg1_png",
+			"type": "image",
+			"url": "assets/Game/bg1.png"
 		}
 	]
 }
