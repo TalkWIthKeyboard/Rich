@@ -168,7 +168,6 @@ class SelectCharacterModal extends eui.Panel{
 
 	private resetGroup(group: eui.Group, i: number) {
 		// this.characterList.splice(i, 1);
-		console.log(i);
 		group.removeChildren();
 		this.removeChild(group);
 		group = new eui.Group();
@@ -203,9 +202,9 @@ class SelectCharacterModal extends eui.Panel{
 		let selectIndex = this.selectnum - this.roles.front.length - this.roles.choose.length - 1;
 		let roleName =  this.roles.normal[selectIndex];
 		this.roles.choose.push(roleName);		
-		this.roles.normal.splice(selectIndex, 1);
-		
+		this.roles.normal.splice(selectIndex, 1);	
 		let scene = (<PlayScene>this.parent);
+		
 		scene.socketIO.sendMessage(Coder.GAME_STATE[2], JSON.stringify({
 			num: scene.num,
 			role: roleName,

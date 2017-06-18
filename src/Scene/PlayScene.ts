@@ -4,8 +4,9 @@ class PlayScene extends egret.DisplayObjectContainer {
 	private selectCharacterModal: SelectCharacterModal;
     public socketIO: Socket;
     public controller;
-    public user;
-    public num;
+    public selectFlag = false;
+    public user = null;
+    public num = null;
 
     private myRoomList: MyRoomList;
 
@@ -33,11 +34,13 @@ class PlayScene extends egret.DisplayObjectContainer {
     }
 
 	public showSelectCharacterModal(roles) {
+        this.selectFlag = true;
 		this.selectCharacterModal.reset(roles);
 		this.addChild(this.selectCharacterModal);
 	}
 
 	public hideSelectCharacterModal() {
-		this.addChild(this.selectCharacterModal);
+        this.selectFlag = false;
+		this.removeChild(this.selectCharacterModal);
 	}
 }
