@@ -44,9 +44,9 @@ class SelectCharacterModal extends eui.Panel{
 		this.bg.y = -10;
 	}
 
-	public reset(roles) {
+	public reset(msg) {
 
-		// let roles = msg.roles;
+		let roles = msg.roles;
 
 		let disable = this.characterList[0];
 		this.removeChild(disable);
@@ -79,7 +79,7 @@ class SelectCharacterModal extends eui.Panel{
 			bg1.source = "resource/assets/Game/bg1.png";
 			bg1.alpha = 0.3;
 			group.addChild(bg1);
-			let name = new eui.Label('123');
+			let name = new eui.Label(Coder.ROLE_TYPE[roles.front[now - count].roleName].cn_name);
 			name.horizontalCenter="0";
 			name.y = 150;
 			name.size = 36;
@@ -95,8 +95,10 @@ class SelectCharacterModal extends eui.Panel{
 			this.addChild(group);
 			count = now;
 		}
+
 		
-		for (let now = count; now <= roles.front.length + roles.choose.length; now++) {
+		for (let now = ++count; now <= roles.front.length + roles.choose.length; now++) {
+
 			let group = this.characterList[now];
 			this.removeChild(group);
 			group.removeChildren();
@@ -107,7 +109,7 @@ class SelectCharacterModal extends eui.Panel{
 			bg1.source = "resource/assets/Game/bg1.png";
 			bg1.alpha = 0.3;
 			group.addChild(bg1);
-			let name = new eui.Label('123');
+			let name = new eui.Label(Coder.ROLE_TYPE[roles.choose[now - count].roleName].cn_name);
 			name.horizontalCenter="0";
 			name.y = 150;
 			name.size = 36;
@@ -124,7 +126,7 @@ class SelectCharacterModal extends eui.Panel{
 			count = now;
 		}
 
-		for (let now = count; now < 8; now++) {
+		for (let now = ++count; now < 8; now++) {
 			let group = this.characterList[now];
 			this.removeChild(group);
 			group.removeChildren();
@@ -135,7 +137,7 @@ class SelectCharacterModal extends eui.Panel{
 			bg1.source = "resource/assets/Game/bg1.png";
 			bg1.alpha = 0.3;
 			group.addChild(img);
-			let name = new eui.Label('123');
+			let name = new eui.Label(Coder.ROLE_TYPE[roles.normal[now - count].roleName].cn_name);
 			name.horizontalCenter="0";
 			name.y = 150;
 			name.size = 36;
