@@ -1,9 +1,11 @@
 class PlayScene extends egret.DisplayObjectContainer {
 
     private type;
-    private socketIO: Socket;
-    public controller;
 	private selectCharacterModal: SelectCharacterModal;
+    public socketIO: Socket;
+    public controller;
+    public user;
+    public num;
 
     private myRoomList: MyRoomList;
 
@@ -17,8 +19,8 @@ class PlayScene extends egret.DisplayObjectContainer {
 
 	private init(controller) {
         this.controller = controller;
-        this.type = Coder.SCENE_TYPE.ROOM;
-        // this.socketIO = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
+        this.type = Coder.SCENE_TYPE.PLAY;
+        this.socketIO = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
 
         let bg = new eui.Image();
         bg.source = 'resource/assets/background.png';
@@ -28,22 +30,10 @@ class PlayScene extends egret.DisplayObjectContainer {
 		this.selectCharacterModal.init();
 		this.selectCharacterModal.x = 113;
 		this.selectCharacterModal.y = 220;
-
-		this.showSelectCharacterModal();
-
-        Util.workManyChild(this, [
-        ], null);
     }
 
-	public showSelectCharacterModal() {
-		let msg = {'roles': { 
-            normal: [ { roleName: 'ASSASSIN' },{ roleName: 'THIEF' },{ roleName: 'MAGICIAN' },{ roleName: 'BUSINESSMAN' } ],
-            reversal:  { roleName: 'BISHOP' },
-            front: [ { roleName: 'KING' }, { roleName: 'ARCHITECT' } ],
-            choose: [ { roleName: 'WARLORD' }] 
-        }};
-        
-		this.selectCharacterModal.reset(msg);
+	public showSelectCharacterModal(roles) {
+		this.selectCharacterModal.reset(roles);
 		this.addChild(this.selectCharacterModal);
 	}
 

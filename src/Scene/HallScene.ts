@@ -104,6 +104,7 @@ class HallScene extends egret.DisplayObjectContainer {
     public jumpToRoom(roomId) {
         this.controller.me.setRoomId(roomId);
         this.socketIO.sendMessage('disconnect', null);
-        this.controller.dispatchEvent(new ChangeSceneEvent(Coder.SCENE_TYPE.HALL, Coder.SCENE_TYPE.ROOM));
+        // TODO 修改
+        this.controller.dispatchEvent(new ChangeSceneEvent(Coder.SCENE_TYPE.HALL, Coder.SCENE_TYPE.PLAY));
     }
 }

@@ -4,6 +4,7 @@ class SelectCharacterModal extends eui.Panel{
 	private bg: eui.Image;
 	private selectnum: number;
 	private characterList: Array<eui.Group>;
+	private roles;
 
 	public constructor() {
 		super();
@@ -38,6 +39,7 @@ class SelectCharacterModal extends eui.Panel{
 		this.select.label = '选择角色'
 		this.select.horizontalCenter="0";
 		this.select.y = 440;
+		this.select.addEventListener(egret.TouchEvent.TOUCH_END, this.onTouch, this);
 
 		this.bg = new eui.Image();
 		this.bg.source = "resource/assets/Game/bg.png";
@@ -45,9 +47,8 @@ class SelectCharacterModal extends eui.Panel{
 		this.bg.horizontalCenter="0";
 	}
 
-	public reset(msg) {
-
-		let roles = msg.roles;
+	public reset(roles) {
+		this.roles = roles;
 
 		let disable = this.characterList[0];
 		this.removeChild(disable);
@@ -138,9 +139,7 @@ class SelectCharacterModal extends eui.Panel{
 			this.addChild(group);
 		}
 		
-		count = roles.front.length + roles.choose.length + 1;
-
-		for (let now = ++count; now < 8; now++) {
+		for (let now = this.roles.choose.length === 0 ? count : ++count; now < 8; now++) {
 			let group = this.characterList[now];
 			this.removeChild(group);
 			group.removeChildren();
@@ -215,5 +214,19 @@ class SelectCharacterModal extends eui.Panel{
 			this.selectnum = i;
 			this.addChild(this.select);
 		}
+	}
+
+	private onTouch(evt:egret.TouchEvent) {
+		let selectIndex = this.selectnum - this.roles.front.length - this.roles.choose.length - 1;
+		let roleName =  this.roles.normal[selectIndex];
+		this.roles.choose.push(roleName);		
+		this.roles.normal.splice(selectIndex, 1);
+		
+		let scene = (<PlayScene>this.parent);
+		scene.socketIO.sendMessage(Coder.GAME_STATE[2], JSON.stringify({
+			num: scene.num,
+			role: roleName,
+			roles: this.roles
+		}))
 	}
 }

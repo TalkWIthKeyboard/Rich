@@ -13,6 +13,8 @@ class Coder {
         PLAY: 'Play'
     }
 
+    public static GAME_STATE = ['BEFORE_START', 'START_STAGE', 'CHOOSE_ROLE', 'PLAYER_TIME', 'DISTRIBUTE_RESOURCE', 'BUILD_HOUSE']
+
     public static CARD_INFO = {
         Laboratory: {
             name: 'Laboratory',
