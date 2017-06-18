@@ -54,19 +54,15 @@ class Socket {
             let msg = JSON.parse(message);
             this.scene.update(msg);
         })
-
-        this.socket.on('ready', socketId => {
-
-        })
-
-        this.socket.on('noReady', socketId => {
         
-        })
-
         this.socket.on('exit', message => {
             let msg = JSON.parse(message);
-            if (msg.exitUser === this.scene.controller.me.getSocketId()) this.scene.jumpToHall();
+            if (msg.obj.exitUser === this.scene.controller.me.getSocketId()) this.scene.jumpToHall();
             else this.scene.update(msg);
+        })
+
+        this.socket.on('start', () => {
+            this.scene.jumpToPlay();
         })
     }
 
