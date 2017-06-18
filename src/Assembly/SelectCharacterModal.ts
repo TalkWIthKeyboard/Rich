@@ -14,6 +14,8 @@ class SelectCharacterModal extends eui.Panel{
 			let group = new eui.Group();
 			group.x = 61 + i * 140;
 			group.y = 200;
+			group.width = 140;
+			group.height = 210;
 			this.characterList.push(group);
 			this.addChild(group);
 		}
@@ -40,8 +42,7 @@ class SelectCharacterModal extends eui.Panel{
 		this.bg = new eui.Image();
 		this.bg.source = "resource/assets/Game/bg.png";
 		this.bg.alpha = 0.5;
-		this.bg.x = -10;
-		this.bg.y = -10;
+		this.bg.horizontalCenter="0";
 	}
 
 	public reset(roles) {
@@ -53,48 +54,57 @@ class SelectCharacterModal extends eui.Panel{
 		disable.removeChildren();
 		let img = new eui.Image();
 		img.source = "resource/assets/Game/none.png";
+		img.horizontalCenter="0";
+		img.y = 10;
 		disable.addChild(img);
 		let bg1 = new eui.Image();
 		bg1.source = "resource/assets/Game/bg1.png";
 		bg1.alpha = 0.3;
+		bg1.horizontalCenter="0";
+		bg1.y = 10;
 		disable.addChild(bg1);
 		let status = new eui.Label('(反面弃置)');
 		status.horizontalCenter="0";
-		status.y = 200;
+		status.y = 180;
 		status.size = 18;
 		status.textColor = 0x543503;
 		disable.addChild(status);
 		this.addChild(disable);
 
 		let count = 1;
-
+		
 		for (let now = count; now <= roles.front.length; now++) {
 			let group = this.characterList[now];
 			this.removeChild(group);
 			group.removeChildren();
 			let img = new eui.Image();
 			img.source = "resource/assets/Game/none.png";
+			img.horizontalCenter="0";
+			img.y = 10;
 			group.addChild(img);
 			let bg1 = new eui.Image();
 			bg1.source = "resource/assets/Game/bg1.png";
 			bg1.alpha = 0.3;
+			bg1.horizontalCenter="0";
+			bg1.y = 10;
 			group.addChild(bg1);
-			let name = new eui.Label('123');
+			let name = new eui.Label(Coder.ROLE_TYPE[roles.front[now - 1].roleName].cn_name);
 			name.horizontalCenter="0";
-			name.y = 150;
+			name.y = 140;
 			name.size = 36;
 			name.textColor = 0x543503;
 			group.addChild(name);
 			let status = new eui.Label('(正面弃置)');
 			status.horizontalCenter="0";
-			status.y = 200;
+			status.y = 180;
 			status.size = 18;
 			status.textColor = 0x543503;
 			group.addChild(status);
 
 			this.addChild(group);
-			count = now;
 		}
+
+		count = roles.front.length + 1;
 		
 		for (let now = count; now <= roles.front.length + roles.choose.length; now++) {
 			let group = this.characterList[now];
@@ -102,27 +112,32 @@ class SelectCharacterModal extends eui.Panel{
 			group.removeChildren();
 			let img = new eui.Image();
 			img.source = "resource/assets/Game/magic.png";
+			img.horizontalCenter="0";
+			img.y = 10;
 			group.addChild(img);
 			let bg1 = new eui.Image();
 			bg1.source = "resource/assets/Game/bg1.png";
 			bg1.alpha = 0.3;
+			bg1.horizontalCenter="0";
+			bg1.y = 10;
 			group.addChild(bg1);
-			let name = new eui.Label('123');
+			let name = new eui.Label(Coder.ROLE_TYPE[roles.choose[now - count].roleName].cn_name);
 			name.horizontalCenter="0";
-			name.y = 150;
+			name.y = 140;
 			name.size = 36;
 			name.textColor = 0x543503;
 			group.addChild(name);
 			let status = new eui.Label('(已被选择)');
 			status.horizontalCenter="0";
-			status.y = 200;
+			status.y = 180;
 			status.size = 18;
 			status.textColor = 0x543503;
 			group.addChild(status);
 
 			this.addChild(group);
-			count = now;
 		}
+		
+		count = roles.front.length + roles.choose.length + 1;
 
 		for (let now = count; now < 8; now++) {
 			let group = this.characterList[now];
@@ -130,20 +145,24 @@ class SelectCharacterModal extends eui.Panel{
 			group.removeChildren();
 			let img = new eui.Image();
 			img.source = "resource/assets/Game/magic.png";
+			img.horizontalCenter="0";
+			img.y = 10;
 			group.addChild(img);
 			let bg1 = new eui.Image();
 			bg1.source = "resource/assets/Game/bg1.png";
 			bg1.alpha = 0.3;
+			bg1.horizontalCenter="0";
+			bg1.y = 10;
 			group.addChild(img);
-			let name = new eui.Label('123');
+			let name = new eui.Label(Coder.ROLE_TYPE[roles.normal[now - count].roleName].cn_name);
 			name.horizontalCenter="0";
-			name.y = 150;
+			name.y = 140;
 			name.size = 36;
 			name.textColor = 0x543503;
 			group.addChild(name);
 			let status = new eui.Label('(可以选择)');
 			status.horizontalCenter="0";
-			status.y = 200;
+			status.y = 180;
 			status.size = 18;
 			status.textColor = 0x543503;
 			group.addChild(status);
