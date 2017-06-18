@@ -78,7 +78,7 @@ class SelectCharacterModal extends eui.Panel{
 			this.removeChild(group);
 			group.removeChildren();
 			let img = new eui.Image();
-			img.source = "resource/assets/Game/none.png";
+			img.source = "resource/assets/Game/" + Coder.ROLE_TYPE[roles.front[now - 1].roleName].cn_name + ".png";
 			img.horizontalCenter="0";
 			img.y = 10;
 			group.addChild(img);
@@ -111,7 +111,7 @@ class SelectCharacterModal extends eui.Panel{
 			this.removeChild(group);
 			group.removeChildren();
 			let img = new eui.Image();
-			img.source = "resource/assets/Game/magic.png";
+			img.source = "resource/assets/Game/none.png";
 			img.horizontalCenter="0";
 			img.y = 10;
 			group.addChild(img);
@@ -144,7 +144,7 @@ class SelectCharacterModal extends eui.Panel{
 			this.removeChild(group);
 			group.removeChildren();
 			let img = new eui.Image();
-			img.source = "resource/assets/Game/magic.png";
+			img.source = "resource/assets/Game/" + Coder.ROLE_TYPE[roles.normal[now - count].roleName].cn_name + ".png";
 			img.horizontalCenter="0";
 			img.y = 10;
 			group.addChild(img);

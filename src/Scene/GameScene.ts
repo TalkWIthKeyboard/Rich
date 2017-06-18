@@ -40,10 +40,11 @@ class GameScene extends egret.DisplayObjectContainer {
    [ { roleName: 'ASSASSIN' },
      { roleName: 'THIEF' },
      { roleName: 'MAGICIAN' },
-     { roleName: 'BUSINESSMAN' } ],
+     { roleName: 'BUSINESSMAN' },
+     { roleName: 'WARLORD' } ],
   reversal:  { roleName: 'BISHOP' },
   front: [ { roleName: 'KING' }, { roleName: 'ARCHITECT' } ],
-  choose: [ { roleName: 'WARLORD' }] };
+  choose: [ ] };
 		this.selectCharacterModal.reset(msg);
 		this.addChild(this.selectCharacterModal);
 	}
