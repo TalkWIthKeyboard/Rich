@@ -11,7 +11,7 @@ class MyCard {
 
 		this.group = new eui.Group();
 		this.group.width = 120;
-		this.group.height = 240;
+		this.group.height = 180;
 		if(msg.length * 120 <= 600) {
 			this.group.x = 120 * i + 30; 
 		}
@@ -28,11 +28,11 @@ class MyCard {
 		this.on = () => { img.y = 30; }
 		this.off = () => { img.y = 50; }
 		
-		this.group.addEventListener(egret.TouchEvent.TOUCH_END, this.click, this);
+		this.group.getChildAt(0).addEventListener(egret.TouchEvent.TOUCH_END, this.click, this);
 	}
 
 	public removeEventListener() {
-		this.group.removeEventListener(egret.TouchEvent.TOUCH_END, this.click, this);
+		this.group.getChildAt(0).removeEventListener(egret.TouchEvent.TOUCH_END, this.click, this);
 	}
 
 	public click() {
