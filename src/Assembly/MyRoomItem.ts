@@ -36,7 +36,7 @@ class MyRoomItem extends eui.Group {
 		this.number.x = 625;
 		this.number.y = 52;
 		this.number.size = 64;
-		this.number.textColor = 0x543503;
+		this.number.textColor = 0xC44343;
 		this.addChild(this.number);
 		this.limit.text = `${roomItem.limit}`;
 		this.limit.x = 715;
@@ -44,7 +44,11 @@ class MyRoomItem extends eui.Group {
 		this.limit.size = 64;
 		this.limit.textColor = 0x543503;
 		this.addChild(this.limit);
-		this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouch, this);
+		
+		if (roomItem.number != roomItem.limit) {
+			this.number.textColor = 0x543503;
+			this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouch, this);
+		}
 	}
 
 	private onTouch(evt:egret.TouchEvent) {

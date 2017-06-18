@@ -130,7 +130,7 @@ class RoomScene extends egret.DisplayObjectContainer {
      */
     public update(msg) {
         console.log(msg);
-        for (let i = 0; i < msg.room.num; i++) 
+        for (let i = 0; i < msg.room.num - 1; i++) 
             this.userList[i].clear();
         let users = msg.users;
         let find = 0;
@@ -153,11 +153,11 @@ class RoomScene extends egret.DisplayObjectContainer {
         let room = msg.room;
         this.title.text = room.name + '   (' + users.length + '/' + room.num + ')';
 
-        for(let i = users.length; i < room.num; i++) {
+        for(let i = users.length - 1; i < room.num; i++) {
             this.userList[i].clear();
         }
 
-        for(let i = room.num; i < 6; i++) {
+        for(let i = room.num - 1; i < 6; i++) {
             this.userList[i].unable();
         }
     }
