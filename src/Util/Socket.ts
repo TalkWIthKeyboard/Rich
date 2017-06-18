@@ -67,12 +67,15 @@ class Socket {
     }
 
     private workTypePlay() {
-        this.socket.on('state', message => {
-
+        this.socket.on(Coder.GAME_STATE[1], message => {
+            let msg = JSON.parse(message);
         })
 
-        this.socket.on('error', () => {
-            
+        this.socket.on(Coder.GAME_STATE[2], message => {
+            let msg = JSON.parse(message);
+            this.scene.showSelectCharacterModal(msg.role);
+            this.scene.user = msg.user;
+            this.scene.num = msg.num;
         })
     }
 
