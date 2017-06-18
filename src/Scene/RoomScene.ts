@@ -71,13 +71,13 @@ class RoomScene extends egret.DisplayObjectContainer {
         this.readyButton.skinName = "resource/eui_skins/ReadyButtonSkin.exml";
         this.readyButton.x = 1031;
         this.readyButton.y = 591;
-        this.readyButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.sendReady, this)
+        this.readyButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.sendNotReady, this)
 
         this.noReadyButton = new eui.Button();
         this.noReadyButton.skinName = "resource/eui_skins/NoReadyButtonSkin.exml";
         this.noReadyButton.x = 1031;
         this.noReadyButton.y = 591;
-        this.noReadyButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.sendNotReady, this)
+        this.noReadyButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.sendReady, this)
         this.addChild(this.noReadyButton);
 
         this.userList = new Array<MyRoomUser>();
