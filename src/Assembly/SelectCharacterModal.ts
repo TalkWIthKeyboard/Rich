@@ -160,7 +160,7 @@ class SelectCharacterModal extends eui.Panel{
 			group.addEventListener(egret.TouchEvent.TOUCH_END, () => {
 				this.selectCharacter(now);
 			}
-			, this)
+			, group);
 
 			this.addChild(group);
 		}
