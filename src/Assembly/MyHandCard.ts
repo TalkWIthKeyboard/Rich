@@ -6,10 +6,7 @@ class MyHandCard extends eui.Panel {
 	public constructor() {
 		super();
 		this.height = 250;
-		this.width = 800;
-		let bg = new eui.Image();
-		bg.source = "resource/assets/Game/my_card_bg.png";
-		this.addChild(bg);
+		this.width = 600;
 		this.myCards = [];
 	}
 	
