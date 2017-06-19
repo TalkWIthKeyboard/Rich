@@ -91,16 +91,14 @@ class Socket {
 
         this.socket.on('Licensing', message => {
             let msg = JSON.parse(message);
-            console.log('Licensing', msg);
-            //
+            this.scene.addSelectButton(msg.cards);      
+            // this.scene.showSelectCardModal(msg.cards);
         })
 
         this.socket.on(Coder.GAME_END_STATE[Coder.GAME_STATE[2]], () => {
             if (this.scene.selectFlag) this.scene.hideSelectCharacterModal();
-            if (this.scene.num === 0) {
-                this.scene.addSelectButton();      
+            if (this.scene.num === 0) 
                 this.sendMessage(Coder.GAME_STATE[3], JSON.stringify({user: this.scene.controller.me.getSocketId()}));            
-            }      
             this.sendMessage(Coder.GAME_END_STATE[Coder.GAME_STATE[2]], null);
         })
 

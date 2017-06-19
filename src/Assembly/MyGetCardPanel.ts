@@ -10,7 +10,7 @@ class MyGetCardPanel extends eui.Panel {
 	private selectButton: eui.Button;
 	private playScene: PlayScene;
 
-	public constructor(playScene: PlayScene) {
+	public constructor(playScene: PlayScene, cards) {
 		super();
 		
 		this.playScene = playScene;
@@ -41,7 +41,7 @@ class MyGetCardPanel extends eui.Panel {
 		this.card1 = new eui.Image();
 		this.card1.horizontalCenter = "0";
 		this.card1.verticalCenter = "0";
-		this.card1.source = "resource/assets/Card/建筑卡背.png";
+		this.card1.source = `resource/assets/Card/${Coder.CARD_INFO[cards[0].cardName]}.png`;
 		this.getCardGroup1.addChild(this.card1);
 		this.bg1 = new eui.Image();
 		this.bg1.alpha = 0.3;
@@ -56,7 +56,7 @@ class MyGetCardPanel extends eui.Panel {
 		this.card2 = new eui.Image();
 		this.card2.horizontalCenter = "0";
 		this.card2.verticalCenter = "0";
-		this.card2.source = "resource/assets/Card/建筑卡背.png";
+		this.card2.source = `resource/assets/Card/${Coder.CARD_INFO[cards[1].cardName]}.png`;
 		this.getCardGroup2.addChild(this.card2);
 		this.bg2 = new eui.Image();
 		this.bg2.alpha = 0.3;

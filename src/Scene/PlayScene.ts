@@ -11,7 +11,8 @@ class PlayScene extends egret.DisplayObjectContainer {
     private selectCardButton: eui.Button;
 
     private getCardPanel: MyGetCardPanel;
-
+    
+    private selectCards;
     public selectCardFalg = false;
     public socketIO: Socket;
     public controller;
@@ -34,16 +35,15 @@ class PlayScene extends egret.DisplayObjectContainer {
 	private init(controller) {
         this.controller = controller;
         this.type = Coder.SCENE_TYPE.PLAY;
-        // this.socketIO = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
+        this.socketIO = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
 
         let bg = new eui.Image();
         bg.source = 'resource/assets/background.png';
         this.addChild(bg);
-        this.showSelectCardModal();
     }
 
-    public showSelectCardModal() {
-        this.getCardPanel = new MyGetCardPanel(this);
+    public showSelectCardModal(cards) {
+        this.getCardPanel = new MyGetCardPanel(this, cards);
         this.addChild(this.getCardPanel);
         this.getCardPanel.init(1);
     }
@@ -150,10 +150,12 @@ class PlayScene extends egret.DisplayObjectContainer {
     }
 
     private selectCardEvent() {
-        this.socketIO.sendMessage(Coder.GAME_STATE[4], JSON.stringify({choose: 2}));
+        this.showSelectCardModal(this.selectCards);
+        // this.socketIO.sendMessage(Coder.GAME_STATE[4], JSON.stringify({choose: 2}));
     }
 
-    public addSelectButton() {
+    public addSelectButton(cards) {
+        this.selectCards = cards;
         this.selectCardFalg = true;
         this.addChild(this.selectCoinButton);        
         this.addChild(this.selectCardButton);        
