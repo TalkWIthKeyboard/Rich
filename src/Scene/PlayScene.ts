@@ -7,6 +7,8 @@ class PlayScene extends egret.DisplayObjectContainer {
     private skillButton: eui.Button;
     private passButton: eui.Button;
     private playerModals: Array<PlayerModal>;
+    private selectCoinButton: eui.Button;
+    private selectCardButton: eui.Button;
     public socketIO: Socket;
     public controller;
     public selectFlag = false;
@@ -103,6 +105,24 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.passButton.x = 715;
         this.passButton.y = 925;
         this.addChild(this.passButton);
+
+        this.selectCoinButton = new eui.Button();
+        this.selectCoinButton.skinName = "resource/eui_skins/ExitButton.exml";
+        this.selectCoinButton.width = 230;
+        this.selectCoinButton.height = 70;
+        this.selectCoinButton.x = 715;
+        this.selectCoinButton.y = 725;
+        this.addChild(this.selectCoinButton);
+
+        this.selectCardButton = new eui.Button();
+        this.selectCardButton.skinName = "resource/eui_skins/ExitButton.exml";
+        this.selectCardButton.width = 230;
+        this.selectCardButton.height = 70;
+        this.selectCardButton.x = 715;
+        this.selectCardButton.y = 825;
+        this.addChild(this.selectCardButton);
+
+        
 
         this.playerModals = new Array<PlayerModal>();
 
