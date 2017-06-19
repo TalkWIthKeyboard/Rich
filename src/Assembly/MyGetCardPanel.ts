@@ -25,6 +25,8 @@ class MyGetCardPanel extends eui.Panel {
 
 		this.selectButton = new eui.Button();
 		this.selectButton.skinName = "resource/eui_skins/ButtonSkin.exml";
+		this.selectButton.width = 100;
+		this.selectButton.height = 50;
 		this.selectButton.label = '确认';
 		this.selectButton.horizontalCenter = "0";
 		this.selectButton.addEventListener(egret.TouchEvent.TOUCH_END, this.finish, this);
