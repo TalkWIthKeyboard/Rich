@@ -82,9 +82,30 @@ class Socket {
                 if (this.scene.selectFlag) this.scene.hideSelectCharacterModal();
         })
 
-        this.socket.on(Coder.GAME_STATE[3], message => {
+        this.socket.on(Coder.GAME_STATE[4], message => {
             let msg = JSON.parse(message);
-            if (this.scene.selectFlag) this.scene.hideSelectCharacterModal();          
+            console.log(msg);
+            if (this.scene.controller.me.getSocketId() === msg.user) this.scene.addSelectButton();
+            else if (this.scene.selectCardFlag) this.scene.removeSelectButton();   
+        })
+
+        this.socket.on('Licensing', message => {
+            let msg = JSON.parse(message);
+            console.log('Licensing', msg);
+        })
+
+        this.socket.on(Coder.GAME_END_STATE[Coder.GAME_STATE[2]], () => {
+            if (this.scene.selectFlag) this.scene.hideSelectCharacterModal();
+            if (this.scene.num === 0) {
+                this.scene.addSelectButton();      
+                this.sendMessage(Coder.GAME_STATE[3], JSON.stringify({user: this.scene.controller.me.getSocketId()}));            
+            }      
+            this.sendMessage(Coder.GAME_END_STATE[Coder.GAME_STATE[2]], null);
+        })
+
+        this.socket.on(Coder.GAME_END_STATE[Coder.GAME_STATE[3]], () => {
+            if (this.scene.selectCardFlag) this.scene.removeSelectButton();
+            this.sendMessage(Coder.GAME_END_STATE[Coder.GAME_STATE[3]], null);  
         })
     }
 

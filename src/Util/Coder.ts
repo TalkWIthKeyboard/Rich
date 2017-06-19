@@ -14,6 +14,11 @@ class Coder {
     }
 
     public static GAME_STATE = ['BEFORE_START', 'START_STAGE', 'CHOOSE_ROLE', 'PLAYER_TIME', 'DISTRIBUTE_RESOURCE', 'BUILD_HOUSE']
+    
+    public static GAME_END_STATE = {
+        'CHOOSE_ROLE': 'CHOOSE_ROLE_END',
+        'PLAYER_TIME': 'PLAYER_TIME_END'
+    };
 
     public static CARD_INFO = {
         Laboratory: {

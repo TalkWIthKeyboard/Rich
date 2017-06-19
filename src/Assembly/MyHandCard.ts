@@ -12,7 +12,6 @@ class MyHandCard extends eui.Panel {
 	
 	public reset(msg) {
 		this.clear();
-		console.log(msg);
 		for(let i = 0; i < msg.length; i++) {
 			let card = new MyCard(this, i, msg);
 			this.addChild(card.group);

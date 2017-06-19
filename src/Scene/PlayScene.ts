@@ -9,6 +9,7 @@ class PlayScene extends egret.DisplayObjectContainer {
     private playerModals: Array<PlayerModal>;
     private selectCoinButton: eui.Button;
     private selectCardButton: eui.Button;
+    public selectCardFalg = false;
     public socketIO: Socket;
     public controller;
     public selectFlag = false;
@@ -69,12 +70,7 @@ class PlayScene extends egret.DisplayObjectContainer {
             }
         }
 
-        console.log(user);
-
         this.myHandCard = new MyHandCard();
-        // let msg = [{ cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' },
-        // { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }];
-        // this.myHandCard.reset(msg);
         this.myHandCard.reset(user.cards);
         this.myHandCard.x = 50;
         this.myHandCard.y = 700;
@@ -106,23 +102,23 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.passButton.y = 925;
         this.addChild(this.passButton);
 
+        // 选择金币的按钮
         this.selectCoinButton = new eui.Button();
         this.selectCoinButton.skinName = "resource/eui_skins/ExitButton.exml";
         this.selectCoinButton.width = 230;
         this.selectCoinButton.height = 70;
         this.selectCoinButton.x = 715;
-        this.selectCoinButton.y = 725;
-        this.addChild(this.selectCoinButton);
+        this.selectCoinButton.y = 525;
+        this.selectCoinButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.selectCoinEvent ,this);
 
+        // 选择卡牌的按钮
         this.selectCardButton = new eui.Button();
         this.selectCardButton.skinName = "resource/eui_skins/ExitButton.exml";
         this.selectCardButton.width = 230;
         this.selectCardButton.height = 70;
         this.selectCardButton.x = 715;
-        this.selectCardButton.y = 825;
-        this.addChild(this.selectCardButton);
-
-        
+        this.selectCardButton.y = 625;
+        this.selectCardButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.selectCardEvent ,this);
 
         this.playerModals = new Array<PlayerModal>();
 
@@ -132,5 +128,25 @@ class PlayScene extends egret.DisplayObjectContainer {
             playerModal.y = this.position[i].y;
             this.addChild(playerModal);
         }
+    }
+
+    private selectCoinEvent() {
+        this.socketIO.sendMessage(Coder.GAME_STATE[4], JSON.stringify({choose: 1}));
+    }
+
+    private selectCardEvent() {
+        this.socketIO.sendMessage(Coder.GAME_STATE[4], JSON.stringify({choose: 2}));
+    }
+
+    public addSelectButton() {
+        this.selectCardFalg = true;
+        this.addChild(this.selectCoinButton);        
+        this.addChild(this.selectCardButton);        
+    }
+
+    public removeSelectButton() {
+        this.selectCardFalg = false;
+        this.removeChild(this.selectCoinButton);
+        this.removeChild(this.selectCardButton); 
     }
 }
