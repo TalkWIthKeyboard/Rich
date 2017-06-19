@@ -27,9 +27,9 @@ class Main extends egret.DisplayObjectContainer {
         // 初始化Resource资源加载库
         RES.loadConfig("resource/default.res.json", "resource/");
 
-        // this.playScene = new PlayScene(this);
+        this.playScene = new PlayScene(this);
 
-        this.hallScene = new HallScene(this);
+        // this.hallScene = new HallScene(this);
         this.addEventListener(ChangeSceneEvent.CHANGE_SCENE_EVENT, this.changeScene, this);
     }
 

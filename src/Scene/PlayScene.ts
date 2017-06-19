@@ -7,6 +7,7 @@ class PlayScene extends egret.DisplayObjectContainer {
     private skillButton: eui.Button;
     private passButton: eui.Button;
     private playerModals: Array<PlayerModal>;
+    private myPlayerModal: MyPlayerModal;
     private selectCoinButton: eui.Button;
     private selectCardButton: eui.Button;
 
@@ -20,7 +21,8 @@ class PlayScene extends egret.DisplayObjectContainer {
     public user = null;
     public num = null;
 
-    private position = [{x: 1000, y: 715}, {x: 45, y: 360}, {x: 45, y: 30}, {x: 395, y: 30}, {x: 745, y: 30}, {x: 1095, y: 30}, {x: 1095, y: 360}];
+    private position = [{x: 16, y: 357}, {x: 16, y: 6}, {x: 375, y: 6}, {x: 734, y: 6}, {x: 1093, y: 6}, {x: 1093, y: 357}];
+    private myPosition = {x: 900, y: 700};
 
     private myRoomList: MyRoomList;
 
@@ -35,11 +37,125 @@ class PlayScene extends egret.DisplayObjectContainer {
 	private init(controller) {
         this.controller = controller;
         this.type = Coder.SCENE_TYPE.PLAY;
-        this.socketIO = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
+        // this.socketIO = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
 
         let bg = new eui.Image();
         bg.source = 'resource/assets/background.png';
         this.addChild(bg);
+        
+        let obj = {
+	users: [1, 2, 3, 4, 5, 6, 7],
+	msg: [
+	{
+		name: 'Name',
+		cards: [1, 2, 3, 4, 5],
+		regions: [
+			{
+				name: '123',
+				star: 3,
+				color: 'blue'
+			},
+			{
+				name: '123',
+				star: 3,
+				color: 'yellow'
+			},
+			{
+				name: '123',
+				star: 3,
+				color: 'purple'
+			},
+			{
+				name: '123',
+				star: 3,
+				color: 'red'
+			},
+			{
+				name: '123',
+				star: 3,
+				color: 'green'
+			},
+			{
+				name: '123',
+				star: 3,
+				color: 'blue'
+			}
+		],
+		gold: 5,
+		role: 'ASSASSIN',
+		socketId: '123'
+	},
+	{
+		name: 'Name',
+		cards: [1, 2, 3, 4, 5],
+		regions: [
+			{
+				name: '123',
+				star: 3,
+				color: 'blue'
+			},
+			{
+				name: '123',
+				star: 3,
+				color: 'blue'
+			}
+		],
+		gold: 5,
+		role: 'ASSASSIN',
+		socketId: '123'
+	},
+	{
+		name: 'Name',
+		cards: [1, 2, 3, 4, 5],
+		regions: [
+			{
+				name: '123',
+				star: 3,
+				color: 'blue'
+			},
+			{
+				name: '123',
+				star: 3,
+				color: 'blue'
+			}
+		],
+		gold: 5,
+		role: 'ASSASSIN',
+		socketId: '123'
+	},
+	{
+		name: 'Name',
+		cards: [1, 2, 3, 4, 5],
+		regions: [
+		],
+		gold: 5,
+		role: 'ASSASSIN',
+		socketId: '123'
+	},
+	{
+		name: 'Name',
+		cards: [1, 2, 3, 4, 5],
+		regions: [
+		],
+		gold: 5,
+		role: 'ASSASSIN',
+		socketId: '123'
+	},{
+		name: 'Name',
+		cards: [1, 2, 3, 4, 5],
+		regions: [
+		],
+		gold: 5,
+		role: 'ASSASSIN',
+		socketId: '123'
+	}
+]
+}
+        this.initPlayInterface(obj);
+    }
+
+    public showCardDetailsPanel(cardName: String) {
+        //
     }
 
     public showSelectCardModal(cards) {
@@ -78,21 +194,21 @@ class PlayScene extends egret.DisplayObjectContainer {
 
         let user = null;
 
-        for (let i = 0; i < obj.users.length; i++) {
-            if (obj.users[i].socketId === this.controller.me.getSocketId()) {
-                user = obj.users[i];
-                break;
-            }
-        }
+        // for (let i = 0; i < obj.users.length; i++) {
+        //     if (obj.users[i].socketId === this.controller.me.getSocketId()) {
+        //         user = obj.users[i];
+        //         break;
+        //     }
+        // }
 
-        this.myHandCard = new MyHandCard();
-        this.myHandCard.reset(user.cards);
-        this.myHandCard.x = 50;
-        this.myHandCard.y = 700;
-        this.addChild(this.myHandCard);
+        // this.myHandCard = new MyHandCard();
+        // this.myHandCard.reset(user.cards);
+        // this.myHandCard.x = 50;
+        // this.myHandCard.y = 700;
+        // this.addChild(this.myHandCard);
 
         this.playButton = new eui.Button();
-        this.playButton.skinName = "resource/eui_skins/ExitButton.exml";
+        this.playButton.skinName = "resource/eui_skins/jianzao.exml";
         this.playButton.width = 230;
         this.playButton.height = 70;
         this.playButton.x = 715;
@@ -102,7 +218,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.addChild(this.playButton);
 
         this.skillButton = new eui.Button();
-        this.skillButton.skinName = "resource/eui_skins/ExitButton.exml";
+        this.skillButton.skinName = "resource/eui_skins/jineng.exml";
         this.skillButton.width = 230;
         this.skillButton.height = 70;
         this.skillButton.x = 715;
@@ -110,7 +226,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.addChild(this.skillButton);
 
         this.passButton = new eui.Button();
-        this.passButton.skinName = "resource/eui_skins/ExitButton.exml";
+        this.passButton.skinName = "resource/eui_skins/jieshu.exml";
         this.passButton.width = 230;
         this.passButton.height = 70;
         this.passButton.x = 715;
@@ -119,7 +235,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 
         // 选择金币的按钮
         this.selectCoinButton = new eui.Button();
-        this.selectCoinButton.skinName = "resource/eui_skins/ExitButton.exml";
+        this.selectCoinButton.skinName = "resource/eui_skins/huodejinbi.exml";
         this.selectCoinButton.width = 230;
         this.selectCoinButton.height = 70;
         this.selectCoinButton.x = 715;
@@ -128,19 +244,23 @@ class PlayScene extends egret.DisplayObjectContainer {
 
         // 选择卡牌的按钮
         this.selectCardButton = new eui.Button();
-        this.selectCardButton.skinName = "resource/eui_skins/ExitButton.exml";
+        this.selectCardButton.skinName = "resource/eui_skins/huodekapai.exml";
         this.selectCardButton.width = 230;
         this.selectCardButton.height = 70;
         this.selectCardButton.x = 715;
         this.selectCardButton.y = 625;
         this.selectCardButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.selectCardEvent ,this);
 
+        // this.myPlayerModal = new MyPlayerModal(this);
+        // this.addChild(this.myPlayerModal);
+
         this.playerModals = new Array<PlayerModal>();
 
-        for(let i = 0; i < 7; i++) {
-            let playerModal = new PlayerModal();
+        for(let i = 0; i < obj.users.length - 1; i++) {
+            let playerModal = new PlayerModal(this);
             playerModal.x = this.position[i].x;
             playerModal.y = this.position[i].y;
+            playerModal.reset(obj.msg[i]);
             this.addChild(playerModal);
         }
     }
