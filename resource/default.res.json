@@ -19,12 +19,17 @@
 			"name": "panel_png",
 			"type": "image",
 			"url": "assets/Game/panel.png"
+		},
+		{
+			"name": "bg_png",
+			"type": "image",
+			"url": "assets/Card/bg.png"
 		}
 	],
 	"groups": [
 		{
 			"name": "preload",
-			"keys": "arc_png,coin_png,card_png,panel_png"
+			"keys": "arc_png,coin_png,card_png,panel_png,bg_png"
 		}
 	]
 }
