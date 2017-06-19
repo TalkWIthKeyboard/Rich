@@ -10,13 +10,13 @@ class MyCard {
 		this.root = root;
 
 		this.group = new eui.Group();
-		this.group.width = 120;
-		this.group.height = 180;
-		if(msg.length * 120 <= 600) {
-			this.group.x = 120 * i + 30; 
+		this.group.width = 150;
+		this.group.height = 240;
+		if(msg.length * 150 <= 600) {
+			this.group.x = 150 * i + 30; 
 		}
 		else {
-			this.group.x = i * (480.0 / msg.length) + 30;
+			this.group.x = i * (450.0 / (msg.length-1)) + 50;
 		}
 		this.num = i;
 		let img = new eui.Image();
