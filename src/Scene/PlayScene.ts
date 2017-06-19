@@ -33,17 +33,47 @@ class PlayScene extends egret.DisplayObjectContainer {
         let bg = new eui.Image();
         bg.source = 'resource/assets/background.png';
         this.addChild(bg);
+    }
 
-		let bg1 = new eui.Image();
+	public showSelectCharacterModal(roles) {
+        this.selectCharacterModal = new SelectCharacterModal();
+		this.selectCharacterModal.init();
+		this.selectCharacterModal.x = 113;
+		this.selectCharacterModal.y = 220;
+        this.selectFlag = true;
+		this.selectCharacterModal.reset(roles);
+		this.addChild(this.selectCharacterModal);
+	}
+
+	public hideSelectCharacterModal() {
+        this.selectFlag = false;
+		this.removeChild(this.selectCharacterModal);
+	}
+
+    public initPlayInterface(obj) {
+
+        let bg1 = new eui.Image();
 		bg1.source = "resource/assets/Game/panel.png";
         bg1.x = 50;
         bg1.y = 700;
         this.addChild(bg1);
 
+        let user = null;
+
+        for (let i = 0; i < obj.users.length; i++) {
+            if (obj.users[i].socketId === this.controller.me.getSocketId()) {
+                user = obj.users[i];
+                break;
+            }
+        }
+
+        console.log(user);
+
         this.myHandCard = new MyHandCard();
-        let msg = [{ cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' },
-        { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }];
-        this.myHandCard.reset(msg);
+        // let msg = [{ cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' },
+        // { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }];
+        // this.myHandCard.reset(msg);
+        this.myHandCard.reset(user.cards);
         this.myHandCard.x = 50;
         this.myHandCard.y = 700;
         this.addChild(this.myHandCard);
@@ -82,22 +112,5 @@ class PlayScene extends egret.DisplayObjectContainer {
             playerModal.y = this.position[i].y;
             this.addChild(playerModal);
         }
-
-
-		// this.selectCharacterModal = new SelectCharacterModal();
-		// this.selectCharacterModal.init();
-		// this.selectCharacterModal.x = 113;
-		// this.selectCharacterModal.y = 220;
     }
-
-	public showSelectCharacterModal(roles) {
-        this.selectFlag = true;
-		this.selectCharacterModal.reset(roles);
-		this.addChild(this.selectCharacterModal);
-	}
-
-	public hideSelectCharacterModal() {
-        this.selectFlag = false;
-		this.removeChild(this.selectCharacterModal);
-	}
 }

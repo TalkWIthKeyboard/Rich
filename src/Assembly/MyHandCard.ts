@@ -12,6 +12,7 @@ class MyHandCard extends eui.Panel {
 	
 	public reset(msg) {
 		this.clear();
+		console.log(msg);
 		for(let i = 0; i < msg.length; i++) {
 			let card = new MyCard(this, i, msg);
 			this.addChild(card.group);
@@ -31,7 +32,6 @@ class MyHandCard extends eui.Panel {
 	}
 
 	public selectOne(card: MyCard) {
-		console.log(card.num);
 		if(this.selectnum != card.num) {
 			if(this.selectnum != null) {
 				this.myCards[this.selectnum].off();

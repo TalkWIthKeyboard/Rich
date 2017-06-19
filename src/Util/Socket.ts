@@ -69,7 +69,7 @@ class Socket {
     private workTypePlay() {
         this.socket.on(Coder.GAME_STATE[1], message => {
             let msg = JSON.parse(message);
-            console.log(msg);
+            this.scene.initPlayInterface(msg);
         })
 
         this.socket.on(Coder.GAME_STATE[2], message => {
@@ -84,8 +84,7 @@ class Socket {
 
         this.socket.on(Coder.GAME_STATE[3], message => {
             let msg = JSON.parse(message);
-            console.log(msg);
-            if (this.scene.selectFlag) this.scene.hideSelectCharacterModal();
+            if (this.scene.selectFlag) this.scene.hideSelectCharacterModal();          
         })
     }
 
