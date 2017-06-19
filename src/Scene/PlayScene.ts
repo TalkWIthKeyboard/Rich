@@ -9,8 +9,9 @@ class PlayScene extends egret.DisplayObjectContainer {
     private playerModals: Array<PlayerModal>;
     public socketIO: Socket;
     public controller;
-    public user;
-    public num;
+    public selectFlag = false;
+    public user = null;
+    public num = null;
 
     private position = [{x: 1000, y: 715}, {x: 45, y: 360}, {x: 45, y: 30}, {x: 395, y: 30}, {x: 745, y: 30}, {x: 1095, y: 30}, {x: 1095, y: 360}];
 
@@ -90,11 +91,13 @@ class PlayScene extends egret.DisplayObjectContainer {
     }
 
 	public showSelectCharacterModal(roles) {
+        this.selectFlag = true;
 		this.selectCharacterModal.reset(roles);
 		this.addChild(this.selectCharacterModal);
 	}
 
 	public hideSelectCharacterModal() {
-		this.addChild(this.selectCharacterModal);
+        this.selectFlag = false;
+		this.removeChild(this.selectCharacterModal);
 	}
 }
