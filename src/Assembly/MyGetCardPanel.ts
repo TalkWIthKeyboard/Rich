@@ -7,7 +7,6 @@ class MyGetCardPanel extends eui.Panel {
 	private card2: eui.Image;
 	private bg2: eui.Image;
 	private selectnum: number;
-	private noSelectButton: eui.Button;
 	private selectButton: eui.Button;
 	private playScene: PlayScene;
 
@@ -24,17 +23,13 @@ class MyGetCardPanel extends eui.Panel {
 		bg.source = "resource/assets/Game/panel.png";
 		this.addChild(bg);
 
-		this.noSelectButton = new eui.Button();
-		this.noSelectButton.skinName = "resource/eui_skins/ButtonSkin.exml";
-		this.noSelectButton.label = '确认';
-		this.noSelectButton.horizontalCenter = "0";
-		this.addChild(this.noSelectButton);
-
 		this.selectButton = new eui.Button();
 		this.selectButton.skinName = "resource/eui_skins/ButtonSkin.exml";
 		this.selectButton.label = '确认';
 		this.selectButton.horizontalCenter = "0";
 		this.selectButton.addEventListener(egret.TouchEvent.TOUCH_END, this.finish, this);
+		this.selectButton.enabled = false;
+		this.addChild(this.selectButton);
 
 		this.getCardGroup1 = new eui.Group();
 		this.getCardGroup1.x = 100;
@@ -116,13 +111,11 @@ class MyGetCardPanel extends eui.Panel {
 	}
 
 	private selectable() {
-		this.addChild(this.selectButton);
-		this.removeChild(this.noSelectButton);
+		this.selectButton.enabled = true;
 	}
 	
 	private notSelectable() {
-		this.removeChild(this.selectButton);
-		this.addChild(this.noSelectButton);
+		this.selectButton.enabled = false;
 	}
 
 
