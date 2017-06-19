@@ -92,6 +92,7 @@ class Socket {
         this.socket.on('Licensing', message => {
             let msg = JSON.parse(message);
             console.log('Licensing', msg);
+            //
         })
 
         this.socket.on(Coder.GAME_END_STATE[Coder.GAME_STATE[2]], () => {

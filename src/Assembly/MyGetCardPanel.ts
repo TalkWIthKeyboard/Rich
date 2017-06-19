@@ -1,0 +1,143 @@
+class MyGetCardPanel extends eui.Panel {
+	
+	private getCardGroup1: eui.Group;
+	private card1: eui.Image;
+	private bg1: eui.Image;
+	private getCardGroup2: eui.Group;
+	private card2: eui.Image;
+	private bg2: eui.Image;
+	private selectnum: number;
+	private noSelectButton: eui.Button;
+	private selectButton: eui.Button;
+	private playScene: PlayScene;
+
+	public constructor(playScene: PlayScene) {
+		super();
+		
+		this.playScene = playScene;
+		this.height = 336;
+		this.width = 936;
+		this.x = 252;
+        this.y = 300;
+
+		let bg = new eui.Image();
+		bg.source = "resource/assets/Game/panel.png";
+		this.addChild(bg);
+
+		this.noSelectButton = new eui.Button();
+		this.noSelectButton.skinName = "resource/eui_skins/ButtonSkin.exml";
+		this.noSelectButton.label = '确认';
+		this.noSelectButton.horizontalCenter = "0";
+		this.addChild(this.noSelectButton);
+
+		this.selectButton = new eui.Button();
+		this.selectButton.skinName = "resource/eui_skins/ButtonSkin.exml";
+		this.selectButton.label = '确认';
+		this.selectButton.horizontalCenter = "0";
+		this.selectButton.addEventListener(egret.TouchEvent.TOUCH_END, this.finish, this);
+
+		this.getCardGroup1 = new eui.Group();
+		this.getCardGroup1.x = 100;
+		this.getCardGroup1.y = 100;
+		this.getCardGroup1.width = 190;
+		this.getCardGroup1.height = 280;
+		this.card1 = new eui.Image();
+		this.card1.horizontalCenter = "0";
+		this.card1.verticalCenter = "0";
+		this.card1.source = "resource/assets/Card/建筑卡背.png";
+		this.getCardGroup1.addChild(this.card1);
+		this.bg1 = new eui.Image();
+		this.bg1.alpha = 0.3;
+		this.bg1.source = "resource/assets/Card/bg.png";
+		this.addChild(this.getCardGroup1);
+
+		this.getCardGroup2 = new eui.Group();
+		this.getCardGroup2.x = 400;
+		this.getCardGroup2.y = 100;
+		this.getCardGroup2.width = 190;
+		this.getCardGroup2.height = 280;
+		this.card2 = new eui.Image();
+		this.card2.horizontalCenter = "0";
+		this.card2.verticalCenter = "0";
+		this.card2.source = "resource/assets/Card/建筑卡背.png";
+		this.getCardGroup2.addChild(this.card2);
+		this.bg2 = new eui.Image();
+		this.bg2.alpha = 0.3;
+		this.bg2.source = "resource/assets/Card/bg.png";
+		this.addChild(this.getCardGroup2);
+	}
+
+	public init(msg) {
+		this.card1.source = "resource/assets/Card/城堡.png";
+		this.card1.addEventListener(egret.TouchEvent.TOUCH_END, () => this.select(1), this);
+		this.card2.source = "resource/assets/Card/城堡.png";
+		this.card2.addEventListener(egret.TouchEvent.TOUCH_END, () => this.select(2), this);
+	}
+
+	private select(x: number) {
+		console.log(x);
+		if(x != this.selectnum) {
+			if(this.selectnum != null) {
+				if (this.selectnum == 1) {
+					this.getCardGroup1.removeChild(this.bg1);
+					this.getCardGroup2.addChildAt(this.bg2, 0);
+				}
+				else {
+					this.getCardGroup2.removeChild(this.bg2);
+					this.getCardGroup1.addChildAt(this.bg1, 0);
+				}
+			}
+			else {
+				if (x == 1) {
+					this.getCardGroup1.addChildAt(this.bg1, 0);
+				}
+				else {
+					this.getCardGroup2.addChildAt(this.bg2, 0);
+				}
+				this.selectable();
+			}
+			this.selectnum = x;
+		}
+		else {
+			if (x == 1) {
+				this.getCardGroup1.removeChild(this.bg1);
+			}
+			else {
+				this.getCardGroup2.removeChild(this.bg2);
+			}
+			this.selectnum = null;
+			this.notSelectable();
+		}
+	}
+
+	private removeCardListener() {
+		this.card1.addEventListener(egret.TouchEvent.TOUCH_END, () => this.select(1), this);
+		this.card2.addEventListener(egret.TouchEvent.TOUCH_END, () => this.select(2), this);
+	}
+
+	private selectable() {
+		this.addChild(this.selectButton);
+		this.removeChild(this.noSelectButton);
+	}
+	
+	private notSelectable() {
+		this.removeChild(this.selectButton);
+		this.addChild(this.noSelectButton);
+	}
+
+
+	private removeListener() {
+		this.selectButton.removeEventListener(egret.TouchEvent.TOUCH_END, this.finish, this);
+	}
+	
+	private addListener() {
+		this.selectButton.addEventListener(egret.TouchEvent.TOUCH_END, this.finish, this);
+	}
+
+	private finish() {
+		console.log(" => " + this.selectnum);
+		this.removeListener();
+		this.removeCardListener();
+		this.playScene.releSegetCardPanel();
+	}
+}

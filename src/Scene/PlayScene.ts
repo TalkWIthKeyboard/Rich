@@ -9,6 +9,9 @@ class PlayScene extends egret.DisplayObjectContainer {
     private playerModals: Array<PlayerModal>;
     private selectCoinButton: eui.Button;
     private selectCardButton: eui.Button;
+
+    private getCardPanel: MyGetCardPanel;
+
     public selectCardFalg = false;
     public socketIO: Socket;
     public controller;
@@ -31,11 +34,23 @@ class PlayScene extends egret.DisplayObjectContainer {
 	private init(controller) {
         this.controller = controller;
         this.type = Coder.SCENE_TYPE.PLAY;
-        this.socketIO = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
+        // this.socketIO = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
 
         let bg = new eui.Image();
         bg.source = 'resource/assets/background.png';
         this.addChild(bg);
+        this.showSelectCardModal();
+    }
+
+    public showSelectCardModal() {
+        this.getCardPanel = new MyGetCardPanel(this);
+        this.addChild(this.getCardPanel);
+        this.getCardPanel.init(1);
+    }
+
+    public releSegetCardPanel() {
+        this.removeChild(this.getCardPanel);
+        this.getCardPanel = null;
     }
 
 	public showSelectCharacterModal(roles) {
@@ -149,4 +164,5 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.removeChild(this.selectCoinButton);
         this.removeChild(this.selectCardButton); 
     }
+
 }

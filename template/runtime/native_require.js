@@ -12,10 +12,11 @@ var game_file_list = [
 	"libs/modules/socket.io/socket.io.js",
 	"polyfill/promise.js",
 	"bin-debug/Model/Role.js",
-	"bin-debug/Model/PlayUser.js",
+	"bin-debug/Assembly/MyBitmap.js",
 	"bin-debug/Assembly/MyButton.js",
 	"bin-debug/Assembly/MyCard.js",
 	"bin-debug/Assembly/MyCreateRoom.js",
+	"bin-debug/Assembly/MyGetCardPanel.js",
 	"bin-debug/Assembly/MyHandCard.js",
 	"bin-debug/Assembly/MyRoomItem.js",
 	"bin-debug/Assembly/MyRoomList.js",
@@ -27,8 +28,8 @@ var game_file_list = [
 	"bin-debug/Game/CenterController.js",
 	"bin-debug/Main.js",
 	"bin-debug/Model/AssassinRole.js",
-	"bin-debug/Model/Card.js",
-	"bin-debug/Assembly/MyBitmap.js",
+	"bin-debug/Util/Util.js",
+	"bin-debug/Model/PlayUser.js",
 	"bin-debug/Model/Region.js",
 	"bin-debug/Assembly/Modal.js",
 	"bin-debug/Model/roomModel.js",
@@ -44,7 +45,7 @@ var game_file_list = [
 	"bin-debug/Util/LoadingUI.js",
 	"bin-debug/Util/Socket.js",
 	"bin-debug/Util/User.js",
-	"bin-debug/Util/Util.js",
+	"bin-debug/Model/Card.js",
 	//----auto game_file_list end----
 ];
 
