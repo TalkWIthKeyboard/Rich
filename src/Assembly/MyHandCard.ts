@@ -2,6 +2,7 @@ class MyHandCard extends eui.Panel {
 
 	private myCards;
 	private selectnum: number;
+	public user;
 
 	public constructor() {
 		super();
@@ -12,6 +13,7 @@ class MyHandCard extends eui.Panel {
 	
 	public reset(msg) {
 		this.clear();
+		this.user = msg.socketId;
 		for(let i = 0; i < msg.length; i++) {
 			let card = new MyCard(this, i, msg);
 			this.addChild(card.group);

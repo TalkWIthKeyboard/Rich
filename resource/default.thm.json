@@ -21,6 +21,7 @@
     "resource/eui_skins/CreateRoomCancelButton.exml",
     "resource/eui_skins/CreateRoomPanelSkin.exml",
     "resource/eui_skins/CreateRoomSubmitButton.exml",
+    "resource/eui_skins/DetailButton.exml",
     "resource/eui_skins/EditButton.exml",
     "resource/eui_skins/ExitButton.exml",
     "resource/eui_skins/HScrollBarSkin.exml",

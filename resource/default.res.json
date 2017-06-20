@@ -26,44 +26,9 @@
 			"url": "assets/Card/bg.png"
 		},
 		{
-			"name": "主教_png",
+			"name": "庄园_png",
 			"type": "image",
-			"url": "assets/BigCards/主教.png"
-		},
-		{
-			"name": "人物卡背_png",
-			"type": "image",
-			"url": "assets/BigCards/人物卡背.png"
-		},
-		{
-			"name": "修道院_png",
-			"type": "image",
-			"url": "assets/BigCards/修道院.png"
-		},
-		{
-			"name": "军阀_png",
-			"type": "image",
-			"url": "assets/BigCards/军阀.png"
-		},
-		{
-			"name": "刺客_png",
-			"type": "image",
-			"url": "assets/BigCards/刺客.png"
-		},
-		{
-			"name": "商人_png",
-			"type": "image",
-			"url": "assets/BigCards/商人.png"
-		},
-		{
-			"name": "国王_png",
-			"type": "image",
-			"url": "assets/BigCards/国王.png"
-		},
-		{
-			"name": "图书馆_png",
-			"type": "image",
-			"url": "assets/BigCards/图书馆.png"
+			"url": "assets/BigCards/庄园.png"
 		},
 		{
 			"name": "城堡_png",
@@ -71,19 +36,19 @@
 			"url": "assets/BigCards/城堡.png"
 		},
 		{
-			"name": "天文台_png",
+			"name": "刺客_png",
 			"type": "image",
-			"url": "assets/BigCards/天文台.png"
+			"url": "assets/BigCards/刺客.png"
 		},
 		{
-			"name": "市场_png",
+			"name": "盗贼_png",
 			"type": "image",
-			"url": "assets/BigCards/市场.png"
+			"url": "assets/BigCards/盗贼.png"
 		},
 		{
-			"name": "庄园_png",
+			"name": "国王_png",
 			"type": "image",
-			"url": "assets/BigCards/庄园.png"
+			"url": "assets/BigCards/国王.png"
 		},
 		{
 			"name": "建筑卡背_png",
@@ -101,39 +66,14 @@
 			"url": "assets/BigCards/教堂.png"
 		},
 		{
-			"name": "盗贼_png",
-			"type": "image",
-			"url": "assets/BigCards/盗贼.png"
-		},
-		{
-			"name": "码头_png",
-			"type": "image",
-			"url": "assets/BigCards/码头.png"
-		},
-		{
-			"name": "神殿_png",
-			"type": "image",
-			"url": "assets/BigCards/神殿.png"
-		},
-		{
-			"name": "要塞_png",
-			"type": "image",
-			"url": "assets/BigCards/要塞.png"
-		},
-		{
-			"name": "贸易站_png",
-			"type": "image",
-			"url": "assets/BigCards/贸易站.png"
-		},
-		{
 			"name": "酒馆_png",
 			"type": "image",
 			"url": "assets/BigCards/酒馆.png"
 		},
 		{
-			"name": "魔术师_png",
+			"name": "军阀_png",
 			"type": "image",
-			"url": "assets/BigCards/魔术师.png"
+			"url": "assets/BigCards/军阀.png"
 		},
 		{
 			"name": "龙门_png",
@@ -141,9 +81,129 @@
 			"url": "assets/BigCards/龙门.png"
 		},
 		{
-			"name": "其他玩家面板_png",
+			"name": "码头_png",
 			"type": "image",
-			"url": "assets/Game/其他玩家面板.png"
+			"url": "assets/BigCards/码头.png"
+		},
+		{
+			"name": "贸易站_png",
+			"type": "image",
+			"url": "assets/BigCards/贸易站.png"
+		},
+		{
+			"name": "魔术师_png",
+			"type": "image",
+			"url": "assets/BigCards/魔术师.png"
+		},
+		{
+			"name": "人物卡背_png",
+			"type": "image",
+			"url": "assets/BigCards/人物卡背.png"
+		},
+		{
+			"name": "商人_png",
+			"type": "image",
+			"url": "assets/BigCards/商人.png"
+		},
+		{
+			"name": "神殿_png",
+			"type": "image",
+			"url": "assets/BigCards/神殿.png"
+		},
+		{
+			"name": "市场_png",
+			"type": "image",
+			"url": "assets/BigCards/市场.png"
+		},
+		{
+			"name": "天文台_png",
+			"type": "image",
+			"url": "assets/BigCards/天文台.png"
+		},
+		{
+			"name": "图书馆_png",
+			"type": "image",
+			"url": "assets/BigCards/图书馆.png"
+		},
+		{
+			"name": "修道院_png",
+			"type": "image",
+			"url": "assets/BigCards/修道院.png"
+		},
+		{
+			"name": "要塞_png",
+			"type": "image",
+			"url": "assets/BigCards/要塞.png"
+		},
+		{
+			"name": "主教_png",
+			"type": "image",
+			"url": "assets/BigCards/主教.png"
+		},
+		{
+			"name": "yellow_png",
+			"type": "image",
+			"url": "assets/MyArc/yellow.png"
+		},
+		{
+			"name": "blue_png",
+			"type": "image",
+			"url": "assets/MyArc/blue.png"
+		},
+		{
+			"name": "green_png",
+			"type": "image",
+			"url": "assets/MyArc/green.png"
+		},
+		{
+			"name": "purple_png",
+			"type": "image",
+			"url": "assets/MyArc/purple.png"
+		},
+		{
+			"name": "red_png",
+			"type": "image",
+			"url": "assets/MyArc/red.png"
+		},
+		{
+			"name": "WARLORD_png",
+			"type": "image",
+			"url": "assets/PlayerModal/WARLORD.png"
+		},
+		{
+			"name": "ARCHITECT_png",
+			"type": "image",
+			"url": "assets/PlayerModal/ARCHITECT.png"
+		},
+		{
+			"name": "ASSASSIN_png",
+			"type": "image",
+			"url": "assets/PlayerModal/ASSASSIN.png"
+		},
+		{
+			"name": "BUSINESSMAN_png",
+			"type": "image",
+			"url": "assets/PlayerModal/BUSINESSMAN.png"
+		},
+		{
+			"name": "KING_png",
+			"type": "image",
+			"url": "assets/PlayerModal/KING.png"
+		},
+		{
+			"name": "MAGICIAN_png",
+			"type": "image",
+			"url": "assets/PlayerModal/MAGICIAN.png"
+		},
+		{
+			"name": "THIEF_png",
+			"type": "image",
+			"url": "assets/PlayerModal/THIEF.png"
+		},
+		{
+			"name": "BISHOP_png",
+			"type": "image",
+			"url": "assets/PlayerModal/BISHOP.png"
 		},
 		{
 			"name": "建造按钮_png",
@@ -164,11 +224,6 @@
 			"name": "技能按钮_按下_png",
 			"type": "image",
 			"url": "assets/Game/技能按钮_按下.png"
-		},
-		{
-			"name": "玩家个人面板_png",
-			"type": "image",
-			"url": "assets/Game/玩家个人面板.png"
 		},
 		{
 			"name": "结束回合_png",
@@ -201,75 +256,35 @@
 			"url": "assets/Game/获得金币_按下.png"
 		},
 		{
-			"name": "blue_png",
+			"name": "其他玩家面板_png",
 			"type": "image",
-			"url": "assets/MyArc/blue.png"
+			"url": "assets/Game/其他玩家面板.png"
 		},
 		{
-			"name": "green_png",
+			"name": "玩家个人面板_png",
 			"type": "image",
-			"url": "assets/MyArc/green.png"
+			"url": "assets/Game/玩家个人面板.png"
 		},
 		{
-			"name": "purple_png",
+			"name": "关闭按钮_png",
 			"type": "image",
-			"url": "assets/MyArc/purple.png"
+			"url": "assets/Game/关闭按钮.png"
 		},
 		{
-			"name": "red_png",
+			"name": "关闭按钮_按下_png",
 			"type": "image",
-			"url": "assets/MyArc/red.png"
+			"url": "assets/Game/关闭按钮_按下.png"
 		},
 		{
-			"name": "yellow_png",
+			"name": "卡片模态框_png",
 			"type": "image",
-			"url": "assets/MyArc/yellow.png"
-		},
-		{
-			"name": "ARCHITECT_png",
-			"type": "image",
-			"url": "assets/PlayerModal/ARCHITECT.png"
-		},
-		{
-			"name": "ASSASSIN_png",
-			"type": "image",
-			"url": "assets/PlayerModal/ASSASSIN.png"
-		},
-		{
-			"name": "BISHOP_png",
-			"type": "image",
-			"url": "assets/PlayerModal/BISHOP.png"
-		},
-		{
-			"name": "BUSINESSMAN_png",
-			"type": "image",
-			"url": "assets/PlayerModal/BUSINESSMAN.png"
-		},
-		{
-			"name": "KING_png",
-			"type": "image",
-			"url": "assets/PlayerModal/KING.png"
-		},
-		{
-			"name": "MAGICIAN_png",
-			"type": "image",
-			"url": "assets/PlayerModal/MAGICIAN.png"
-		},
-		{
-			"name": "THIEF_png",
-			"type": "image",
-			"url": "assets/PlayerModal/THIEF.png"
-		},
-		{
-			"name": "WARLORD_png",
-			"type": "image",
-			"url": "assets/PlayerModal/WARLORD.png"
+			"url": "assets/Game/卡片模态框.png"
 		}
 	],
 	"groups": [
 		{
 			"name": "preload",
-			"keys": "arc_png,coin_png,card_png,panel_png,bg_png,主教_png,人物卡背_png,修道院_png,军阀_png,刺客_png,商人_png,国王_png,图书馆_png,城堡_png,天文台_png,市场_png,庄园_png,建筑卡背_png,建筑师_png,教堂_png,盗贼_png,码头_png,神殿_png,要塞_png,贸易站_png,酒馆_png,魔术师_png,龙门_png,其他玩家面板_png,建造按钮_png,建造按钮_按下_png,技能按钮_png,技能按钮_按下_png,玩家个人面板_png,结束回合_png,结束回合_按下_png,获得卡牌_png,获得卡牌_按下_png,获得金币_png,获得金币_按下_png,blue_png,green_png,purple_png,red_png,yellow_png,ARCHITECT_png,ASSASSIN_png,BISHOP_png,BUSINESSMAN_png,KING_png,MAGICIAN_png,THIEF_png,WARLORD_png"
+			"keys": "arc_png,coin_png,card_png,panel_png,bg_png,庄园_png,城堡_png,刺客_png,盗贼_png,国王_png,建筑卡背_png,建筑师_png,教堂_png,酒馆_png,军阀_png,龙门_png,码头_png,贸易站_png,魔术师_png,人物卡背_png,商人_png,神殿_png,市场_png,天文台_png,图书馆_png,修道院_png,要塞_png,主教_png,yellow_png,blue_png,green_png,purple_png,red_png,WARLORD_png,ARCHITECT_png,ASSASSIN_png,BUSINESSMAN_png,KING_png,MAGICIAN_png,THIEF_png,BISHOP_png,建造按钮_png,建造按钮_按下_png,技能按钮_png,技能按钮_按下_png,结束回合_png,结束回合_按下_png,获得卡牌_png,获得卡牌_按下_png,获得金币_png,获得金币_按下_png,其他玩家面板_png,玩家个人面板_png,关闭按钮_png,关闭按钮_按下_png,卡片模态框_png"
 		}
 	]
 }
