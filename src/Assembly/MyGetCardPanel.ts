@@ -14,13 +14,11 @@ class MyGetCardPanel extends eui.Panel {
 		super();
 		
 		this.playScene = playScene;
-		this.height = 336;
-		this.width = 936;
-		this.x = 252;
-        this.y = 300;
+		this.height = 1024;
+		this.width = 1440;
 
 		let bg = new eui.Image();
-		bg.source = "resource/assets/Game/panel.png";
+		bg.source = "resource/assets/Game/选择手牌模态框.png";
 		this.addChild(bg);
 
 		this.selectButton = new eui.Button();
