@@ -98,9 +98,8 @@ class PlayScene extends egret.DisplayObjectContainer {
             }
         }
 
-        let msg1 = [{ cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }];
         this.myHandCard = new MyHandCard();
-        this.myHandCard.reset(msg1);
+        this.myHandCard.reset(user.cards);
         this.myHandCard.x = 64;
         this.myHandCard.y = 725;
         this.addChild(this.myHandCard);
@@ -112,7 +111,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.playButton.height = 70;
         this.playButton.x = 660;
         this.playButton.y = 836;
-        this.playButton.addEventListener(egret.TouchEvent.TOUCH_TAP, () => this.myHandCard.reset(msg1), this.myHandCard);
+        this.playButton.addEventListener(egret.TouchEvent.TOUCH_TAP, () => this.myHandCard.reset(user.cards), this.myHandCard);
         this.addChild(this.playButton);
 
         // 技能按钮
@@ -154,7 +153,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.myPlayerModal = new MyPlayerModal(this);
         this.myPlayerModal.x = 948;
         this.myPlayerModal.y = 708;
-        this.myPlayerModal.reset(obj.msg[0]);
+        this.myPlayerModal.reset(user);
         this.addChild(this.myPlayerModal);
 
         this.playerModals = new Array<PlayerModal>();
@@ -163,7 +162,7 @@ class PlayScene extends egret.DisplayObjectContainer {
             let playerModal = new PlayerModal(this);
             playerModal.x = this.position[i - 1].x;
             playerModal.y = this.position[i - 1].y;
-            playerModal.reset(obj.msg[i]);
+            playerModal.reset(obj.users[i]);
             this.addChild(playerModal);
         }
     }

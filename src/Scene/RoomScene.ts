@@ -129,7 +129,6 @@ class RoomScene extends egret.DisplayObjectContainer {
      * 更新界面
      */
     public update(msg) {
-        console.log(msg);
         for (let i = 0; i < msg.room.num - 1; i++) 
             this.userList[i].clear();
         let users = msg.users;

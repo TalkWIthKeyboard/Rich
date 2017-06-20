@@ -41,7 +41,7 @@ class MyGetCardPanel extends eui.Panel {
 		this.card1 = new eui.Image();
 		this.card1.horizontalCenter = "0";
 		this.card1.verticalCenter = "0";
-		this.card1.source = `resource/assets/Card/${Coder.CARD_INFO[cards[0].cardName]}.png`;
+		this.card1.source = `resource/assets/Card/${Coder.CARD_INFO[cards[0].cardName].cn_name}.png`;
 		this.getCardGroup1.addChild(this.card1);
 		this.bg1 = new eui.Image();
 		this.bg1.alpha = 0.3;
@@ -56,7 +56,7 @@ class MyGetCardPanel extends eui.Panel {
 		this.card2 = new eui.Image();
 		this.card2.horizontalCenter = "0";
 		this.card2.verticalCenter = "0";
-		this.card2.source = `resource/assets/Card/${Coder.CARD_INFO[cards[1].cardName]}.png`;
+		this.card2.source = `resource/assets/Card/${Coder.CARD_INFO[cards[1].cardName].cn_name}.png`;
 		this.getCardGroup2.addChild(this.card2);
 		this.bg2 = new eui.Image();
 		this.bg2.alpha = 0.3;
@@ -64,10 +64,10 @@ class MyGetCardPanel extends eui.Panel {
 		this.addChild(this.getCardGroup2);
 	}
 
-	public init(msg) {
-		this.card1.source = "resource/assets/Card/城堡.png";
+	public init(cards) {
+		this.card1.source = `resource/assets/Card/${Coder.CARD_INFO[cards[0].cardName].cn_name}.png`;
 		this.card1.addEventListener(egret.TouchEvent.TOUCH_END, () => this.select(1), this);
-		this.card2.source = "resource/assets/Card/城堡.png";
+		this.card2.source = `resource/assets/Card/${Coder.CARD_INFO[cards[1].cardName].cn_name}.png`;
 		this.card2.addEventListener(egret.TouchEvent.TOUCH_END, () => this.select(2), this);
 	}
 
