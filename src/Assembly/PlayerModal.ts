@@ -50,7 +50,7 @@ class PlayerModal extends eui.Panel{
 		this.playernameLabel.text = msg.name;
 		this.cardNum.text = msg.cards.length;
 		this.coinNum.text = msg.gold;
-		this.img.source = "resource/assets/PlayerModal/" + msg.role.roleName + ".png";
+		this.img.source = msg.role ? "resource/assets/PlayerModal/" + msg.role.roleName + ".png": "";
 		// if(msg.a) {
 		// 	this.addChild(this.img);
 		// }

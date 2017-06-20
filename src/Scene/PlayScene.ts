@@ -37,138 +37,32 @@ class PlayScene extends egret.DisplayObjectContainer {
 	private init(controller) {
         this.controller = controller;
         this.type = Coder.SCENE_TYPE.PLAY;
-        // this.socketIO = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
+        this.socketIO = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
 
         let bg = new eui.Image();
         bg.source = 'resource/assets/background.png';
         this.addChild(bg);
-        
-        let obj = {
-	users: [1, 2, 3, 4, 5, 6, 7],
-	msg: [
-	{
-		name: 'Name',
-		cards: [1, 2, 3, 4, 5],
-		regions: [
-			{
-				name: '123',
-				star: 3,
-				color: 'blue'
-			},
-			{
-				name: '123',
-				star: 3,
-				color: 'yellow'
-			},
-			{
-				name: '123',
-				star: 3,
-				color: 'purple'
-			},
-			{
-				name: '123',
-				star: 3,
-				color: 'red'
-			},
-			{
-				name: '123',
-				star: 3,
-				color: 'green'
-			},
-			{
-				name: '123',
-				star: 3,
-				color: 'blue'
-			}
-		],
-		gold: 5,
-		role: 'ASSASSIN',
-		socketId: '123'
-	},
-	{
-		name: 'Name',
-		cards: [1, 2, 3, 4, 5],
-		regions: [
-			{
-				name: '123',
-				star: 3,
-				color: 'blue'
-			},
-			{
-				name: '123',
-				star: 3,
-				color: 'blue'
-			}
-		],
-		gold: 5,
-		role: 'ASSASSIN',
-		socketId: '123'
-	},
-	{
-		name: 'Name',
-		cards: [1, 2, 3, 4, 5],
-		regions: [
-			{
-				name: '123',
-				star: 3,
-				color: 'blue'
-			},
-			{
-				name: '123',
-				star: 3,
-				color: 'blue'
-			}
-		],
-		gold: 5,
-		role: 'ASSASSIN',
-		socketId: '123'
-	},
-	{
-		name: 'Name',
-		cards: [1, 2, 3, 4, 5],
-		regions: [
-		],
-		gold: 5,
-		role: 'ASSASSIN',
-		socketId: '123'
-	},
-	{
-		name: 'Name',
-		cards: [1, 2, 3, 4, 5],
-		regions: [
-		],
-		gold: 5,
-		role: 'ASSASSIN',
-		socketId: '123'
-	},{
-		name: 'Name',
-		cards: [1, 2, 3, 4, 5],
-		regions: [
-		],
-		gold: 5,
-		role: 'ASSASSIN',
-		socketId: '123'
-	}
-]
-}
-        this.initPlayInterface(obj);
     }
 
+    // 点击卡牌，显示卡牌大图
     public showCardDetailsPanel(cardName: String) {
         //
     }
 
+    // 显示选牌界面
     public showSelectCardModal(cards) {
         this.getCardPanel = new MyGetCardPanel(this, cards);
         this.addChild(this.getCardPanel);
         this.getCardPanel.init(1);
     }
 
-    public releSegetCardPanel() {
+    // 隐藏选牌界面
+    public hideSelectCardModal() {
         this.removeChild(this.getCardPanel);
         this.getCardPanel = null;
     }
 
+    // 显示选择人物界面
 	public showSelectCharacterModal(roles) {
         this.selectCharacterModal = new SelectCharacterModal();
 		this.selectCharacterModal.init();
@@ -179,11 +73,13 @@ class PlayScene extends egret.DisplayObjectContainer {
 		this.addChild(this.selectCharacterModal);
 	}
 
+    // 隐藏选择人物界面
 	public hideSelectCharacterModal() {
         this.selectFlag = false;
 		this.removeChild(this.selectCharacterModal);
 	}
 
+    // 初始化界面
     public initPlayInterface(obj) {
 
         let bg1 = new eui.Image();
@@ -194,19 +90,20 @@ class PlayScene extends egret.DisplayObjectContainer {
 
         let user = null;
 
-        // for (let i = 0; i < obj.users.length; i++) {
-        //     if (obj.users[i].socketId === this.controller.me.getSocketId()) {
-        //         user = obj.users[i];
-        //         break;
-        //     }
-        // }
+        // 显示手牌
+        for (let i = 0; i < obj.users.length; i++) {
+            if (obj.users[i].socketId === this.controller.me.getSocketId()) {
+                user = obj.users[i];
+                break;
+            }
+        }
+        this.myHandCard = new MyHandCard();
+        this.myHandCard.reset(user.cards);
+        this.myHandCard.x = 50;
+        this.myHandCard.y = 700;
+        this.addChild(this.myHandCard);
 
-        // this.myHandCard = new MyHandCard();
-        // this.myHandCard.reset(user.cards);
-        // this.myHandCard.x = 50;
-        // this.myHandCard.y = 700;
-        // this.addChild(this.myHandCard);
-
+        // 出牌按钮
         this.playButton = new eui.Button();
         this.playButton.skinName = "resource/eui_skins/jianzao.exml";
         this.playButton.width = 230;
@@ -217,6 +114,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.playButton.addEventListener(egret.TouchEvent.TOUCH_TAP, () => this.myHandCard.reset(msg1), this.myHandCard);
         this.addChild(this.playButton);
 
+        // 技能按钮
         this.skillButton = new eui.Button();
         this.skillButton.skinName = "resource/eui_skins/jineng.exml";
         this.skillButton.width = 230;
@@ -225,6 +123,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.skillButton.y = 837;
         this.addChild(this.skillButton);
 
+        // 结束回合按钮
         this.passButton = new eui.Button();
         this.passButton.skinName = "resource/eui_skins/jieshu.exml";
         this.passButton.width = 230;
@@ -260,20 +159,23 @@ class PlayScene extends egret.DisplayObjectContainer {
             let playerModal = new PlayerModal(this);
             playerModal.x = this.position[i].x;
             playerModal.y = this.position[i].y;
-            playerModal.reset(obj.msg[i]);
+            playerModal.reset(obj.users[i]);
             this.addChild(playerModal);
         }
     }
 
+    // 选择金币的响应事件
     private selectCoinEvent() {
         this.socketIO.sendMessage(Coder.GAME_STATE[4], JSON.stringify({choose: 1}));
     }
 
+    // 选择卡牌的响应事件
     private selectCardEvent() {
         this.showSelectCardModal(this.selectCards);
         // this.socketIO.sendMessage(Coder.GAME_STATE[4], JSON.stringify({choose: 2}));
     }
 
+    // 添加选择卡牌的按钮
     public addSelectButton(cards) {
         this.selectCards = cards;
         this.selectCardFalg = true;
@@ -281,10 +183,10 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.addChild(this.selectCardButton);        
     }
 
+    // 删除选择卡牌的按钮
     public removeSelectButton() {
         this.selectCardFalg = false;
         this.removeChild(this.selectCoinButton);
         this.removeChild(this.selectCardButton); 
     }
-
 }
