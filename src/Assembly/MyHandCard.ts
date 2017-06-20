@@ -5,8 +5,8 @@ class MyHandCard extends eui.Panel {
 
 	public constructor() {
 		super();
-		this.height = 250;
-		this.width = 600;
+		this.height = 300;
+		this.width = 550;
 		this.myCards = [];
 	}
 	

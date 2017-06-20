@@ -22,6 +22,7 @@ class PlayerModal extends eui.Panel{
 		this.playernameLabel.size = 36;
 		this.playernameLabel.textColor = 0x543503;
 		this.img = new eui.Image();
+		this.img.y = 284;
 		this.coinNum = new eui.Label();
 		this.coinNum.x = 269;
 		this.coinNum.y = 36;
@@ -43,6 +44,7 @@ class PlayerModal extends eui.Panel{
 		this.addChild(this.playernameLabel);
 		this.addChild(this.coinNum);
 		this.addChild(this.cardNum);
+		this.addChild(this.img);
 	}
 
 	public reset(msg) {
@@ -50,11 +52,7 @@ class PlayerModal extends eui.Panel{
 		this.playernameLabel.text = msg.name;
 		this.cardNum.text = msg.cards.length;
 		this.coinNum.text = msg.gold;
-		this.img.source = "resource/assets/PlayerModal/" + msg.role.roleName + ".png";
-		// if(msg.a) {
-		// 	this.addChild(this.img);
-		// }
-		this.addChild(this.img);
+		this.img.source =  msg.open ? "resource/assets/PlayerModal/" + msg.role.roleName + ".png" : "";
 		for(let i = 0; i < msg.regions.length; i++) {
 			this.arcs[i].reset(msg.regions[i]);
 		}

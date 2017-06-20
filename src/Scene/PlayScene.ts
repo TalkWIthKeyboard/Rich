@@ -82,8 +82,9 @@ class PlayScene extends egret.DisplayObjectContainer {
 			}
 		],
 		gold: 5,
-		role: 'ASSASSIN',
-		socketId: '123'
+		role: { roleName: 'ARCHITECT' },
+		socketId: '123',
+        open: true
 	},
 	{
 		name: 'Name',
@@ -101,8 +102,9 @@ class PlayScene extends egret.DisplayObjectContainer {
 			}
 		],
 		gold: 5,
-		role: 'ASSASSIN',
-		socketId: '123'
+		role: { roleName: 'ASSASSIN' },
+		socketId: '123',
+        open: true
 	},
 	{
 		name: 'Name',
@@ -120,7 +122,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 			}
 		],
 		gold: 5,
-		role: 'ASSASSIN',
+		role: { roleName: 'KING' },
 		socketId: '123'
 	},
 	{
@@ -129,7 +131,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 		regions: [
 		],
 		gold: 5,
-		role: 'ASSASSIN',
+		role: { roleName: 'MAGICIAN' },
 		socketId: '123'
 	},
 	{
@@ -138,7 +140,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 		regions: [
 		],
 		gold: 5,
-		role: 'ASSASSIN',
+		role: { roleName: 'THIEF' },
 		socketId: '123'
 	},{
 		name: 'Name',
@@ -146,8 +148,17 @@ class PlayScene extends egret.DisplayObjectContainer {
 		regions: [
 		],
 		gold: 5,
-		role: 'ASSASSIN',
+        role: { roleName: 'WARLORD' },
 		socketId: '123'
+	},{
+		name: 'Name',
+		cards: [1, 2, 3, 4, 5],
+		regions: [
+		],
+		gold: 5,
+        role: { roleName: 'WARLORD' },
+		socketId: '123',
+        open: true
 	}
 ]
 }
@@ -188,8 +199,8 @@ class PlayScene extends egret.DisplayObjectContainer {
 
         let bg1 = new eui.Image();
 		bg1.source = "resource/assets/Game/panel.png";
-        bg1.x = 50;
-        bg1.y = 700;
+        bg1.x = 16;
+        bg1.y = 708;
         this.addChild(bg1);
 
         let user = null;
@@ -201,19 +212,19 @@ class PlayScene extends egret.DisplayObjectContainer {
         //     }
         // }
 
-        // this.myHandCard = new MyHandCard();
-        // this.myHandCard.reset(user.cards);
-        // this.myHandCard.x = 50;
-        // this.myHandCard.y = 700;
-        // this.addChild(this.myHandCard);
+        let msg1 = [{ cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }];
+        this.myHandCard = new MyHandCard();
+        this.myHandCard.reset(msg1);
+        this.myHandCard.x = 64;
+        this.myHandCard.y = 725;
+        this.addChild(this.myHandCard);
 
         this.playButton = new eui.Button();
         this.playButton.skinName = "resource/eui_skins/jianzao.exml";
         this.playButton.width = 230;
         this.playButton.height = 70;
-        this.playButton.x = 715;
-        this.playButton.y = 750;
-        let msg1 = [{ cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }];
+        this.playButton.x = 660;
+        this.playButton.y = 836;
         this.playButton.addEventListener(egret.TouchEvent.TOUCH_TAP, () => this.myHandCard.reset(msg1), this.myHandCard);
         this.addChild(this.playButton);
 
@@ -221,16 +232,16 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.skillButton.skinName = "resource/eui_skins/jineng.exml";
         this.skillButton.width = 230;
         this.skillButton.height = 70;
-        this.skillButton.x = 715;
-        this.skillButton.y = 837;
+        this.skillButton.x = 660;
+        this.skillButton.y = 741;
         this.addChild(this.skillButton);
 
         this.passButton = new eui.Button();
         this.passButton.skinName = "resource/eui_skins/jieshu.exml";
         this.passButton.width = 230;
         this.passButton.height = 70;
-        this.passButton.x = 715;
-        this.passButton.y = 925;
+        this.passButton.x = 660;
+        this.passButton.y = 931;
         this.addChild(this.passButton);
 
         // 选择金币的按钮
@@ -251,15 +262,18 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.selectCardButton.y = 625;
         this.selectCardButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.selectCardEvent ,this);
 
-        // this.myPlayerModal = new MyPlayerModal(this);
-        // this.addChild(this.myPlayerModal);
+        this.myPlayerModal = new MyPlayerModal(this);
+        this.myPlayerModal.x = 948;
+        this.myPlayerModal.y = 708;
+        this.myPlayerModal.reset(obj.msg[0]);
+        this.addChild(this.myPlayerModal);
 
         this.playerModals = new Array<PlayerModal>();
 
-        for(let i = 0; i < obj.users.length - 1; i++) {
+        for(let i = 1; i < obj.users.length; i++) {
             let playerModal = new PlayerModal(this);
-            playerModal.x = this.position[i].x;
-            playerModal.y = this.position[i].y;
+            playerModal.x = this.position[i - 1].x;
+            playerModal.y = this.position[i - 1].y;
             playerModal.reset(obj.msg[i]);
             this.addChild(playerModal);
         }
