@@ -87,6 +87,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.passButton.x = 660;
         this.passButton.y = 931;
         this.addChild(this.passButton);
+        this.passButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.selectEndEvent, this);
 
         // 选择金币的按钮
         this.selectCoinButton = new eui.Button();
@@ -247,6 +248,17 @@ class PlayScene extends egret.DisplayObjectContainer {
             card: this.myHandCard.myCards[this.myHandCard.selectnum].cardName
         }))
         this.playButton.enabled = false;
+        this.passButton.enabled = false;
+    }
+
+    // 结束回合的按钮
+    private selectEndEvent() {
+        this.socketIO.sendMessage(Coder.GAME_STATE[5], JSON.stringify({
+            user: this.user,
+            num: this.num
+        }))
+        this.passButton.enabled = false;
+        this.playButton.enabled = false;
     }
 
     // 选择金币的响应事件
@@ -269,7 +281,8 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.selectCards = cards;
         this.selectCardFalg = true;
         this.addChild(this.selectCoinButton);        
-        this.addChild(this.selectCardButton);        
+        this.addChild(this.selectCardButton);     
+        this.passButton.enabled = true;
     }
 
     // 删除选择卡牌的按钮

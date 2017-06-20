@@ -364,12 +364,17 @@
 			"name": "魔法师_png",
 			"type": "image",
 			"url": "assets/BigCards/魔法师.png"
+		},
+		{
+			"name": "魔法师2_png",
+			"type": "image",
+			"url": "assets/BigCards/魔法师.png"
 		}
 	],
 	"groups": [
 		{
 			"name": "preload",
-			"keys": "arc_png,coin_png,card_png,panel_png,bg_png,庄园_png,城堡_png,刺客_png,盗贼_png,国王_png,建筑卡背_png,建筑师_png,教堂_png,酒馆_png,军阀_png,龙门_png,码头_png,贸易站_png,人物卡背_png,商人_png,神殿_png,市场_png,天文台_png,图书馆_png,修道院_png,要塞_png,主教_png,yellow_png,blue_png,green_png,purple_png,red_png,WARLORD_png,ARCHITECT_png,ASSASSIN_png,BUSINESSMAN_png,KING_png,MAGICIAN_png,THIEF_png,BISHOP_png,建造按钮_png,建造按钮_按下_png,技能按钮_png,技能按钮_按下_png,结束回合_png,结束回合_按下_png,获得卡牌_png,获得卡牌_按下_png,获得金币_png,获得金币_按下_png,其他玩家面板_png,玩家个人面板_png,关闭按钮_png,关闭按钮_按下_png,卡片模态框_png,城墙_png,堡垒_png,墓地_png,大学_png,大教堂_png,实验室_png,市政厅_png,战场_png,海港_png,皇宫_png,监狱_png,瞭望台_png,铁匠铺_png,鬼城_png,魔法学校_png,选择手牌模态框_png,选择手牌模态框2_png,魔法师_png"
+			"keys": "arc_png,coin_png,card_png,panel_png,bg_png,庄园_png,城堡_png,刺客_png,盗贼_png,国王_png,建筑卡背_png,建筑师_png,教堂_png,酒馆_png,军阀_png,龙门_png,码头_png,贸易站_png,人物卡背_png,商人_png,神殿_png,市场_png,天文台_png,图书馆_png,修道院_png,要塞_png,主教_png,yellow_png,blue_png,green_png,purple_png,red_png,WARLORD_png,ARCHITECT_png,ASSASSIN_png,BUSINESSMAN_png,KING_png,MAGICIAN_png,THIEF_png,BISHOP_png,建造按钮_png,建造按钮_按下_png,技能按钮_png,技能按钮_按下_png,结束回合_png,结束回合_按下_png,获得卡牌_png,获得卡牌_按下_png,获得金币_png,获得金币_按下_png,其他玩家面板_png,玩家个人面板_png,关闭按钮_png,关闭按钮_按下_png,卡片模态框_png,城墙_png,堡垒_png,墓地_png,大学_png,大教堂_png,实验室_png,市政厅_png,战场_png,海港_png,皇宫_png,监狱_png,瞭望台_png,铁匠铺_png,鬼城_png,魔法学校_png,选择手牌模态框_png,选择手牌模态框2_png,魔法师_png,魔法师2_png"
 		}
 	]
 }

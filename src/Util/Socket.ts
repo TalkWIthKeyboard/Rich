@@ -90,6 +90,7 @@ class Socket {
 
         this.socket.on('Licensing', message => {
             let msg = JSON.parse(message);
+            console.log(msg);
             this.scene.addSelectButton(msg.cards);  
         })
 
@@ -107,7 +108,6 @@ class Socket {
 
         this.socket.on('ShowRoleAndMessage', message => {
             let msg = JSON.parse(message);
-            console.log('SRAM', msg);
             for (let i = 0; i < msg.length; i++) 
                 if (this.scene.controller.me.getSocketId() === msg[i].socketId) 
                     this.scene.num = i;
@@ -119,10 +119,13 @@ class Socket {
             this.scene.resetPlayerModal(msg.info);
             // 如果是最后一个玩家就发送结束回合状态
             if (msg.num === msg.info.users.length - 1)
-                this.sendMessage(Coder.GAME_STATE[3], JSON.stringify({user: ''})); 
+                if (msg.num === this.scene.num)
+                    this.sendMessage(Coder.GAME_STATE[3], JSON.stringify({user: '1'})); 
+                else 
+                    this.sendMessage(Coder.GAME_STATE[3], JSON.stringify({user: '2'}));
+
             // 如果不是最后一个玩家，继续            
             if (msg.num + 1 === this.scene.num) {
-                console.log('huhuh');
                 this.sendMessage(Coder.GAME_STATE[3], JSON.stringify({user: this.scene.controller.me.getSocketId()})); 
             }
         })
