@@ -39,14 +39,14 @@ class MyHandCard extends eui.Panel {
 			card.on();
 			this.selectnum = card.num;
 			if(Coder.CARD_INFO[this.myCards[this.selectnum].cardName].cost  > parseInt((<PlayScene>this.parent).myPlayerModal.coinNum.text))
-				(<PlayScene>this.parent).playButton.enabled = false;
+				(<PlayScene>this.parent).setPlayButtonNotEnable();
 			else
-				(<PlayScene>this.parent).playButton.enabled = true;
+				(<PlayScene>this.parent).setPlayButtonEnable();
 		}
 		else {
 			card.off();
 			this.selectnum = null;
-			(<PlayScene>this.parent).playButton.enabled = false;
+			(<PlayScene>this.parent).setPlayButtonNotEnable();
 		}
 	}
 
