@@ -6,6 +6,7 @@ class MyPlayerModal extends eui.Panel{
 	private cardNum: eui.Label;
 	private arcs: Array<MyArc>;
 	private user;
+	private role;
 
 	public constructor(playScene: PlayScene) {
 		super();
@@ -20,6 +21,7 @@ class MyPlayerModal extends eui.Panel{
 		this.img.y = 32;
 		this.img.width = 184;
 		this.img.height = 283;
+		this.img.addEventListener(egret.TouchEvent.TOUCH_END, this.showCharacterDetailsPanel, this);
 		this.coinNum = new eui.Label();
 		this.coinNum.x = 47;
 		this.coinNum.y = 186;
@@ -49,11 +51,16 @@ class MyPlayerModal extends eui.Panel{
 		this.cardNum.text = msg.cards.length;
 		this.coinNum.text = msg.gold;
 		this.img.source = msg.open ? "resource/assets/BigCards/" + Coder.ROLE_TYPE[msg.role.roleName].cn_name + ".png" : "";
+		this.role = msg.open ? msg.role.roleName : "";
 		for(let i = 0; i < msg.regions.length; i++) {
 			this.arcs[i].reset(msg.regions[i]);
 		}
 		for(let i = msg.regions.length; i < 8; i++) {
 			this.arcs[i].clear();
 		}
+	}
+
+	private showCharacterDetailsPanel() {
+		this.playScene.showCharacterDetailsPanel(this.role);
 	}
 }

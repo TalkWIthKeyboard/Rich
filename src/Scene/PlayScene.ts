@@ -11,6 +11,8 @@ class PlayScene extends egret.DisplayObjectContainer {
     private selectCoinButton: eui.Button;
     private selectCardButton: eui.Button;
 
+    private cardPanel: eui.Panel;
+
     private getCardPanel: MyGetCardPanel;
     
     private selectCards;
@@ -20,6 +22,8 @@ class PlayScene extends egret.DisplayObjectContainer {
     public selectFlag = false;
     public user = null;
     public num = null;
+
+    private skilling: boolean;
 
     private position = [{x: 16, y: 357}, {x: 16, y: 6}, {x: 375, y: 6}, {x: 734, y: 6}, {x: 1093, y: 6}, {x: 1093, y: 357}];
     private myPosition = {x: 900, y: 700};
@@ -38,7 +42,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.controller = controller;
         this.type = Coder.SCENE_TYPE.PLAY;
         // this.socketIO = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
-
+        this.skilling = false;
         let bg = new eui.Image();
         bg.source = 'resource/assets/background.png';
         this.addChild(bg);
@@ -51,32 +55,32 @@ class PlayScene extends egret.DisplayObjectContainer {
 		cards: [1, 2, 3, 4, 5],
 		regions: [
 			{
-				name: '123',
+				name: 'Market',
 				star: 3,
 				color: 'blue'
 			},
 			{
-				name: '123',
+				name: 'Market',
 				star: 3,
 				color: 'yellow'
 			},
 			{
-				name: '123',
+				name: 'Market',
 				star: 3,
 				color: 'purple'
 			},
 			{
-				name: '123',
+				name: 'Market',
 				star: 3,
 				color: 'red'
 			},
 			{
-				name: '123',
+				name: 'Market',
 				star: 3,
 				color: 'green'
 			},
 			{
-				name: '123',
+				name: 'Market',
 				star: 3,
 				color: 'blue'
 			}
@@ -91,12 +95,12 @@ class PlayScene extends egret.DisplayObjectContainer {
 		cards: [1, 2, 3, 4, 5],
 		regions: [
 			{
-				name: '123',
+				name: 'Market',
 				star: 3,
 				color: 'blue'
 			},
 			{
-				name: '123',
+				name: 'Market',
 				star: 3,
 				color: 'blue'
 			}
@@ -111,12 +115,12 @@ class PlayScene extends egret.DisplayObjectContainer {
 		cards: [1, 2, 3, 4, 5],
 		regions: [
 			{
-				name: '123',
+				name: 'Market',
 				star: 3,
 				color: 'blue'
 			},
 			{
-				name: '123',
+				name: 'Market',
 				star: 3,
 				color: 'blue'
 			}
@@ -165,8 +169,55 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.initPlayInterface(obj);
     }
 
-    public showCardDetailsPanel(cardName: String) {
-        //
+    public showCardDetailsPanel(myArc: MyArc) {
+        this.cardPanel = new eui.Panel();
+        this.cardPanel.x = 478;
+        this.cardPanel.y = 158;
+        let bg = new eui.Image();
+        bg.source = "resource/assets/Game/卡片模态框.png";
+        this.cardPanel.addChild(bg);
+        let img = new eui.Image();
+        img.source = "resource/assets/BigCards/" + Coder.CARD_INFO[myArc.cardName].cn_name + ".png";
+        img.x = 63;
+        img.y = 69;
+        this.cardPanel.addChild(img);
+        let button = new eui.Button();
+        button.skinName = "resource/eui_skins/DetailButton.exml";
+        button.x = 122;
+        button.y = 655;
+        button.addEventListener(egret.TouchEvent.TOUCH_END, () => { this.removeChild(this.cardPanel); this.cardPanel = null; }, this);
+        this.cardPanel.addChild(button);
+        this.addChild(this.cardPanel);
+    }
+
+    public showCharacterDetailsPanel(name) {
+        this.cardPanel = new eui.Panel();
+        this.cardPanel.x = 478;
+        this.cardPanel.y = 158;
+        let bg = new eui.Image();
+        bg.source = "resource/assets/Game/卡片模态框.png";
+        this.cardPanel.addChild(bg);
+        let img = new eui.Image();
+        img.source = "resource/assets/BigCards/" + Coder.ROLE_TYPE[name].cn_name + ".png";
+        img.x = 63;
+        img.y = 69;
+        this.cardPanel.addChild(img);
+        let button = new eui.Button();
+        button.skinName = "resource/eui_skins/DetailButton.exml";
+        button.x = 122;
+        button.y = 655;
+        button.addEventListener(egret.TouchEvent.TOUCH_END, () => { this.removeChild(this.cardPanel); this.cardPanel = null; }, this);
+        this.cardPanel.addChild(button);
+        this.addChild(this.cardPanel);
+    }
+
+    public onArcClick(myArc: MyArc) {
+        if(this.skilling) {
+
+        }
+        else {
+            this.showCardDetailsPanel(myArc);
+        }
     }
 
     public showSelectCardModal(cards) {

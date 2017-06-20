@@ -5,10 +5,13 @@ class MyCard {
 	public on: Function;
 	public off: Function;
 	public root: MyHandCard;
+	public user;
+	public cardName: String;
 	
 	public constructor(root: MyHandCard, i:number, msg) {
 		this.root = root;
-
+		this.user = root.user;
+		this.cardName = msg[i].cardName;
 		this.group = new eui.Group();
 		this.group.width = 180;
 		this.group.height = 300;

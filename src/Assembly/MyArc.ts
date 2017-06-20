@@ -2,7 +2,8 @@ class MyArc extends eui.Group {
 
 	private playScene: PlayScene;
 	private num;
-	private cardName;
+	public cardName;
+	public user;
 	private tag;
 	private count;
 	private bg: eui.Image;
@@ -47,6 +48,6 @@ class MyArc extends eui.Group {
 	}
 
 	public showCardDetails() {
-		this.playScene.showCardDetailsPanel(this.cardName);
+		this.playScene.onArcClick(this);
 	}
 }
