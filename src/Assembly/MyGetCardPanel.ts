@@ -133,6 +133,6 @@ class MyGetCardPanel extends eui.Panel {
 		console.log(" => " + this.selectnum);
 		this.removeListener();
 		this.removeCardListener();
-		this.playScene.releSegetCardPanel();
+		this.playScene.hideSelectCardModal();
 	}
 }

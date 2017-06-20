@@ -84,7 +84,6 @@ class Socket {
 
         this.socket.on(Coder.GAME_STATE[4], message => {
             let msg = JSON.parse(message);
-            console.log(msg);
             if (this.scene.controller.me.getSocketId() === msg.user) this.scene.addSelectButton();
             else if (this.scene.selectCardFlag) this.scene.removeSelectButton();   
         })
@@ -95,10 +94,20 @@ class Socket {
             // this.scene.showSelectCardModal(msg.cards);
         })
 
-        this.socket.on(Coder.GAME_END_STATE[Coder.GAME_STATE[2]], () => {
+        this.socket.on(Coder.GAME_END_STATE[Coder.GAME_STATE[2]], message => {
+            let msg = JSON.parse(message);
+            // 修正回合开始顺序
+            for (let i = 0; i < msg.users.length; i++) 
+                if (msg.users[i].socketId === this.scene.user) {
+                    this.scene.num = i;
+                    break;
+                }
             if (this.scene.selectFlag) this.scene.hideSelectCharacterModal();
-            if (this.scene.num === 0) 
-                this.sendMessage(Coder.GAME_STATE[3], JSON.stringify({user: this.scene.controller.me.getSocketId()}));            
+
+            // 第一名玩家开始回合
+            if (this.scene.num === Coder.ROLE_TYPE[msg.users[0].role.roleName].number) {
+                this.sendMessage(Coder.GAME_STATE[3], JSON.stringify({user: this.scene.controller.me.getSocketId()}));                            
+            }
             this.sendMessage(Coder.GAME_END_STATE[Coder.GAME_STATE[2]], null);
         })
 

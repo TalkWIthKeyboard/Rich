@@ -41,132 +41,12 @@ class PlayScene extends egret.DisplayObjectContainer {
 	private init(controller) {
         this.controller = controller;
         this.type = Coder.SCENE_TYPE.PLAY;
-        // this.socketIO = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
+
+        this.socketIO = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
         this.skilling = false;
         let bg = new eui.Image();
         bg.source = 'resource/assets/background.png';
         this.addChild(bg);
-        
-        let obj = {
-	users: [1, 2, 3, 4, 5, 6, 7],
-	msg: [
-	{
-		name: 'Name',
-		cards: [1, 2, 3, 4, 5],
-		regions: [
-			{
-				name: 'Market',
-				star: 3,
-				color: 'blue'
-			},
-			{
-				name: 'Market',
-				star: 3,
-				color: 'yellow'
-			},
-			{
-				name: 'Market',
-				star: 3,
-				color: 'purple'
-			},
-			{
-				name: 'Market',
-				star: 3,
-				color: 'red'
-			},
-			{
-				name: 'Market',
-				star: 3,
-				color: 'green'
-			},
-			{
-				name: 'Market',
-				star: 3,
-				color: 'blue'
-			}
-		],
-		gold: 5,
-		role: { roleName: 'ARCHITECT' },
-		socketId: '123',
-        open: true
-	},
-	{
-		name: 'Name',
-		cards: [1, 2, 3, 4, 5],
-		regions: [
-			{
-				name: 'Market',
-				star: 3,
-				color: 'blue'
-			},
-			{
-				name: 'Market',
-				star: 3,
-				color: 'blue'
-			}
-		],
-		gold: 5,
-		role: { roleName: 'ASSASSIN' },
-		socketId: '123',
-        open: true
-	},
-	{
-		name: 'Name',
-		cards: [1, 2, 3, 4, 5],
-		regions: [
-			{
-				name: 'Market',
-				star: 3,
-				color: 'blue'
-			},
-			{
-				name: 'Market',
-				star: 3,
-				color: 'blue'
-			}
-		],
-		gold: 5,
-		role: { roleName: 'KING' },
-		socketId: '123'
-	},
-	{
-		name: 'Name',
-		cards: [1, 2, 3, 4, 5],
-		regions: [
-		],
-		gold: 5,
-		role: { roleName: 'MAGICIAN' },
-		socketId: '123'
-	},
-	{
-		name: 'Name',
-		cards: [1, 2, 3, 4, 5],
-		regions: [
-		],
-		gold: 5,
-		role: { roleName: 'THIEF' },
-		socketId: '123'
-	},{
-		name: 'Name',
-		cards: [1, 2, 3, 4, 5],
-		regions: [
-		],
-		gold: 5,
-        role: { roleName: 'WARLORD' },
-		socketId: '123'
-	},{
-		name: 'Name',
-		cards: [1, 2, 3, 4, 5],
-		regions: [
-		],
-		gold: 5,
-        role: { roleName: 'WARLORD' },
-		socketId: '123',
-        open: true
-	}
-]
-}
-        this.initPlayInterface(obj);
     }
 
     public showCardDetailsPanel(myArc: MyArc) {
@@ -220,17 +100,20 @@ class PlayScene extends egret.DisplayObjectContainer {
         }
     }
 
+    // 显示选牌界面
     public showSelectCardModal(cards) {
         this.getCardPanel = new MyGetCardPanel(this, cards);
         this.addChild(this.getCardPanel);
         this.getCardPanel.init(1);
     }
 
-    public releSegetCardPanel() {
+    // 隐藏选牌界面
+    public hideSelectCardModal() {
         this.removeChild(this.getCardPanel);
         this.getCardPanel = null;
     }
 
+    // 显示选择人物界面
 	public showSelectCharacterModal(roles) {
         this.selectCharacterModal = new SelectCharacterModal();
 		this.selectCharacterModal.init();
@@ -241,11 +124,13 @@ class PlayScene extends egret.DisplayObjectContainer {
 		this.addChild(this.selectCharacterModal);
 	}
 
+    // 隐藏选择人物界面
 	public hideSelectCharacterModal() {
         this.selectFlag = false;
 		this.removeChild(this.selectCharacterModal);
 	}
 
+    // 初始化界面
     public initPlayInterface(obj) {
 
         let bg1 = new eui.Image();
@@ -256,12 +141,13 @@ class PlayScene extends egret.DisplayObjectContainer {
 
         let user = null;
 
-        // for (let i = 0; i < obj.users.length; i++) {
-        //     if (obj.users[i].socketId === this.controller.me.getSocketId()) {
-        //         user = obj.users[i];
-        //         break;
-        //     }
-        // }
+        // 显示手牌
+        for (let i = 0; i < obj.users.length; i++) {
+            if (obj.users[i].socketId === this.controller.me.getSocketId()) {
+                user = obj.users[i];
+                break;
+            }
+        }
 
         let msg1 = [{ cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }];
         this.myHandCard = new MyHandCard();
@@ -270,6 +156,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.myHandCard.y = 725;
         this.addChild(this.myHandCard);
 
+        // 出牌按钮
         this.playButton = new eui.Button();
         this.playButton.skinName = "resource/eui_skins/jianzao.exml";
         this.playButton.width = 230;
@@ -279,6 +166,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.playButton.addEventListener(egret.TouchEvent.TOUCH_TAP, () => this.myHandCard.reset(msg1), this.myHandCard);
         this.addChild(this.playButton);
 
+        // 技能按钮
         this.skillButton = new eui.Button();
         this.skillButton.skinName = "resource/eui_skins/jineng.exml";
         this.skillButton.width = 230;
@@ -287,6 +175,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.skillButton.y = 741;
         this.addChild(this.skillButton);
 
+        // 结束回合按钮
         this.passButton = new eui.Button();
         this.passButton.skinName = "resource/eui_skins/jieshu.exml";
         this.passButton.width = 230;
@@ -330,15 +219,18 @@ class PlayScene extends egret.DisplayObjectContainer {
         }
     }
 
+    // 选择金币的响应事件
     private selectCoinEvent() {
         this.socketIO.sendMessage(Coder.GAME_STATE[4], JSON.stringify({choose: 1}));
     }
 
+    // 选择卡牌的响应事件
     private selectCardEvent() {
         this.showSelectCardModal(this.selectCards);
         // this.socketIO.sendMessage(Coder.GAME_STATE[4], JSON.stringify({choose: 2}));
     }
 
+    // 添加选择卡牌的按钮
     public addSelectButton(cards) {
         this.selectCards = cards;
         this.selectCardFalg = true;
@@ -346,10 +238,10 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.addChild(this.selectCardButton);        
     }
 
+    // 删除选择卡牌的按钮
     public removeSelectButton() {
         this.selectCardFalg = false;
         this.removeChild(this.selectCoinButton);
         this.removeChild(this.selectCardButton); 
     }
-
 }
