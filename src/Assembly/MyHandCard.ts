@@ -24,7 +24,6 @@ class MyHandCard extends eui.Panel {
 	private　clear() {
 		for(let x in this.myCards) {
 			let card = this.myCards[x];
-			console.log(card);
 			this.removeChild(card.group);
 			card.removeEventListener();
 		}
