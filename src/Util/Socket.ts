@@ -69,6 +69,7 @@ class Socket {
     private workTypePlay() {
         this.socket.on(Coder.GAME_STATE[1], message => {
             let msg = JSON.parse(message);
+            console.log(msg);
             this.scene.initPlayInterface(msg);
         })
 

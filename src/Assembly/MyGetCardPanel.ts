@@ -10,7 +10,7 @@ class MyGetCardPanel extends eui.Panel {
 	private selectButton: eui.Button;
 	private playScene: PlayScene;
 
-	public constructor(playScene: PlayScene, cards) {
+	public constructor(playScene: PlayScene) {
 		super();
 		
 		this.playScene = playScene;
@@ -23,24 +23,23 @@ class MyGetCardPanel extends eui.Panel {
 
 		this.selectButton = new eui.Button();
 		this.selectButton.skinName = "resource/eui_skins/ButtonSkin.exml";
-		this.selectButton.width = 100;
-		this.selectButton.height = 50;
+		this.selectButton.width = 200;
+		this.selectButton.height = 70;
 		this.selectButton.label = '确认';
 		this.selectButton.horizontalCenter = "0";
-		this.selectButton.y = 800;
+		this.selectButton.y = 820;
 		this.selectButton.addEventListener(egret.TouchEvent.TOUCH_END, this.finish, this);
 		this.selectButton.enabled = false;
 		this.addChild(this.selectButton);
 
 		this.getCardGroup1 = new eui.Group();
-		this.getCardGroup1.x = 145;
+		this.getCardGroup1.x = 335;
 		this.getCardGroup1.y = 250;
 		this.getCardGroup1.width = 390;
 		this.getCardGroup1.height = 584;
 		this.card1 = new eui.Image();
 		this.card1.horizontalCenter = "0";
 		this.card1.verticalCenter = "0";
-		this.card1.source = `resource/assets/BigCars/${Coder.CARD_INFO[cards[0].cardName].cn_name}.png`;
 		this.getCardGroup1.addChild(this.card1);
 		this.bg1 = new eui.Image();
 		this.bg1.alpha = 0.3;
@@ -55,7 +54,6 @@ class MyGetCardPanel extends eui.Panel {
 		this.card2 = new eui.Image();
 		this.card2.horizontalCenter = "0";
 		this.card2.verticalCenter = "0";
-		this.card2.source = `resource/assets/BigCars/${Coder.CARD_INFO[cards[1].cardName].cn_name}.png`;
 		this.getCardGroup2.addChild(this.card2);
 		this.bg2 = new eui.Image();
 		this.bg2.alpha = 0.3;
@@ -64,9 +62,9 @@ class MyGetCardPanel extends eui.Panel {
 	}
 
 	public init(cards) {
-		this.card1.source = `resource/assets/BigCars/${Coder.CARD_INFO[cards[0].cardName].cn_name}.png`;
+		this.card1.source = `resource/assets/BigCards/${Coder.CARD_INFO[cards[0].cardName].cn_name}.png`;
 		this.card1.addEventListener(egret.TouchEvent.TOUCH_END, () => this.select(1), this);
-		this.card2.source = `resource/assets/BigCars/${Coder.CARD_INFO[cards[1].cardName].cn_name}.png`;
+		this.card2.source = `resource/assets/BigCards/${Coder.CARD_INFO[cards[1].cardName].cn_name}.png`;
 		this.card2.addEventListener(egret.TouchEvent.TOUCH_END, () => this.select(2), this);
 	}
 

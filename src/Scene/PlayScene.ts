@@ -102,9 +102,9 @@ class PlayScene extends egret.DisplayObjectContainer {
 
     // 显示选牌界面
     public showSelectCardModal(cards) {
-        this.getCardPanel = new MyGetCardPanel(this, cards);
+        this.getCardPanel = new MyGetCardPanel(this);
         this.addChild(this.getCardPanel);
-        this.getCardPanel.init(1);
+        this.getCardPanel.init(cards);
     }
 
     // 隐藏选牌界面
