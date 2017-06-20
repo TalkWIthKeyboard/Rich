@@ -40,10 +40,7 @@ class MyGetCardPanel extends eui.Panel {
 		this.card1 = new eui.Image();
 		this.card1.horizontalCenter = "0";
 		this.card1.verticalCenter = "0";
-<<<<<<< HEAD
-		this.card1.source = `resource/assets/BigCards/${Coder.CARD_INFO[cards[0].cardName].cn_name}.png`;
-=======
->>>>>>> 9e384345f9041ed617a61c0014ca93335c0e67ce
+
 		this.getCardGroup1.addChild(this.card1);
 		this.bg1 = new eui.Image();
 		this.bg1.alpha = 0.3;
@@ -58,10 +55,7 @@ class MyGetCardPanel extends eui.Panel {
 		this.card2 = new eui.Image();
 		this.card2.horizontalCenter = "0";
 		this.card2.verticalCenter = "0";
-<<<<<<< HEAD
-		this.card2.source = `resource/assets/BigCards/${Coder.CARD_INFO[cards[1].cardName].cn_name}.png`;
-=======
->>>>>>> 9e384345f9041ed617a61c0014ca93335c0e67ce
+		
 		this.getCardGroup2.addChild(this.card2);
 		this.bg2 = new eui.Image();
 		this.bg2.alpha = 0.3;
@@ -77,7 +71,6 @@ class MyGetCardPanel extends eui.Panel {
 	}
 
 	private select(x: number) {
-		console.log(x);
 		if(x != this.selectnum) {
 			if(this.selectnum != null) {
 				if (this.selectnum == 1) {
@@ -135,7 +128,12 @@ class MyGetCardPanel extends eui.Panel {
 	}
 
 	private finish() {
-		console.log(" => " + this.selectnum);
+		this.playScene.socketIO.sendMessage('ChooseCard', JSON.stringify({
+			user: this.playScene.user,
+			num: this.playScene.num,
+			choose: this.selectnum + 1
+		}));
+
 		this.removeListener();
 		this.removeCardListener();
 		this.playScene.hideSelectCardModal();

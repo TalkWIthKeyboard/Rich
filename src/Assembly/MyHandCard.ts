@@ -1,7 +1,7 @@
 class MyHandCard extends eui.Panel {
 
-	private myCards;
-	private selectnum: number;
+	public myCards;
+	public selectnum: number;
 	public user;
 
 	public constructor() {
@@ -38,10 +38,15 @@ class MyHandCard extends eui.Panel {
 			}
 			card.on();
 			this.selectnum = card.num;
+			if(Coder.CARD_INFO[this.myCards[this.selectnum].cardName].cost  > parseInt((<PlayScene>this.parent).myPlayerModal.coinNum.text))
+				(<PlayScene>this.parent).playButton.enabled = false;
+			else
+				(<PlayScene>this.parent).playButton.enabled = true;
 		}
 		else {
 			card.off();
 			this.selectnum = null;
+			(<PlayScene>this.parent).playButton.enabled = false;
 		}
 	}
 

@@ -13,7 +13,7 @@ class Coder {
         PLAY: 'Play'
     }
 
-    public static GAME_STATE = ['BEFORE_START', 'START_STAGE', 'CHOOSE_ROLE', 'PLAYER_TIME', 'DISTRIBUTE_RESOURCE', 'BUILD_HOUSE']
+    public static GAME_STATE = ['BEFORE_START', 'START_STAGE', 'CHOOSE_ROLE', 'PLAYER_TIME', 'D_RESOURCE', 'BUILD_HOUSE']
     
     public static GAME_END_STATE = {
         'CHOOSE_ROLE': 'CHOOSE_ROLE_END',
@@ -87,7 +87,7 @@ class Coder {
         },
         Cemetery: {
             name: 'Cemetery',
-            cn_name: '坟地',
+            cn_name: '墓地',
             color: 'purple',
             cost: 5,
             num: 1,

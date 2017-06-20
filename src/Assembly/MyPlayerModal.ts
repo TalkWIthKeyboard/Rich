@@ -2,8 +2,8 @@ class MyPlayerModal extends eui.Panel{
 	
 	private playScene: PlayScene;
 	private img: eui.Image;
-	private coinNum: eui.Label;
-	private cardNum: eui.Label;
+	public coinNum: eui.Label;
+	public cardNum: eui.Label;
 	private arcs: Array<MyArc>;
 	private user;
 	private role;
@@ -47,6 +47,7 @@ class MyPlayerModal extends eui.Panel{
 	}
 
 	public reset(msg) {
+		console.log('regions:', msg);
 		this.user = msg.socketId;
 		this.cardNum.text = msg.cards.length;
 		this.coinNum.text = msg.gold;

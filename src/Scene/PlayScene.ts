@@ -3,13 +3,14 @@ class PlayScene extends egret.DisplayObjectContainer {
     private type;
 	private selectCharacterModal: SelectCharacterModal;
     private myHandCard: MyHandCard;
-    private playButton: eui.Button;
+    public playButton: eui.Button;
     private skillButton: eui.Button;
     private passButton: eui.Button;
     private playerModals: Array<PlayerModal>;
-    private myPlayerModal: MyPlayerModal;
+    public myPlayerModal: MyPlayerModal;
     private selectCoinButton: eui.Button;
     private selectCardButton: eui.Button;
+    private playerModalList: PlayerModal[] = [];
 
     private cardPanel: eui.Panel;
 
@@ -145,6 +146,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         for (let i = 0; i < obj.users.length; i++) {
             if (obj.users[i].socketId === this.controller.me.getSocketId()) {
                 user = obj.users[i];
+                obj.users.splice(i, 1);
                 break;
             }
         }
@@ -162,7 +164,8 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.playButton.height = 70;
         this.playButton.x = 660;
         this.playButton.y = 836;
-        this.playButton.addEventListener(egret.TouchEvent.TOUCH_TAP, () => this.myHandCard.reset(user.cards), this.myHandCard);
+        this.playButton.enabled = false;
+        this.playButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchPlayButton, this);
         this.addChild(this.playButton);
 
         // 技能按钮
@@ -209,18 +212,44 @@ class PlayScene extends egret.DisplayObjectContainer {
 
         this.playerModals = new Array<PlayerModal>();
 
-        for(let i = 1; i < obj.users.length; i++) {
+        for(let i = 0; i < obj.users.length; i++) {
             let playerModal = new PlayerModal(this);
-            playerModal.x = this.position[i - 1].x;
-            playerModal.y = this.position[i - 1].y;
+            playerModal.x = this.position[i].x;
+            playerModal.y = this.position[i].y;
             playerModal.reset(obj.users[i]);
             this.addChild(playerModal);
+            this.playerModalList.push(playerModal);
         }
+    }
+
+    public resetPlayerModal(obj) {
+        let flag = 0;
+        for(let i = 0; i < obj.users.length; i++) {
+            if (obj.users[i].socketId === this.controller.me.getSocketId()) {
+                this.myPlayerModal.reset(obj.users[i]);
+                this.myHandCard.reset(obj.users[i].cards);
+                flag = 1;
+            } else this.playerModalList[i - flag].reset(obj.users[i]);            
+        }
+    }
+
+    // 出牌事件
+    private onTouchPlayButton() {
+        this.playButton.enabled = false;
+        this.socketIO.sendMessage(Coder.GAME_STATE[5], JSON.stringify({
+            user: this.user,
+            num: this.num,
+            card: this.myHandCard.myCards[this.myHandCard.selectnum].cardName
+        }))
     }
 
     // 选择金币的响应事件
     private selectCoinEvent() {
-        this.socketIO.sendMessage(Coder.GAME_STATE[4], JSON.stringify({choose: 1}));
+        this.socketIO.sendMessage(Coder.GAME_STATE[4], JSON.stringify({
+            user: this.user,
+            num: this.num,
+            choose: 1
+        }));
     }
 
     // 选择卡牌的响应事件

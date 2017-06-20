@@ -34,8 +34,8 @@ class MyArc extends eui.Group {
 		this.count = count;
 		this.countLabel.text = count;
 		this.bg.source = "resource/assets/MyArc/" + tag + ".png";
-		this.addChild(this.bg);
-		this.addChild(this.countLabel);
+		// this.addChild(this.bg);
+		// this.addChild(this.countLabel);
 		this.addEventListener(egret.TouchEvent.TOUCH_END, this.showCardDetails, this);
 	}
 	
@@ -43,8 +43,10 @@ class MyArc extends eui.Group {
 		this.removeEventListener(egret.TouchEvent.TOUCH_END, this.showCardDetails, this);
 		this.tag = null;
 		this.count = null;
-		this.removeChild(this.bg);
-		this.removeChild(this.countLabel);
+		this.bg.source = "";
+		this.countLabel.text = "";
+		// this.removeChild(this.bg);
+		// this.removeChild(this.countLabel);
 	}
 
 	public showCardDetails() {

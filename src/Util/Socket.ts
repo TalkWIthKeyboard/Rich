@@ -69,7 +69,6 @@ class Socket {
     private workTypePlay() {
         this.socket.on(Coder.GAME_STATE[1], message => {
             let msg = JSON.parse(message);
-            console.log(msg);
             this.scene.initPlayInterface(msg);
         })
 
@@ -92,7 +91,17 @@ class Socket {
         this.socket.on('Licensing', message => {
             let msg = JSON.parse(message);
             this.scene.addSelectButton(msg.cards);   
-            // this.scene.showSelectCardModal(msg.cards);
+        })
+
+        this.socket.on('ChooseCard', message => {
+            let msg = JSON.parse(message);
+            this.scene.resetPlayerModal(msg.info);
+            this.scene.removeSelectButton();
+        })
+
+        this.socket.on(Coder.GAME_STATE[5], message => {
+            let msg = JSON.parse(message);
+            this.scene.resetPlayerModal(msg);
         })
 
         this.socket.on(Coder.GAME_END_STATE[Coder.GAME_STATE[2]], message => {
