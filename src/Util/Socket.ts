@@ -90,25 +90,45 @@ class Socket {
 
         this.socket.on('Licensing', message => {
             let msg = JSON.parse(message);
-            this.scene.addSelectButton(msg.cards);   
+            this.scene.addSelectButton(msg.cards);  
         })
 
         this.socket.on('ChooseCard', message => {
             let msg = JSON.parse(message);
-            console.log('Cards: ', msg);
             this.scene.resetPlayerModal(msg.info);
-            this.scene.removeSelectButton();
+            if (this.scene.num === msg.num)
+                this.scene.removeSelectButton();
+        })
+
+        this.socket.on('ShowRole', message => {
+            let msg = JSON.parse(message);
+            this.scene.resetPlayerModal(msg);
+        })
+
+        this.socket.on('ShowRoleAndMessage', message => {
+            let msg = JSON.parse(message);
+            console.log('SRAM', msg);
+            for (let i = 0; i < msg.length; i++) 
+                if (this.scene.controller.me.getSocketId() === msg[i].socketId) 
+                    this.scene.num = i;
+            this.scene.resetPlayerModal(msg);
         })
 
         this.socket.on(Coder.GAME_STATE[5], message => {
             let msg = JSON.parse(message);
-            console.log('House: ', msg);
-            this.scene.resetPlayerModal(msg);
+            this.scene.resetPlayerModal(msg.info);
+            // 如果是最后一个玩家就发送结束回合状态
+            if (msg.num === msg.info.users.length - 1)
+                this.sendMessage(Coder.GAME_STATE[3], JSON.stringify({user: ''})); 
+            // 如果不是最后一个玩家，继续            
+            if (msg.num + 1 === this.scene.num) {
+                console.log('huhuh');
+                this.sendMessage(Coder.GAME_STATE[3], JSON.stringify({user: this.scene.controller.me.getSocketId()})); 
+            }
         })
 
         this.socket.on(Coder.GAME_END_STATE[Coder.GAME_STATE[2]], message => {
             let msg = JSON.parse(message);
-
             // 修正回合开始顺序
             for (let i = 0; i < msg.users.length; i++) 
                 if (msg.users[i].socketId === this.scene.user) {
@@ -116,11 +136,9 @@ class Socket {
                     break;
                 }
             if (this.scene.selectFlag) this.scene.hideSelectCharacterModal();
-
             // 第一名玩家开始回合
-            if (this.scene.num === 0) {
+            if (this.scene.num === 0)
                 this.sendMessage(Coder.GAME_STATE[3], JSON.stringify({user: this.scene.controller.me.getSocketId()}));                            
-            }
             this.sendMessage(Coder.GAME_END_STATE[Coder.GAME_STATE[2]], null);
         })
 

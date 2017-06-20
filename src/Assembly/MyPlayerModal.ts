@@ -47,7 +47,6 @@ class MyPlayerModal extends eui.Panel{
 	}
 
 	public reset(msg) {
-		console.log('regions:', msg);
 		this.user = msg.socketId;
 		this.cardNum.text = msg.cards.length;
 		this.coinNum.text = msg.gold;
