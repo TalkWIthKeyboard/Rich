@@ -84,12 +84,13 @@ class PlayScene extends egret.DisplayObjectContainer {
 
         let bg1 = new eui.Image();
 		bg1.source = "resource/assets/Game/panel.png";
-        bg1.x = 50;
-        bg1.y = 700;
+        bg1.x = 16;
+        bg1.y = 708;
         this.addChild(bg1);
 
         let user = null;
 
+<<<<<<< HEAD
         // 显示手牌
         for (let i = 0; i < obj.users.length; i++) {
             if (obj.users[i].socketId === this.controller.me.getSocketId()) {
@@ -101,6 +102,20 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.myHandCard.reset(user.cards);
         this.myHandCard.x = 50;
         this.myHandCard.y = 700;
+=======
+        // for (let i = 0; i < obj.users.length; i++) {
+        //     if (obj.users[i].socketId === this.controller.me.getSocketId()) {
+        //         user = obj.users[i];
+        //         break;
+        //     }
+        // }
+
+        let msg1 = [{ cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }];
+        this.myHandCard = new MyHandCard();
+        this.myHandCard.reset(msg1);
+        this.myHandCard.x = 64;
+        this.myHandCard.y = 725;
+>>>>>>> 6049a07d4f91dd1ffad1793f2ef51bd0b4396b3c
         this.addChild(this.myHandCard);
 
         // 出牌按钮
@@ -108,9 +123,8 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.playButton.skinName = "resource/eui_skins/jianzao.exml";
         this.playButton.width = 230;
         this.playButton.height = 70;
-        this.playButton.x = 715;
-        this.playButton.y = 750;
-        let msg1 = [{ cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }, { cardName: 'Castle' }];
+        this.playButton.x = 660;
+        this.playButton.y = 836;
         this.playButton.addEventListener(egret.TouchEvent.TOUCH_TAP, () => this.myHandCard.reset(msg1), this.myHandCard);
         this.addChild(this.playButton);
 
@@ -119,8 +133,8 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.skillButton.skinName = "resource/eui_skins/jineng.exml";
         this.skillButton.width = 230;
         this.skillButton.height = 70;
-        this.skillButton.x = 715;
-        this.skillButton.y = 837;
+        this.skillButton.x = 660;
+        this.skillButton.y = 741;
         this.addChild(this.skillButton);
 
         // 结束回合按钮
@@ -128,8 +142,8 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.passButton.skinName = "resource/eui_skins/jieshu.exml";
         this.passButton.width = 230;
         this.passButton.height = 70;
-        this.passButton.x = 715;
-        this.passButton.y = 925;
+        this.passButton.x = 660;
+        this.passButton.y = 931;
         this.addChild(this.passButton);
 
         // 选择金币的按钮
@@ -150,16 +164,25 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.selectCardButton.y = 625;
         this.selectCardButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.selectCardEvent ,this);
 
-        // this.myPlayerModal = new MyPlayerModal(this);
-        // this.addChild(this.myPlayerModal);
+        this.myPlayerModal = new MyPlayerModal(this);
+        this.myPlayerModal.x = 948;
+        this.myPlayerModal.y = 708;
+        this.myPlayerModal.reset(obj.msg[0]);
+        this.addChild(this.myPlayerModal);
 
         this.playerModals = new Array<PlayerModal>();
 
-        for(let i = 0; i < obj.users.length - 1; i++) {
+        for(let i = 1; i < obj.users.length; i++) {
             let playerModal = new PlayerModal(this);
+<<<<<<< HEAD
             playerModal.x = this.position[i].x;
             playerModal.y = this.position[i].y;
             playerModal.reset(obj.users[i]);
+=======
+            playerModal.x = this.position[i - 1].x;
+            playerModal.y = this.position[i - 1].y;
+            playerModal.reset(obj.msg[i]);
+>>>>>>> 6049a07d4f91dd1ffad1793f2ef51bd0b4396b3c
             this.addChild(playerModal);
         }
     }
