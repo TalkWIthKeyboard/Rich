@@ -95,12 +95,14 @@ class Socket {
 
         this.socket.on('ChooseCard', message => {
             let msg = JSON.parse(message);
+            console.log('Cards: ', msg);
             this.scene.resetPlayerModal(msg.info);
             this.scene.removeSelectButton();
         })
 
         this.socket.on(Coder.GAME_STATE[5], message => {
             let msg = JSON.parse(message);
+            console.log('House: ', msg);
             this.scene.resetPlayerModal(msg);
         })
 

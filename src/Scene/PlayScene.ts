@@ -245,7 +245,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 
     // 选择金币的响应事件
     private selectCoinEvent() {
-        this.socketIO.sendMessage(Coder.GAME_STATE[4], JSON.stringify({
+        this.socketIO.sendMessage('ChooseCard', JSON.stringify({
             user: this.user,
             num: this.num,
             choose: 1
