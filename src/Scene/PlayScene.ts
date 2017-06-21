@@ -12,6 +12,8 @@ class PlayScene extends egret.DisplayObjectContainer {
     private selectCardButton: eui.Button;
     private playerModalList: PlayerModal[] = [];
 
+    public nowPlayerLabel: eui.Label;
+
     private cardPanel: eui.Panel;
 
     private getCardPanel: MyGetCardPanel;
@@ -23,6 +25,8 @@ class PlayScene extends egret.DisplayObjectContainer {
     public selectFlag = false;
     public user = null;
     public num = null;
+
+    public limit = null;
 
     private skilling: boolean;
 
@@ -42,7 +46,8 @@ class PlayScene extends egret.DisplayObjectContainer {
 	private init(controller) {
         this.controller = controller;
         this.type = Coder.SCENE_TYPE.PLAY;
-
+        this.width = 1440;
+        this.height = 1024;
         this.socketIO = new Socket(this, this.type, this.controller.me.getRoomId(), this.controller.me.getSocketId());
         this.skilling = false;
         let bg = new eui.Image();
@@ -111,7 +116,23 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.myPlayerModal.x = 948;
         this.myPlayerModal.y = 708;
         this.addChild(this.myPlayerModal);
-        
+
+
+        let msg = {users: [{name: '123', score: '345'}, {name: '123', score: '345'},{name: '123', score: '345'},{name: '123', score: '345'},{name: '123', score: '345'},{name: '123', score: '345'},{name: '123', score: '345'},]}
+        // this.showScorePanel(msg);
+
+        this.nowPlayerLabel = new eui.Label("现在是 xx 玩家的回合");
+        this.nowPlayerLabel.x = 450;
+        this.nowPlayerLabel.y = 480;
+        this.nowPlayerLabel.textColor = 0x533502;
+        this.nowPlayerLabel.size = 48;
+        this.addChild(this.nowPlayerLabel);
+    }
+
+    public showScorePanel(msg) {
+        let scorePanel = new ScorePanel(this);
+        scorePanel.reset(msg);
+        this.addChild(scorePanel);
     }
 
     public showCardDetailsPanel(myArc: MyArc) {
