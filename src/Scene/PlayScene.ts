@@ -24,6 +24,8 @@ class PlayScene extends egret.DisplayObjectContainer {
     public user = null;
     public num = null;
 
+    public limit = null;
+
     private skilling: boolean;
 
     private position = [{x: 16, y: 357}, {x: 16, y: 6}, {x: 375, y: 6}, {x: 734, y: 6}, {x: 1093, y: 6}, {x: 1093, y: 357}];
@@ -110,7 +112,16 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.myPlayerModal.x = 948;
         this.myPlayerModal.y = 708;
         this.addChild(this.myPlayerModal);
-        
+
+
+        let msg = {users: [{name: '123', score: '345'}, {name: '123', score: '345'},{name: '123', score: '345'},{name: '123', score: '345'},{name: '123', score: '345'},{name: '123', score: '345'},{name: '123', score: '345'},]}
+        this.showScorePanel(msg);
+    }
+
+    public showScorePanel(msg) {
+        let scorePanel = new ScorePanel(this);
+        scorePanel.reset(msg);
+        this.addChild(scorePanel);
     }
 
     public showCardDetailsPanel(myArc: MyArc) {
