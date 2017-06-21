@@ -27,7 +27,6 @@ class Socket {
         }
     }
 
-
     private workTypeHall() {
 
         this.socket.on('socketId', socketId => {
@@ -47,7 +46,6 @@ class Socket {
             this.scene.jumpToRoom(roomId)
         })
     }
-
 
     private workTypeRoom() {
         this.socket.on('enter', message => {
@@ -90,7 +88,6 @@ class Socket {
 
         this.socket.on('Licensing', message => {
             let msg = JSON.parse(message);
-            console.log(msg);
             this.scene.addSelectButton(msg.cards);  
         })
 
@@ -104,6 +101,11 @@ class Socket {
         this.socket.on('ShowRole', message => {
             let msg = JSON.parse(message);
             this.scene.resetPlayerModal(msg);
+        })
+
+        this.socket.on('GameOver', message => {
+            let msg = JSON.parse(message);
+            console.log(msg);
         })
 
         this.socket.on('ShowRoleAndMessage', message => {
