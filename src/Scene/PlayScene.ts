@@ -83,6 +83,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.skillButton.x = 660;
         this.skillButton.y = 741;
         this.addChild(this.skillButton);
+        this.skillButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchSkillButton, this);
 
         // 结束回合按钮
         this.passButton = new eui.Button();
@@ -191,6 +192,14 @@ class PlayScene extends egret.DisplayObjectContainer {
         }
     }
 
+    // 技能按钮的点击事件
+    public onTouchSkillButton() {
+        this.skillButton.enabled = false;
+        this.socketIO.sendMessage('Skill', JSON.stringify({
+            num: this.num,
+        }))
+    }
+
     // 显示选牌界面
     public showSelectCardModal(cards) {
         this.getCardPanel = new MyGetCardPanel(this);
@@ -276,6 +285,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         }))
         this.playButton.enabled = false;
         this.passButton.enabled = false;
+        this.skillButton.enabled = false;
     }
 
     // 结束回合的按钮
@@ -286,11 +296,13 @@ class PlayScene extends egret.DisplayObjectContainer {
         }))
         this.passButton.enabled = false;
         this.playButton.enabled = false;
+        this.skillButton.enabled = false;
     }
 
     // 选择金币的响应事件
     private selectCoinEvent() {
         this.passButton.enabled = true;
+        this.skillButton.enabled = true;
         this.socketIO.sendMessage('ChooseCard', JSON.stringify({
             user: this.user,
             num: this.num,
@@ -301,6 +313,7 @@ class PlayScene extends egret.DisplayObjectContainer {
     // 选择卡牌的响应事件
     private selectCardEvent() {
         this.passButton.enabled = true; 
+        this.skillButton.enabled = true;
         this.showSelectCardModal(this.selectCards);
         // this.socketIO.sendMessage(Coder.GAME_STATE[4], JSON.stringify({choose: 2}));
     }

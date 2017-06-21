@@ -117,6 +117,11 @@ class Socket {
             this.scene.resetPlayerModal(msg);
         })
 
+        this.socket.on('Skill', message => {
+            let msg = JSON.parse(message);
+            this.scene.resetPlayerModal(msg);
+        })
+
         this.socket.on(Coder.GAME_STATE[5], message => {
             let msg = JSON.parse(message);
             this.scene.resetPlayerModal(msg.info);
