@@ -117,18 +117,23 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.myPlayerModal.y = 708;
         this.addChild(this.myPlayerModal);
 
-
-        let msg = {users: [{name: '123', score: '345'}, {name: '123', score: '345'},{name: '123', score: '345'},{name: '123', score: '345'},{name: '123', score: '345'},{name: '123', score: '345'},{name: '123', score: '345'},]}
-        // this.showScorePanel(msg);
-
-        this.nowPlayerLabel = new eui.Label("现在是 xx 玩家的回合");
-        this.nowPlayerLabel.x = 450;
-        this.nowPlayerLabel.y = 480;
-        this.nowPlayerLabel.textColor = 0x533502;
-        this.nowPlayerLabel.size = 48;
-        this.addChild(this.nowPlayerLabel);
+        // this.nowPlayerLabel = new eui.Label("现在是 xx 玩家的回合");
+        // this.nowPlayerLabel.x = 450;
+        // this.nowPlayerLabel.y = 480;
+        // this.nowPlayerLabel.textColor = 0x533502;
+        // this.nowPlayerLabel.size = 48;
     }
 
+    // public showNowPlayerLabel(txt) {
+    //     this.nowPlayerLabel.text = txt;
+    //     this.addChild(this.nowPlayerLabel);        
+    // }
+
+    // public hideNowPlayerLabel() {
+    //     this.removeChild(this.nowPlayerLabel);
+    // }
+
+    // 结束界面
     public showScorePanel(msg) {
         let scorePanel = new ScorePanel(this);
         scorePanel.reset(msg);
@@ -285,6 +290,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 
     // 选择金币的响应事件
     private selectCoinEvent() {
+        this.passButton.enabled = true;
         this.socketIO.sendMessage('ChooseCard', JSON.stringify({
             user: this.user,
             num: this.num,
@@ -294,6 +300,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 
     // 选择卡牌的响应事件
     private selectCardEvent() {
+        this.passButton.enabled = true; 
         this.showSelectCardModal(this.selectCards);
         // this.socketIO.sendMessage(Coder.GAME_STATE[4], JSON.stringify({choose: 2}));
     }
@@ -303,8 +310,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.selectCards = cards;
         this.selectCardFalg = true;
         this.addChild(this.selectCoinButton);        
-        this.addChild(this.selectCardButton);     
-        this.passButton.enabled = true;
+        this.addChild(this.selectCardButton);
     }
 
     // 删除选择卡牌的按钮
