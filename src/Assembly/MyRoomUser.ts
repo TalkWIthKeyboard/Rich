@@ -58,7 +58,7 @@ class MyRoomUser extends eui.Group {
 
 	public unable() {
 		this.removeChild(this.img);
-		this.img = new eui.Image("resource/assets/Room/nouser.jpg");
+		this.img = new eui.Image("resource/assets/Room/nouser.png");
 		this.addChildAt(this.img, 0);
 		this.usernameLabel.text = '';
 		this.readyornot = null;

@@ -302,7 +302,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.selectCards = cards;
         this.selectCardFalg = true;
         this.addChild(this.selectCoinButton);        
-        this.addChild(this.selectCardButton);     
+        this.addChild(this.selectCardButton);
         this.passButton.enabled = true;
     }
 
