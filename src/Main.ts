@@ -29,7 +29,7 @@ class Main extends egret.DisplayObjectContainer {
 
         // this.playScene = new PlayScene(this);
 
-        this.hallScene = new HallScene(this);
+        this.loginScene = new LoginScene(this);
         this.addEventListener(ChangeSceneEvent.CHANGE_SCENE_EVENT, this.changeScene, this);
     }
 
