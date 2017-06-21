@@ -5,9 +5,12 @@ class SelectCharacterModal extends eui.Panel{
 	private selectnum: number;
 	private characterList: Array<eui.Group>;
 	private roles;
+	private playScene: PlayScene;
+	private shadow: eui.Image;
 
-	public constructor() {
+	public constructor(playScene: PlayScene) {
 		super();
+		this.playScene = playScene;
 		this.width = 1213;
 		this.height = 598;
 		this.characterList = new Array<eui.Group>();
@@ -23,6 +26,11 @@ class SelectCharacterModal extends eui.Panel{
 	}
 
 	public init() {
+
+		this.shadow = new eui.Image();
+		this.shadow.source = "resource/assets/Shadow/shadow.png";
+		this.playScene.addChild(this.shadow);
+
 		let bg = new eui.Image();
 		bg.source = "resource/assets/Game/selectModal.png";
 		this.addChild(bg);
@@ -204,6 +212,7 @@ class SelectCharacterModal extends eui.Panel{
 		this.roles.choose.push(roleName);		
 		this.roles.normal.splice(selectIndex, 1);	
 		let scene = (<PlayScene>this.parent);
+		this.playScene.removeChild(this.shadow);
 		
 		scene.socketIO.sendMessage(Coder.GAME_STATE[2], JSON.stringify({
 			num: scene.num,

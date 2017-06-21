@@ -215,7 +215,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 
     // 显示选择人物界面
 	public showSelectCharacterModal(roles) {
-        this.selectCharacterModal = new SelectCharacterModal();
+        this.selectCharacterModal = new SelectCharacterModal(this);
         this.selectCharacterModal.init();
 		this.selectCharacterModal.x = 113;
 		this.selectCharacterModal.y = 220;

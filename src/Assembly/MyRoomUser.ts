@@ -34,7 +34,7 @@ class MyRoomUser extends eui.Group {
 
 	public setUser(user) {
 		this.removeChild(this.img);
-		this.img = new eui.Image("resource/assets/Room/user.jpg");
+		this.img = new eui.Image("resource/assets/Room/user.png");
 		this.addChildAt(this.img, 0);
 		this.usernameLabel.text = user.name;
 		if(user.type) {
@@ -49,7 +49,7 @@ class MyRoomUser extends eui.Group {
 
 	public clear() {
 		this.removeChild(this.img);
-		this.img = new eui.Image("resource/assets/Room/waituser.jpg");
+		this.img = new eui.Image("resource/assets/Room/waituser.png");
 		this.addChildAt(this.img, 0);
 		this.usernameLabel.text = '';
 		this.readyornot = null;
