@@ -106,7 +106,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.selectCardButton.x = 777;
         this.selectCardButton.y = 598;
         this.selectCardButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.selectCardEvent ,this);
-
+        
         this.myPlayerModal = new MyPlayerModal(this);
         this.myPlayerModal.x = 948;
         this.myPlayerModal.y = 708;
@@ -181,7 +181,7 @@ class PlayScene extends egret.DisplayObjectContainer {
     // 显示选择人物界面
 	public showSelectCharacterModal(roles) {
         this.selectCharacterModal = new SelectCharacterModal();
-		this.selectCharacterModal.init();
+        this.selectCharacterModal.init();
 		this.selectCharacterModal.x = 113;
 		this.selectCharacterModal.y = 220;
         this.selectFlag = true;
@@ -193,6 +193,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 	public hideSelectCharacterModal() {
         this.selectFlag = false;
 		this.removeChild(this.selectCharacterModal);
+        this.selectCharacterModal = null;
 	}
 
     // 初始化界面
