@@ -6,7 +6,7 @@ class Socket {
     public constructor(scene, type, roomId, socketId) {
 
         this.scene = scene;
-        let url = `ws://10.0.1.10:5000?type=${type}`;
+        let url = `ws://localhost:5000?type=${type}`;
         url += 
             type === 'Room' || type === 'Play' 
                 ? `&roomId=${roomId}&socketId=${socketId}`
@@ -106,6 +106,7 @@ class Socket {
         this.socket.on('GameOver', message => {
             let msg = JSON.parse(message);
             console.log(msg);
+            this.scene.showScorePanel(msg);
         })
 
         this.socket.on('ShowRoleAndMessage', message => {
@@ -113,6 +114,11 @@ class Socket {
             for (let i = 0; i < msg.length; i++) 
                 if (this.scene.controller.me.getSocketId() === msg[i].socketId) 
                     this.scene.num = i;
+            this.scene.resetPlayerModal(msg);
+        })
+
+        this.socket.on('Skill', message => {
+            let msg = JSON.parse(message);
             this.scene.resetPlayerModal(msg);
         })
 

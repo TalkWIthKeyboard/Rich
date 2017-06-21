@@ -83,6 +83,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.skillButton.x = 660;
         this.skillButton.y = 741;
         this.addChild(this.skillButton);
+        this.skillButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchSkillButton, this);
 
         // 结束回合按钮
         this.passButton = new eui.Button();
@@ -111,24 +112,29 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.selectCardButton.x = 777;
         this.selectCardButton.y = 598;
         this.selectCardButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.selectCardEvent ,this);
-
+        
         this.myPlayerModal = new MyPlayerModal(this);
         this.myPlayerModal.x = 948;
         this.myPlayerModal.y = 708;
         this.addChild(this.myPlayerModal);
 
-
-        let msg = {users: [{name: '123', score: '345'}, {name: '123', score: '345'},{name: '123', score: '345'},{name: '123', score: '345'},{name: '123', score: '345'},{name: '123', score: '345'},{name: '123', score: '345'},]}
-        // this.showScorePanel(msg);
-
-        this.nowPlayerLabel = new eui.Label("现在是 xx 玩家的回合");
-        this.nowPlayerLabel.x = 450;
-        this.nowPlayerLabel.y = 480;
-        this.nowPlayerLabel.textColor = 0x533502;
-        this.nowPlayerLabel.size = 48;
-        this.addChild(this.nowPlayerLabel);
+        // this.nowPlayerLabel = new eui.Label("现在是 xx 玩家的回合");
+        // this.nowPlayerLabel.x = 450;
+        // this.nowPlayerLabel.y = 480;
+        // this.nowPlayerLabel.textColor = 0x533502;
+        // this.nowPlayerLabel.size = 48;
     }
 
+    // public showNowPlayerLabel(txt) {
+    //     this.nowPlayerLabel.text = txt;
+    //     this.addChild(this.nowPlayerLabel);        
+    // }
+
+    // public hideNowPlayerLabel() {
+    //     this.removeChild(this.nowPlayerLabel);
+    // }
+
+    // 结束界面
     public showScorePanel(msg) {
         let scorePanel = new ScorePanel(this);
         scorePanel.reset(msg);
@@ -186,6 +192,14 @@ class PlayScene extends egret.DisplayObjectContainer {
         }
     }
 
+    // 技能按钮的点击事件
+    public onTouchSkillButton() {
+        this.skillButton.enabled = false;
+        this.socketIO.sendMessage('Skill', JSON.stringify({
+            num: this.num,
+        }))
+    }
+
     // 显示选牌界面
     public showSelectCardModal(cards) {
         this.getCardPanel = new MyGetCardPanel(this);
@@ -202,7 +216,7 @@ class PlayScene extends egret.DisplayObjectContainer {
     // 显示选择人物界面
 	public showSelectCharacterModal(roles) {
         this.selectCharacterModal = new SelectCharacterModal();
-		this.selectCharacterModal.init();
+        this.selectCharacterModal.init();
 		this.selectCharacterModal.x = 113;
 		this.selectCharacterModal.y = 220;
         this.selectFlag = true;
@@ -214,6 +228,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 	public hideSelectCharacterModal() {
         this.selectFlag = false;
 		this.removeChild(this.selectCharacterModal);
+        this.selectCharacterModal = null;
 	}
 
     // 初始化界面
@@ -270,6 +285,7 @@ class PlayScene extends egret.DisplayObjectContainer {
         }))
         this.playButton.enabled = false;
         this.passButton.enabled = false;
+        this.skillButton.enabled = false;
     }
 
     // 结束回合的按钮
@@ -280,10 +296,13 @@ class PlayScene extends egret.DisplayObjectContainer {
         }))
         this.passButton.enabled = false;
         this.playButton.enabled = false;
+        this.skillButton.enabled = false;
     }
 
     // 选择金币的响应事件
     private selectCoinEvent() {
+        this.passButton.enabled = true;
+        this.skillButton.enabled = true;
         this.socketIO.sendMessage('ChooseCard', JSON.stringify({
             user: this.user,
             num: this.num,
@@ -293,6 +312,8 @@ class PlayScene extends egret.DisplayObjectContainer {
 
     // 选择卡牌的响应事件
     private selectCardEvent() {
+        this.passButton.enabled = true; 
+        this.skillButton.enabled = true;
         this.showSelectCardModal(this.selectCards);
         // this.socketIO.sendMessage(Coder.GAME_STATE[4], JSON.stringify({choose: 2}));
     }
@@ -303,7 +324,6 @@ class PlayScene extends egret.DisplayObjectContainer {
         this.selectCardFalg = true;
         this.addChild(this.selectCoinButton);        
         this.addChild(this.selectCardButton);
-        this.passButton.enabled = true;
     }
 
     // 删除选择卡牌的按钮
