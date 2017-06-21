@@ -55,7 +55,7 @@ class RoomScene extends egret.DisplayObjectContainer {
         }, this);
         this.addChild(exitButton);
 
-        let img = new eui.Image("resource/assets/img.jpg");
+        let img = new eui.Image("resource/assets/img.png");
         img.x = 1031;
         img.y = 276;
         this.addChild(img);

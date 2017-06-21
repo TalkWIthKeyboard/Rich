@@ -46,7 +46,7 @@ class HallScene extends egret.DisplayObjectContainer {
         this.myRoomList = new MyRoomList();
         this.myRoomList.init(this);
 
-        let img = new eui.Image("resource/assets/img.jpg");
+        let img = new eui.Image("resource/assets/img.png");
         img.x = 1031;
         img.y = 276;
 
