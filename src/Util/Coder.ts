@@ -1,5 +1,5 @@
 class Coder {
-    public static SERVER = 'http://localhost:5000';
+    public static SERVER = 'http://10.0.1.35:5752';
     public static API_LOGIN = Coder.SERVER + '/api/login';
     public static API_REGISTER = Coder.SERVER + '/api/user';
     public static API_ROOM = Coder.SERVER + '/api/room';
